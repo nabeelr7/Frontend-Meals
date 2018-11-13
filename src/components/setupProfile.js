@@ -24,6 +24,11 @@ class setupProfile extends Component {
         formData.append('userName', this.props.username)
         formData.append('bio', this.state.bio)
         formData.append('file', this.state.file)
+
+        fetch('/setprofile', {
+            method: "POST",
+            body: formData
+        })
     }
     render(){
         return (

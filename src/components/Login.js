@@ -21,10 +21,10 @@ class Login extends Component {
         event.preventDefault()
         fetch('/login', {
             method: "POST",
-            body: {
+            body: JSON.stringify({
                 username: this.state.username,
                 password: this.state.password
-            }
+            })
         }).then(function (x) {
             return x.text()
         }).then(function (res) {
