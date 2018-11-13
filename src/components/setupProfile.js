@@ -21,7 +21,7 @@ class setupProfile extends Component {
         event.preventDefault()
         let formData = new FormData()
 
-        formData.append('userName', this.props.username)
+        formData.append('userName', this.props.userName)
         formData.append('bio', this.state.bio)
         formData.append('file', this.state.file)
 
@@ -59,7 +59,7 @@ class setupProfile extends Component {
 
 let mapStateToProps = function(state){
     return {
-        username: state.username
+        userName: state.userName
     }
 }
 

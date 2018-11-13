@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 
 let reducer= function(state, action){
     if (action.type === "loggedIn"){
-        return ({...state, username: action.username, loggedIn: true, userType: action.userType})
+        return ({...state, userName: action.userName, loggedIn: true, userType: action.userType})
     }
     return {...state}
 }

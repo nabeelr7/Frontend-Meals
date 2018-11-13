@@ -60,7 +60,7 @@ class Signup extends Component {
                 alert("Username already taken")
             }
             if (res.success) {
-                this.props.dispatch({ type: "loggedIn", username: this.state.userName, userType: "host"})
+                this.props.dispatch({ type: "loggedIn", userName: this.state.userName, userType: "host"})
             }
         }.bind(this))
     }
