@@ -12,7 +12,7 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     handleUsernameChange(event) {
-        this.setState({ username: event.target.value })
+        this.setState({ userName: event.target.value })
     }
     handlePasswordChange(event) {
         this.setState({ password: event.target.value })
@@ -35,7 +35,7 @@ class Login extends Component {
                 alert("Incorrect username or password")
             }
             if (parsed.success) {
-                this.props.dispatch({ type: "loggedIn", username: this.state.username, userType: "client"})
+                this.props.dispatch({ type: "loggedIn", userName: this.state.userName, userType: "client"})
             }
         }.bind(this))
     }
