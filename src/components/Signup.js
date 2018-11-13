@@ -22,7 +22,7 @@ class Signup extends Component {
         this.setState({ userType: "client" })
     }
     handleUsernameChange(event) {
-        this.setState({ username: event.target.value })
+        this.setState({ userName: event.target.value })
     }
     handlePasswordChange(event) {
         this.setState({ password: event.target.value })
@@ -42,7 +42,7 @@ class Signup extends Component {
             method: "POST",
             body: JSON.stringify({
                 userType: this.state.userType,
-                username: this.state.userName,
+                userName: this.state.userName,
                 password: this.state.password,
                 address: {
                     street: this.state.street,
@@ -60,7 +60,7 @@ class Signup extends Component {
                 alert("Username already taken")
             }
             if (res.success) {
-                this.props.dispatch({ type: "loggedIn", username: this.state.username, userType: "host"})
+                this.props.dispatch({ type: "loggedIn", username: this.state.userName, userType: "host"})
             }
         }.bind(this))
     }

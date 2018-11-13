@@ -28,6 +28,16 @@ class setupProfile extends Component {
         fetch('/setprofile', {
             method: "POST",
             body: formData
+        }).then(function(x){
+            return x.text()
+        }).then(function(res) {
+            let parsed = JSON.parse(res)
+            if (parsed.success) {
+                console.log("Profile Updated Successfully")
+            }
+            if (!parsed.success) {
+                console.log(parsed.msg)
+            }
         })
     }
     render(){
