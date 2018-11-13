@@ -22,7 +22,7 @@ class Login extends Component {
         fetch('/login', {
             method: "POST",
             body: JSON.stringify({
-                username: this.state.username,
+                userName: this.state.userName,
                 password: this.state.password
             })
         }).then(function (x) {
