@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class Authentication extends Component {
+class Signup extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -13,8 +13,8 @@ class Authentication extends Component {
         this.handleAddressChange = this.handleAddressChange.bind(this)
         this.handleCityChange = this.handleCityChange.bind(this)
         this.handlePostalChange = this.handlePostalChange.bind(this)
-        this.handleLoginSubmit= this.handleLoginSubmit.bind(this)
-        this.handleSignupSubmit = this.handleSignupSubmit.bind(this)
+        this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
     handleHostType() {
         this.setState({ userType: "host" })
@@ -37,10 +37,10 @@ class Authentication extends Component {
     handlePostalChange(event) {
         this.setState({ postal: event.target.value })
     }
-    handleSignupSubmit(event) {
+    handleSubmit(event) {
         event.preventDefault()
-        fetch("/signup",{
-            method:"POST",
+        fetch("/signup", {
+            method: "POST",
             body: JSON.stringify({
                 userType: this.state.userType,
                 username: this.state.userName,
@@ -51,42 +51,21 @@ class Authentication extends Component {
                     postal: this.state.postal
                 }
             })
-        }).then(function(x) {
+        }).then(function (x) {
             return x.text()
-        }).then(function(res){
+        }).then(function (res) {
 
             res = JSON.parse(res);
 
             if (!res.success) {
                 alert("Username already taken")
             }
-            if (res.success){
-                this.props.dispatch({type: "loggedIn", username: this.state.username})
+            if (res.success) {
+                this.props.dispatch({ type: "loggedIn", username: this.state.username, userType: "host"})
             }
         }.bind(this))
     }
-    handleLoginSubmit(event){
-        event.preventDefault()
-        fetch('/login', {
-            method:"POST",
-            body: {
-                username: this.state.username,
-                password: this.state.password
-            }
-        }).then(function(x) {
-            return x.text()
-        }).then(function(res){
 
-            let parsed = JSON.parse(res)
-
-            if(!parsed.success) {
-                alert ("Incorrect username or password")
-            }
-            if (parsed.success) {
-                this.props.dispatch({type:"loggedIn", username:this.state.username})
-            }
-        }.bind(this))
-    }
     render() {
         if (this.state.userType === undefined)
             return (
@@ -99,7 +78,7 @@ class Authentication extends Component {
         if (this.state.userType) {
             return (
                 <div>
-                    <form onSubmit={this.handleSignupSubmit}>
+                    <form onSubmit={this.handleSubmit}>
                         <div>Signup</div>
                         <div>Username</div>
                         <input type='text' onChange={this.handleUsernameChange} />
@@ -116,22 +95,8 @@ class Authentication extends Component {
                 </div>
             )
         }
-        if (this.state.login) {
-            return (
-                <div>
-                    <form onSubmit={this.handleLoginSubmit}>
-                    <div>Login</div>
-                    <div>Username</div>
-                    <input type='text' onChange={this.handleUsernameChange}/>
-                    <div>Password</div>
-                    <input type='password' onChange={this.handlePasswordChange}/>
-                    <input type='submit'/>
-                    </form>
-                </div>
-            )
-        }
     }
 }
 
-let ConnectedAuthentication = connect()(Authentication)
-export default ConnectedAuthentication
+let ConnectedSignup = connect()(Signup)
+export default ConnectedSignup

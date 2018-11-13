@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { BrowserRouter, Link, Route } from 'react-router-dom'
-import Authentication from './components/Authentication'
+import Signup from './components/Signup'
+import Login from './components/Login'
 import './App.css';
 
 class App extends Component {
@@ -16,7 +17,8 @@ class App extends Component {
       return (
         <BrowserRouter>
           <div className="App">
-            <Route path='/signup' component={Authentication}/>
+            <Route path='/signup' component={Signup}/>
+            <Route path='/login' component={Login}/>
           </div>
         </BrowserRouter>
       )
