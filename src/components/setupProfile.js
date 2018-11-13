@@ -21,7 +21,7 @@ class setupProfile extends Component {
         event.preventDefault()
         let formData = new FormData()
 
-        formData.append('username', this.props.username)
+        formData.append('userName', this.props.username)
         formData.append('bio', this.state.bio)
         formData.append('file', this.state.file)
     }
