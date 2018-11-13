@@ -12,15 +12,14 @@ class App extends Component {
     }
   }
   render() {
-    if (!this.props.username) {
+    
       return (
         <BrowserRouter>
           <div className="App">
-            <Authentication />
+            <Route path='/signup' component={Authentication}/>
           </div>
         </BrowserRouter>
       )
-    }
   }
 }
 

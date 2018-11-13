@@ -43,7 +43,7 @@ class Authentication extends Component {
             method:"POST",
             body: JSON.stringify({
                 userType: this.state.userType,
-                username: this.state.username,
+                username: this.state.userName,
                 password: this.state.password,
                 address: {
                     street: this.state.street,
@@ -54,13 +54,16 @@ class Authentication extends Component {
         }).then(function(x) {
             return x.text()
         }).then(function(res){
+
+            res = JSON.parse(res);
+
             if (!res.success) {
                 alert("Username already taken")
             }
             if (res.success){
                 this.props.dispatch({type: "loggedIn", username: this.state.username})
             }
-        })
+        }.bind(this))
     }
     handleLoginSubmit(event){
         event.preventDefault()
@@ -73,14 +76,16 @@ class Authentication extends Component {
         }).then(function(x) {
             return x.text()
         }).then(function(res){
+
             let parsed = JSON.parse(res)
+
             if(!parsed.success) {
                 alert ("Incorrect username or password")
             }
             if (parsed.success) {
                 this.props.dispatch({type:"loggedIn", username:this.state.username})
             }
-        })
+        }.bind(this))
     }
     render() {
         if (this.state.userType === undefined)
