@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-
+import './Bottom.css'
 class Bottom extends Component
 {
     render()
@@ -30,11 +30,6 @@ class Bottom extends Component
     }
 }
 
-function mapStateToProps(state)
-{
-    return {
 
-    }
-}
-
-export default connect(mapStateToProps)(Header);
+let connectedBottom = connect()(Bottom)
+export default connectedBottom;
