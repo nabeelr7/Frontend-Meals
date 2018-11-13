@@ -12,14 +12,18 @@ class setupProfile extends Component {
         this.handleBioChange = this.handleBioChange.bind(this)
     }
     handleFileChange(event) {
-
+        this.setState({file: event.target.files[0]})
     }
     handleBioChange(event) {
         this.setState({bio: event.target.value})
     }
     handleSubmit(event) {
         event.preventDefault()
-        
+        let formData = new FormData()
+
+        formData.append('username', this.props.username)
+        formData.append('bio', this.state.bio)
+        formData.append('file', this.state.file)
     }
     render(){
         return (
@@ -38,7 +42,11 @@ class setupProfile extends Component {
 }
 
 
+let mapStateToProps = function(state){
+    return {
+        username: state.username
+    }
+}
 
-
-let ConnectedSetupProfile = connect()(setupProfile)
+let ConnectedSetupProfile = connect(mapStateToProps)(setupProfile)
 export default ConnectedSetupProfile
