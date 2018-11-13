@@ -13,7 +13,6 @@ class Signup extends Component {
         this.handleAddressChange = this.handleAddressChange.bind(this)
         this.handleCityChange = this.handleCityChange.bind(this)
         this.handlePostalChange = this.handlePostalChange.bind(this)
-        this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     handleHostType() {

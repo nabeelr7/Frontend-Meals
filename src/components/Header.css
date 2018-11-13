@@ -1,0 +1,28 @@
+.header {
+    width: 100%;
+}
+
+/* Container for all the header bar's items */
+.header-bar {
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50px;
+    background-color: goldenrod;
+}
+
+/* Header bar items that justify to the left */
+.header-lefthand-side {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+/* Header bar items that justify to the right */
+.header-righthand-side {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
