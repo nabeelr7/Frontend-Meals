@@ -28,7 +28,7 @@ class Description extends Component
             description : parsed.description,
             price: parsed.price,
             mealId:parsed.mealID,
-            soldBy: parsed.username, 
+            soldBy: parsed.userName, 
             image: parsed.image,
             ingredients: parsed.ingredients,
             allergens: parsed.allergens
@@ -54,3 +54,11 @@ class Description extends Component
 
 
 //title, image, description, ingredients, allergens
+
+
+//vegan
+//vegetarian
+//gluten-free
+//contains dairy
+//contains nuts
+// contains shellfish
