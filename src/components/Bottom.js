@@ -17,9 +17,11 @@ class Bottom extends Component
                         </div>
 
                         <div className='bottom-righthand-side'>
-                           <div>Share on Social Media</div>
-                           <img src='/rawImages/facebook.jpg'></img> {/*get actual images and proper endings.jpg>*/}
-                           <img src='/rawImages/instagram.jpg'></img>
+                           <div>Share</div>
+                          <a href="www.facebook.com"> <img className="media-links" src='/rawImages/facebook.png'></img> </a>
+                          <a href="www.instagram.com"> <img className="media-links" src='/rawImages/instagram.png'></img> </a>
+                          <a href="www.twitter.com"> <img className="media-links" src='/rawImages/twitter.png'></img> </a>
+                          <a href="www.pinterest.com"> <img className="media-links" src='/rawImages/pinterest.png'></img> </a>
                             
                         </div>
 
