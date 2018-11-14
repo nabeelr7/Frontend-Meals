@@ -35,7 +35,7 @@ class Login extends Component {
                 alert("Incorrect username or password")
             }
             if (parsed.success) {
-                this.props.dispatch({ type: "loggedIn", userName: this.state.userName, userType: "client"})
+                this.props.dispatch({ type: "loggedIn", userName: this.state.userName})
             }
         }.bind(this))
     }

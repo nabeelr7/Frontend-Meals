@@ -32,11 +32,16 @@ class App extends Component {
 
             <Header />
 
+            {/* <div className='card'>
+            <img className='card-img' alt='meal' src='/rawImages/macaroni.jpg'/>
+            <div className='card-bottom'>
+            Spaghetti and Meatballs
+            </div>
+            </div> */}
+
             <Route exact={true} path='/' render={this.renderHomePage} />
             <Route exact={true} path='/signup' component={Signup}/>
             <Route exact={true} path='/login' component={Login}/>
-            <Route exact={true} path='/setprofile' component={setupProfile} />
-            <Route exact={true} path='/setupprofile' component={setupProfile} />
             
             <Bottom/>
 
@@ -49,7 +54,7 @@ class App extends Component {
 
 let mapStateToProps = function (state) {
   return {
-    username: state.username
+    userName: state.userName
   }
 }
 

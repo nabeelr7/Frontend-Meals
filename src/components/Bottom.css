@@ -1,7 +1,7 @@
 .bottom {
     width: 100%;
-    display:fixed;
-    bottom:0
+    position: absolute;
+    bottom:0;
 }
 
 /* Container for all the header bar's items */

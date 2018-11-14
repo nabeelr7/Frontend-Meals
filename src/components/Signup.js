@@ -7,7 +7,7 @@ class Signup extends Component {
         super(props)
         this.state = {
         }
-        this.handleHostType = this.handleHostType.bind(this)
+        this.handleChefType = this.handleChefType.bind(this)
         this.handleClientType = this.handleClientType.bind(this)
         this.handleUsernameChange = this.handleUsernameChange.bind(this)
         this.handlePasswordChange = this.handlePasswordChange.bind(this)
@@ -16,8 +16,8 @@ class Signup extends Component {
         this.handlePostalChange = this.handlePostalChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
-    handleHostType() {
-        this.setState({ userType: "host" })
+    handleChefType() {
+        this.setState({ userType: "chef" })
     }
     handleClientType() {
         this.setState({ userType: "client" })
@@ -77,7 +77,7 @@ class Signup extends Component {
                         alert("Username already taken")
                     }
                     if (res.success) {
-                        this.props.dispatch({ type: "loggedIn", userName: this.state.userName, userType: "host"})
+                        this.props.dispatch({ type: "loggedIn", userName: this.state.userName, userType: this.state.userType})
                     }
                 }.bind(this))
     }.bind(this)
@@ -97,8 +97,8 @@ class Signup extends Component {
         if (this.state.userType === undefined)
             return (
                 <div>
-                    <div>Will you be a host or a client?</div>
-                    <button onClick={this.handleHostType}>Host</button>
+                    <div>Will you be a Chef or a client?</div>
+                    <button onClick={this.handleChefType}>Chef</button>
                     <button onClick={this.handleClientType}>Client</button>
                 </div>
             )
