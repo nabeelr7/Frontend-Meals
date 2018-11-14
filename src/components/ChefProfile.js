@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-class ClientDashboard extends Component{
+class ChefProfile extends Component{
     constructor(){
         super();
         this.state={}
@@ -10,12 +10,11 @@ class ClientDashboard extends Component{
 
     render(){
         <div>
-            <div> My Info </div>
+            <div> Chef Info </div>
             
         </div>
     }
-    
 }
 
-let ConnectedClienmtDashboard = connect()(ClientDashboard);
-export default ConnectedClientDashboard
+let ConnectedChefProfile = connect()(ChefProfile);
+export default ConnectedChefProfile
