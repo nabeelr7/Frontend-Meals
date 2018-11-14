@@ -22,9 +22,9 @@ class Header extends Component
         })
         .then(function(response){ return response.text()})
         .then(function(response){
-
+            console.log(response)
             let parsed = JSON.parse(response);
-
+           
             if(parsed.success)
             {
                 this.props.dispatch({type: 'loggedOut'});
