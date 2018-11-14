@@ -48,9 +48,9 @@ class Description extends Component
     }
 }
 
+}
+// let connectedMealDescription = connect()(MealDescription)
+//export default connectedMealDescription; 
 
-/* let connectedMealDescription = connect()(MealDescription)
-export default connectedMealDescription; */
 
-
-//title, image, description, ingredients[], allergens[]
+//title, image, description, ingredients, allergens
