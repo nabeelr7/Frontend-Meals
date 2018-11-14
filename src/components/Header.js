@@ -16,9 +16,11 @@ class Header extends Component
                         </div>
 
                         <div className='header-righthand-side'>
-                            <Link to='/login'>Login</Link>
-                            <Link to='/signup'>Signup</Link>
-                            <Link to='/setprofile'>Set profile</Link>
+                        {!this.props.loggedIn &&  <Link to='/login'>Login</Link>}
+                        {!this.props.loggedIn &&  <Link to='/signup'>Signup</Link>}
+                        {this.props.loggedIn &&  <Link to='/setprofile'>Set profile</Link>}
+                         {/*SIGN OUT BUTTON*/}
+                            
                         </div>
 
                     </div>
