@@ -76,13 +76,14 @@ class Signup extends Component {
                     if (!res.success) {
                         alert("Username already taken")
                     }
-                    if (res.success) {
-                        this.props.dispatch({ type: "loggedIn", userName: this.state.userName, userType: this.state.userType})
-                        this.props.history.push('/setProfile')
+                    else
+                    {
+                        this.props.dispatch({ type: "loggedIn", userName: this.state.userName, userType: this.state.userType});
+                        this.props.history.push('/setProfile');
                     }
                 }.bind(this))
     }.bind(this)
-                 //fetch to backend create account
+                 
              ).catch(function(error){
                 console.log(error)
                 alert('something\'s wrong')

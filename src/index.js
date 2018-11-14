@@ -1,30 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
-import {connect, Provider} from 'react-redux';
+import {Provider} from 'react-redux';
+import store from './redux/store';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
-
-let reducer= function(state, action){
-    if (action.type === "loggedIn"){
-        return ({...state, userName: action.userName, loggedIn: true, userType: action.userType})
-    }
-    return {...state}
-}
-const store = createStore(
-    reducer,
-    {
-        loggedIn: false
-    },
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
-let contents = (<Provider store={store}>
-                    <App/>
-                </Provider>)
-
-ReactDOM.render(contents, document.getElementById('root'));
 
 
-
-
-serviceWorker.unregister();
+ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('root'));

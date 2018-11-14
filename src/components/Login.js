@@ -32,10 +32,15 @@ class Login extends Component {
             let parsed = JSON.parse(res)
 
             if (!parsed.success) {
-                alert("Incorrect username or password")
+                alert(parsed.msg)
             }
-            if (parsed.success) {
-                this.props.dispatch({ type: "loggedIn", userName: this.state.userName})
+            else
+            {
+                this.props.dispatch({ 
+                    type: "loggedIn", 
+                    userName: this.state.userName,
+                    userType: this.state.userType
+                })
             }
         }.bind(this))
     }

@@ -35,7 +35,7 @@ class Header extends Component
 function mapStateToProps(state)
 {
     return {
-
+        loggedIn: state.loggedIn
     }
 }
 
