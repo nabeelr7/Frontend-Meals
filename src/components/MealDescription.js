@@ -8,11 +8,11 @@ class Description extends Component
     constructor(props){
         super(props);
         this.state={
-            mealId: ''
+            _id: ''
         }
     }
     componentDidMount(){
-        if (!this.props.mealId){
+        if (!this.props._id){
             return(<div>Loading..</div>)
         }else
         fetch('/getMealDescription', {
@@ -20,23 +20,20 @@ class Description extends Component
             headers: {
                 'Content-Type': 'application/json'
               },
-            body: JSON.stringify({mealId: this.props.mealId})
+            body: JSON.stringify({_id: this.props._id})
         }).then(x=>x.text())
         .then(function(response){
             let parsed = JSON.parse(response);
            this.setState({title: parsed.title,
             description : parsed.description,
             price: parsed.price,
-            mealId:parsed.mealID,
+            _id: parsed._iD,
             soldBy: parsed.userName, 
             image: parsed.image,
             ingredients: parsed.ingredients,
             allergens: parsed.allergens
         })
         }.bind(this))
-
-
-
 
     render()
     {
@@ -49,8 +46,8 @@ class Description extends Component
 }
 
 }
-// let connectedMealDescription = connect()(MealDescription)
-//export default connectedMealDescription; 
+let connectedMealDescription = connect()(MealDescription)
+export default connectedMealDescription; 
 
 
 //title, image, description, ingredients, allergens

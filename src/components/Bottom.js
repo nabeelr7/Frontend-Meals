@@ -18,10 +18,10 @@ class Bottom extends Component
 
                         <div className='bottom-righthand-side'>
                            <div>Share</div>
-                          <a href="www.facebook.com"> <img className="media-links" src='/rawImages/facebook.png'></img> </a>
-                          <a href="www.instagram.com"> <img className="media-links" src='/rawImages/instagram.png'></img> </a>
-                          <a href="www.twitter.com"> <img className="media-links" src='/rawImages/twitter.png'></img> </a>
-                          <a href="www.pinterest.com"> <img className="media-links" src='/rawImages/pinterest.png'></img> </a>
+                          <a href="http://www.facebook.com"> <img className="media-links" alt="facebook" src='/rawImages/facebook.png'></img> </a>
+                          <a href="http://www.instagram.com"> <img className="media-links" alt="instagram" src='/rawImages/instagram.png'></img> </a>
+                          <a href="http://www.twitter.com"> <img className="media-links" alt="twitter" src='/rawImages/twitter.png'></img> </a>
+                          <a href="http://www.pinterest.com"> <img className="media-links" alt="pinterest" src='/rawImages/pinterest.png'></img> </a>
                             
                         </div>
 
