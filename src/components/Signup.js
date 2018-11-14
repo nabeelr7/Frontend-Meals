@@ -78,6 +78,7 @@ class Signup extends Component {
                     }
                     if (res.success) {
                         this.props.dispatch({ type: "loggedIn", userName: this.state.userName, userType: this.state.userType})
+                        this.props.history.push('/setProfile')
                     }
                 }.bind(this))
     }.bind(this)
@@ -89,6 +90,7 @@ class Signup extends Component {
             }
             geocode=geocode.bind(this)
             geocode()
+
         }
             
         

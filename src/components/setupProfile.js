@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { runInThisContext } from 'vm';
 
 class setupProfile extends Component {
     constructor(){
@@ -34,11 +35,13 @@ class setupProfile extends Component {
             let parsed = JSON.parse(res)
             if (parsed.success) {
                 console.log("Profile Updated Successfully")
+                this.props.history.push('/')
             }
             if (!parsed.success) {
                 console.log(parsed.msg)
             }
-        })
+
+        }.bind(this))
     }
     render(){
         return (
