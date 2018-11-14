@@ -35,8 +35,11 @@ class App extends Component {
             <Route exact={true} path='/' render={this.renderHomePage} />
             <Route exact={true} path='/signup' component={Signup}/>
             <Route exact={true} path='/login' component={Login}/>
+            <Route exact={true} path='/setprofile' component={setupProfile} />
             <Route exact={true} path='/setupprofile' component={setupProfile} />
+            
             <Bottom/>
+
           </div>
         </BrowserRouter>
       )
