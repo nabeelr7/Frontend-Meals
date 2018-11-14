@@ -4,14 +4,53 @@ import {Link} from 'react-router-dom';
 
 
 class Description extends Component
-{
+{   
+    constructor(props){
+        super(props);
+        this.state={
+            mealId: ''
+        }
+    }
+    componentDidMount(){
+        if (!this.props.mealId){
+            return(<div>Loading..</div>)
+        }else
+        fetch('/getMealDescription', {
+            method:"POST",
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify({mealId: this.props.mealId})
+        }).then(x=>x.text())
+        .then(function(response){
+            let parsed = JSON.parse(response);
+           this.setState({title: parsed.title,
+            description : parsed.description,
+            price: parsed.price,
+            mealId:parsed.mealID,
+            soldBy: parsed.username, 
+            image: parsed.image,
+            ingredients: parsed.ingredients,
+            allergens: parsed.allergens
+        })
+        }.bind(this))
+
+
+
+
     render()
     {
-        return 
+        return (
+                    <img src={this.state.image}></img>
+
+        )
         
     }
 }
 
 
-let connectedDescription = connect()(Description)
-export default connectedDescription;
+/* let connectedMealDescription = connect()(MealDescription)
+export default connectedMealDescription; */
+
+
+//title, image, description, ingredients[], allergens[]
