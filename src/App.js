@@ -31,11 +31,14 @@ class App extends Component {
 
       let parsed = JSON.parse(response);
 
-      this.props.dispatch({
-         type: "loggedIn",
-         userName: parsed.userName,
-         userType: parsed.userType
-        })
+      if(parsed.success)
+      {
+        this.props.dispatch({
+          type: "loggedIn",
+          userName: parsed.userName,
+          userType: parsed.userType
+          })
+      }
     }.bind(this))
   }
 

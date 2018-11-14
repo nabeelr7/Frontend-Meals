@@ -4,10 +4,6 @@
 * all input fields general look and behavior, etc.)
 */
 
-body {
-  margin: 0px;
-}
-
 #root {
   width: 100%;
 }

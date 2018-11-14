@@ -16,6 +16,14 @@ let reducer= function(state, action)
                 userType: action.userType
             }
 
+        case 'loggedOut':
+            return {
+                ...state,
+                userName: '',
+                userType: '',
+                loggedIn: false
+            }
+
         default:
             return state;
     }

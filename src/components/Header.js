@@ -5,6 +5,38 @@ import './Header.css';
 
 class Header extends Component
 {
+    constructor(props)
+    {
+        super(props);
+
+        // Bindings
+        this.logout = this.logout.bind(this);
+    }
+
+    logout(evt)
+    {
+        // Fetch the logout endpoint, then dispatch a 'loggedOut' action
+        fetch('/logout', {
+            method: 'GET',
+            credentials: 'include'
+        })
+        .then(function(response){ return response.text()})
+        .then(function(response){
+
+            let parsed = JSON.parse(response);
+
+            if(parsed.success)
+            {
+                this.props.dispatch({type: 'loggedOut'});
+            }
+            else
+            {
+                console.log('not sure why logout would fail, but it just did...')
+            }
+
+        }.bind(this))
+    }
+
     render()
     {
         return (<div className='header'>
@@ -16,10 +48,9 @@ class Header extends Component
                         </div>
 
                         <div className='header-righthand-side'>
-                        {!this.props.loggedIn &&  <Link to='/login'>Login</Link>}
-                        {!this.props.loggedIn &&  <Link to='/signup'>Signup</Link>}
-                        {this.props.loggedIn &&  <Link to='/setprofile'>Set profile</Link>}
-                         {/*SIGN OUT BUTTON*/}
+                        {!this.props.loggedIn &&  <Link to='/login'><button>Login</button></Link>}
+                        {!this.props.loggedIn &&  <Link to='/signup'><button>Signup</button></Link>}
+                         {this.props.loggedIn && <button onClick={this.logout}>Logout</button>}
                             
                         </div>
 
