@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import './Header.css';
 
 class Header extends Component
 {
@@ -17,9 +18,12 @@ class Header extends Component
                         <div className='header-righthand-side'>
                             <Link to='/login'>Login</Link>
                             <Link to='/signup'>Signup</Link>
+                            <Link to='/setprofile'>Set profile</Link>
                         </div>
 
                     </div>
+
+                    <div className='halfPlate'>Share a Meal</div>
 
                 </div>
         )
