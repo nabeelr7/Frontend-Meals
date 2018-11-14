@@ -41,7 +41,6 @@ class Signup extends Component {
     handleSubmit(event) {
         event.preventDefault()
         //call geocode to get coordinates
-        debugger
         
         function geocode(){
             let fullAddress = this.state.address+' '+this.state.city+' '+this.state.postal

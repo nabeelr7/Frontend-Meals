@@ -7,6 +7,7 @@ import setupProfile from './components/setupProfile';
 import './App.css';
 import Header from './components/Header.js';
 import Bottom from './components/Bottom.js';
+import MealAddBox from './components/MealAddBox'
 
 class App extends Component {
   constructor() {
@@ -66,6 +67,7 @@ class App extends Component {
             <Route exact={true} path='/signup' component={Signup}/>
             <Route exact={true} path='/login' component={Login}/>
             <Route exact={true} path='/setProfile' component={setupProfile}/>
+            <Route exact={true} path='/addmeal' component={MealAddBox}/>
             <Bottom/>
 
           </div>
