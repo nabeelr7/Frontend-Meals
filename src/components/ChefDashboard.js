@@ -13,15 +13,15 @@ class ChefDashboard extends Component{
 
     //function of button to add meal items
     addMeal(){
-        
+        this.props.history.push('/addmeal')
     }
     render(){
-        <div>
-            <div> My Info </div>
-
-            <button value= 'Add Meal' onClick={this.addMeal}></button>
-        
-        </div>
+        return(<>
+            <div className="chefInfoTitle"> My Info </div>
+            <br/>
+            <button  onClick={this.addMeal}>Add a Meal</button>
+        </>
+        )
     }
 }
 

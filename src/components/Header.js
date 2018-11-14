@@ -36,6 +36,9 @@ class Header extends Component
 
         }.bind(this))
     }
+    goToDash(){
+
+    }
 
     render()
     {
@@ -51,6 +54,7 @@ class Header extends Component
                         {!this.props.loggedIn &&  <Link to='/login'><button>Login</button></Link>}
                         {!this.props.loggedIn &&  <Link to='/signup'><button>Signup</button></Link>}
                          {this.props.loggedIn && <button onClick={this.logout}>Logout</button>}
+                         {this.props.loggedIn && <Link to='/chefdashboard'><button >My Dashboard</button></Link>}
                             
                         </div>
 
