@@ -49,16 +49,4 @@ class Description extends Component
 }
 
 }
-// let connectedMealDescription = connect()(MealDescription)
-//export default connectedMealDescription; 
 
-
-//title, image, description, ingredients, allergens
-
-
-//vegan
-//vegetarian
-//gluten-free
-//contains dairy
-//contains nuts
-// contains shellfish

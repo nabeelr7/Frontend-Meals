@@ -41,6 +41,9 @@ class Login extends Component {
                     userName: this.state.userName,
                     userType: this.state.userType
                 })
+
+                // Send the user to the homepage ('/')
+                this.props.history.push('/');
             }
         }.bind(this))
     }
