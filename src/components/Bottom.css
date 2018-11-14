@@ -29,3 +29,8 @@
     flex-direction: column;
     justify-content: right;
 }
+
+/*  Logos / Links to social media sites*/
+.media-links {
+    height: 20px
+}
