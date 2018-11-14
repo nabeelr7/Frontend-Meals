@@ -5,7 +5,8 @@ import Signup from './components/Signup'
 import Login from './components/Login'
 import setupProfile from './components/setupProfile'
 import './App.css';
-import Header from './components/Header';
+import Header from './components/Header.js';
+import Bottom from './components/Bottom.js';
 
 class App extends Component {
   constructor() {
@@ -35,6 +36,9 @@ class App extends Component {
             <Route exact={true} path='/signup' component={Signup}/>
             <Route exact={true} path='/login' component={Login}/>
             <Route exact={true} path='/setprofile' component={setupProfile} />
+            <Route exact={true} path='/setupprofile' component={setupProfile} />
+            
+            <Bottom/>
 
           </div>
         </BrowserRouter>

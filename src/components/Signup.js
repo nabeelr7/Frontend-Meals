@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios'
 
 class Signup extends Component {
     constructor(props) {
@@ -28,42 +29,69 @@ class Signup extends Component {
         this.setState({ password: event.target.value })
     }
     handleAddressChange(event) {
-        this.setState({ street: event.target.value })
+        this.setState({ address: event.target.value })
     }
     handleCityChange(event) {
         this.setState({ city: event.target.value })
     }
     handlePostalChange(event) {
         this.setState({ postal: event.target.value })
+    
     }
     handleSubmit(event) {
         event.preventDefault()
-        fetch("/signup", {
-            method: "POST",
-            body: JSON.stringify({
-                userType: this.state.userType,
-                userName: this.state.userName,
-                password: this.state.password,
-                address: {
-                    street: this.state.street,
-                    city: this.state.city,
-                    postal: this.state.postal
-                }
-            })
-        }).then(function (x) {
-            return x.text()
-        }).then(function (res) {
-
-            res = JSON.parse(res);
-
-            if (!res.success) {
-                alert("Username already taken")
+        //call geocode to get coordinates
+        debugger
+        
+        function geocode(){
+            let fullAddress = this.state.address+' '+this.state.city+' '+this.state.postal
+            axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+                params: {
+                    address: fullAddress,
+                    key: "AIzaSyAH3-pCisuIKJUVEskFGCkfgzqVGkeYEzc"
+                    }
+             })
+             .then(function(response){
+                 console.log(response) 
+                 let coordinates=response.data.results[0].geometry.location
+                 fetch("/signup", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        userType: this.state.userType,
+                        userName: this.state.userName,
+                        password: this.state.password,
+                        address: {
+                            street: this.state.address,
+                            city: this.state.city,
+                            postal: this.state.postal
+                        },
+                        coordinates: coordinates
+                    })
+                }).then(function (x) {
+                    return x.text()
+                }).then(function (res) {
+        
+                    res = JSON.parse(res);
+        
+                    if (!res.success) {
+                        alert("Username already taken")
+                    }
+                    if (res.success) {
+                        this.props.dispatch({ type: "loggedIn", userName: this.state.userName, userType: "host"})
+                    }
+                }.bind(this))
+    }.bind(this)
+                 //fetch to backend create account
+             ).catch(function(error){
+                console.log(error)
+                alert('something\'s wrong')
+             })
             }
-            if (res.success) {
-                this.props.dispatch({ type: "loggedIn", userName: this.state.userName, userType: "host"})
-            }
-        }.bind(this))
-    }
+            geocode=geocode.bind(this)
+            geocode()
+        }
+            
+        
 
     render() {
         if (this.state.userType === undefined)
