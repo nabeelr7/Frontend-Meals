@@ -90,7 +90,8 @@ class MealDescription extends Component
 function mapStateToProps(state)
 {
     return {
-
+        loggedIn: state.loggedIn,
+        userName: state.userName
     }
 }
 
