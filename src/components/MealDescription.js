@@ -51,7 +51,7 @@ class MealDescription extends Component
             description: parsed.description,
             price: parseInt(parsed.price),
             ingredients: parsed.ingredients,
-            diet: parsed.allergens,
+            diet: parsed.diet,
             image: parsed.image
 
         })
@@ -68,7 +68,7 @@ class MealDescription extends Component
                     <img src={this.state.image} />
                     <div>{this.state.title}</div>
                     <div>{this.state.description}</div>
-                    <div>{this.state.Price + '$'}</div>
+                    <div>{this.state.price + '$'}</div>
                     <div>ingredients: 
                         <ArrayToUl array={this.state.ingredients} />
                     </div>

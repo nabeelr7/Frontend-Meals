@@ -10,6 +10,7 @@ import Bottom from './components/Bottom.js';
 import MealAddBox from './components/MealAddBox';
 import ChefDashboard from './components/ChefDashboard.js';
 import MealDescription from './components/MealDescription';
+import Browse from './components/Browse'
 
 class App extends Component {
   constructor() {
@@ -72,6 +73,7 @@ class App extends Component {
             <Route exact={true} path='/addmeal' component={MealAddBox}/>
             <Route exact={true} path='/chefdashboard' component={ChefDashboard}/>
             <Route exact={true} path='/meal/:mealId' component={MealDescription} />
+            <Route exact={true} path='/browse' component={Browse}/>
 
             <Bottom/>
 
