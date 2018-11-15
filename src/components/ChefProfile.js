@@ -2,48 +2,66 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-class ChefProfile extends Component{
-    constructor(){
+class ChefProfile extends Component {
+    constructor() {
         super();
-        this.state={
+        this.state = {
             profile: ''
         }
     }
-    componentDidMount(){
+    componentDidMount() {
+        let chefName = this.props.match.params.chefName
         fetch('/getprofile', {
             method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-              },
-            body: JSON.stringify({userName: this.props.match.params})
-        }).then((x)=>x.text())
-        .then((response)=>{
-        let parsed=JSON.parse(response)
-        this.setState({profile: parsed})})
+            body: JSON.stringify({ userName: chefName })
+        }).then((x) => x.text())
+            .then((response) => {
+                let parsed = JSON.parse(response)
+                this.setState({ profile: parsed })
+            })
 
         fetch('/getitemsbychef', {
             method: "POST",
-            body: {userName: this.props.match.params}
+            body: JSON.stringify({ userName: chefName })
+        }).then((x) => {
+            return x.text()
+        }).then((response) => {
+            let parsed = JSON.parse(response)
+            this.setState({ items: parsed })
         })
     }
-    render(){
-        if (!this.state.profile){return <div>Loading..</div>}
-        else
-        {return(<div>
-            <img className='chefProfilePic' alt="profilePic" src = {this.props.image}></img>
-            <div>{this.profile.userName}</div>
-            <br/>
-            <div>{this.profile.bio}</div>
-            
-            
-        </div>
-        )}
+    render() {
+        if (!this.state.profile) { return <div>Loading..</div> }
+        else {
+            return (<>
+            <div className='chefInfo'>
+                <img className='chefProfilePic' alt="profilePic" src={this.state.profile.image}></img>
+                <div>{this.state.profile.userName}</div>
+                <br />
+                <div>{this.state.profile.bio}</div>
+            </div>
+            <div className='chefMeals'>
+                {this.state.items.map(function(item){
+                    return (
+                        <div className='item-card'>
+                        <img src={item.image} alt='meal pic'/>
+                        <div>{item.price}</div>
+                        <div>{item.title}</div>
+                        <div>{item.description}</div>
+                        <ul>{item.diet.map((item)=><li>{item}</li>)}</ul>
+                        </div>
+                    )
+                })}
+            </div>
+            </>
+            )
+        }
     }
 }
 
-let mapStateToProps= function( state){
+let mapStateToProps = function (state) {
     return {
-        userName : state.userName
+        userName: state.userName
     }
 }
 
