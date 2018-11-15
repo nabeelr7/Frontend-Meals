@@ -6,7 +6,8 @@ class ChefProfile extends Component {
     constructor() {
         super();
         this.state = {
-            profile: ''
+            profile: '',
+            items: []
         }
     }
     componentDidMount() {
