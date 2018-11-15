@@ -64,4 +64,5 @@ class Browse extends Component {
         )
     }
 }
+
 export default Browse

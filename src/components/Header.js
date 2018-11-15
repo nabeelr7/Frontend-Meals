@@ -48,8 +48,12 @@ class Header extends Component
                     <div className='header-bar'>
 
                         <div className='header-lefthand-side'>
-                        {<Link to='/'><img height='50px' alt="logoLink" src='/rawimages/logo.png'></img></Link>}
+                        <Link to='/'><img height='50px' alt="logoLink" src='/rawimages/logo.png'></img></Link>
                         <SearchBar/>
+                        <br/>
+                        <Link to ='/browse'><button>Browse</button></Link>
+                        
+                       
                             
                         </div>
 
