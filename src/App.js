@@ -60,12 +60,7 @@ class App extends Component {
 
             <Header />
 
-            {/* <div className='card'>
-            <img className='card-img' alt='meal' src='/rawImages/macaroni.jpg'/>
-            <div className='card-bottom'>
-            Spaghetti and Meatballs
-            </div>
-            </div> */}
+            
 
             <Route exact={true} path='/' render={this.renderHomePage} />
             <Route exact={true} path='/signup' component={Signup}/>

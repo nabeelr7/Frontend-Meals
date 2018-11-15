@@ -43,7 +43,7 @@ class Browse extends Component {
 
     render(){
         return (
-            <>
+            <div className='browse'>
             <Modal 
                     visible={this.state.visible}
                     effect="fadeInUp"
@@ -60,7 +60,7 @@ class Browse extends Component {
                 image={item.image}
                 displayMeal={this.displayMealDescription}/>
             })}
-            </>
+            </div>
         )
     }
 }
