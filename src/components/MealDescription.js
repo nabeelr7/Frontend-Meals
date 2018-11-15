@@ -1,48 +1,88 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import ArrayToUl from './ArrayToUl';
 
 
-class Description extends Component
+class MealDescription extends Component
 {   
-    constructor(props){
+    constructor(props)
+    {
         super(props);
+
         this.state={
-            _id: ''
+            _id: '',
+            title: '',
+            description: '',
+            price: 0,
+            image: '',
+            ingredients: [],
+            diet: [],
+            userName: ''
         }
     }
-    componentDidMount(){
-        if (!this.props._id){
-            return(<div>Loading..</div>)
-        }else
-        fetch('/getMealDescription', {
-            method:"POST",
-            headers: {
-                'Content-Type': 'application/json'
-              },
-            body: JSON.stringify({_id: this.props._id})
-        }).then(x=>x.text())
-        .then(function(response){
-            let parsed = JSON.parse(response);
-           this.setState({title: parsed.title,
-            description : parsed.description,
-            price: parsed.price,
-            _id: parsed._iD,
-            soldBy: parsed.userName, 
-            image: parsed.image,
+
+    componentDidUpdate(prevProps)
+    {
+        if(!prevProps ||
+            prevProps.mealId !== this.props.mealId)
+        {
+            fetch('/getmealdescription', {
+                method:"POST",
+                credentials: 'include',
+                body: JSON.stringify({_id: this.props.mealId})
+            })
+            .then(function(response){ return response.text()})
+            .then(this.processServerResponse)
+        }
+    }
+
+    processServerResponse(response)
+    {
+        let parsed = JSON.parse(response);
+
+        this.setState({
+            userName: parsed.userName,
+            title: parsed.title,
+            description: parsed.description,
+            price: parseInt(parsed.price),
             ingredients: parsed.ingredients,
-            allergens: parsed.allergens
+            diet: parsed.allergens,
+            image: parsed.image
+
         })
-        }.bind(this))
+    }
 
     render()
     {
-        return (
-                    <img src={this.state.image}></img>
+        return (<div>
+                    <img src={this.state.image} />
+                    <div>{this.state.title}</div>
+                    <div>{this.state.description}</div>
+                    <div>{this.state.Price + '$'}</div>
+                    <div>ingredients: 
+                        <ArrayToUl array={this.state.ingredients} />
+                    </div>
+                    <div>dietary considerations: 
+                        <ArrayToUl array={this.state.diet} />
+                    </div>
 
+                    <div>
+                        <button onClick={this.orderThisMeal}>Order this meal</button>
+                        <Link to={'/chef/' + this.state.userName}><button>Chef profile</button></Link>
+                    </div>
+                </div>
         )
         
     }
 }
 
+
+function mapStateToProps(state)
+{
+    return {
+
+    }
 }
+
+export default connect(mapStateToProps)(MealDescription);
