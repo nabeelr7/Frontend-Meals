@@ -1,25 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Modal from 'react-awesome-modal';
+import MealAddBox from './MealAddBox'
 
-
-class ChefDashboard extends Component{
-    constructor(){
+class ChefDashboard extends Component {
+    constructor() {
         super();
-        this.state={}
+        this.state = {
+            visible: false
+        }
 
         //bind everything
-        this.addMeal=this.addMeal.bind(this)
+        this.openModal = this.openModal.bind(this)
+        this.closeModal = this.closeModal.bind(this)
+    }
+    openModal() {
+        this.setState({
+            visible: true
+        });
     }
 
-    //function of button to add meal items
-    addMeal(){
-        this.props.history.push('/addmeal')
+    closeModal() {
+        this.setState({
+            visible: false
+        })
     }
-    render(){
-        return(<>
+
+    render() {
+        return (<>
             <div className="chefInfoTitle"> My Info </div>
-            <br/>
-            <button  onClick={this.addMeal}>Add a Meal</button>
+        <input type="button" value="Add A Meal" onClick={() => this.openModal()} />
+                <Modal 
+                    visible={this.state.visible}
+                    effect="fadeInUp"
+                    onClickAway={() => this.closeModal()}
+                >
+
+                <MealAddBox />
+
+            </Modal>
         </>
         )
     }

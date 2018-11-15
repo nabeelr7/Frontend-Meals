@@ -9,13 +9,14 @@ class ClientDashboard extends Component{
     }
 
     render(){
+        return(
         <div>
             <div> My Info </div>
             
         </div>
-    }
+        )}
     
 }
 
-let ConnectedClienmtDashboard = connect()(ClientDashboard);
+let ConnectedClientDashboard = connect()(ClientDashboard);
 export default ConnectedClientDashboard
