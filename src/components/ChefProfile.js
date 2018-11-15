@@ -28,6 +28,7 @@ class ChefProfile extends Component {
         }).then((response) => {
             let parsed = JSON.parse(response)
             this.setState({ items: parsed })
+            console.log(response);
         })
     }
     render() {
@@ -41,7 +42,7 @@ class ChefProfile extends Component {
                 <div>{this.state.profile.bio}</div>
             </div>
             <div className='chefMeals'>
-                {this.state.items.map(function(item){
+                {this.state.items.map((item)=>{
                     return (
                         <div className='item-card'>
                         <img src={item.image} alt='meal pic'/>
@@ -49,6 +50,7 @@ class ChefProfile extends Component {
                         <div>{item.title}</div>
                         <div>{item.description}</div>
                         <ul>{item.diet.map((item)=><li>{item}</li>)}</ul>
+                        <button>Order</button>
                         </div>
                     )
                 })}
