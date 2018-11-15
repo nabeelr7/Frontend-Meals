@@ -20,6 +20,10 @@ class MealDescription extends Component
             diet: [],
             userName: ''
         }
+
+        // Bindings
+        this.processServerResponse = this.processServerResponse.bind(this);
+        this.orderThisMeal = this.orderThisMeal.bind(this);
     }
 
     componentDidUpdate(prevProps)
@@ -51,6 +55,11 @@ class MealDescription extends Component
             image: parsed.image
 
         })
+    }
+
+    orderThisMeal(evt)
+    {
+        console.log("Someone wants to order a meal. Quick, to the batmobile!");
     }
 
     render()
