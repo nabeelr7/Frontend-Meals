@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import './Header.css';
+import SearchBar from './SearchBar'
 
 class Header extends Component
 {
@@ -47,6 +48,8 @@ class Header extends Component
                     <div className='header-bar'>
 
                         <div className='header-lefthand-side'>
+                        {<Link to='/'><img height='50px' alt="logoLink" src='/rawimages/logo.png'></img></Link>}
+                        <SearchBar/>
                             
                         </div>
 

@@ -23,6 +23,12 @@ let reducer= function(state, action)
                 userType: '',
                 loggedIn: false
             }
+            
+        case 'topSearchBarResults':
+            return {
+                ...state,
+                searchBarResults: action.res
+            }
 
         default:
             return state;

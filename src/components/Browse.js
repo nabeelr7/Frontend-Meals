@@ -8,7 +8,8 @@ class Browse extends Component {
     constructor(){
         super()
         this.state={
-            items: []
+            items: [],
+            searchType: 'title'
         }
 
         // bindings
