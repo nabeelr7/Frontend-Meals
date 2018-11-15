@@ -15,14 +15,19 @@ class ChefProfile extends Component{
             headers: {
                 'Content-Type': 'application/json'
               },
-            body: JSON.stringify({userName: this.props.userName})
+            body: JSON.stringify({userName: this.props.match.params})
         }).then((x)=>x.text())
         .then((response)=>{
         let parsed=JSON.parse(response)
         this.setState({profile: parsed})})
+
+        fetch('/getitemsbychef', {
+            method: "POST",
+            body: {userName: this.props.match.params}
+        })
     }
     render(){
-        if (!profile){return <div>Loading..</div>}
+        if (!this.state.profile){return <div>Loading..</div>}
         else
         {return(<div>
             <img className='chefProfilePic' alt="profilePic" src = {this.props.image}></img>

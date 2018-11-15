@@ -46,7 +46,7 @@ class MealDescription extends Component
         let parsed = JSON.parse(response);
 
         this.setState({
-            userName: parsed.userName,
+            chefName: parsed.userName,
             title: parsed.title,
             description: parsed.description,
             price: parseInt(parsed.price),
@@ -78,7 +78,7 @@ class MealDescription extends Component
 
                     <div>
                         <button onClick={this.orderThisMeal}>Order this meal</button>
-                        <Link to={'/chef/' + this.state.userName}><button>Chef profile</button></Link>
+                        <Link to={'/chef/' + this.state.chefName}><button>Chef profile</button></Link>
                     </div>
                 </div>
         )

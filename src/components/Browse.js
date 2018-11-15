@@ -45,8 +45,6 @@ class Browse extends Component {
             <>
             <Modal 
                     visible={this.state.visible}
-                    width="400"
-                    height="300"
                     effect="fadeInUp"
                     onClickAway={this.closeModal}
                 >
