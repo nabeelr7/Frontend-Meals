@@ -36,5 +36,11 @@ class ChefProfile extends Component{
     }
 }
 
-let ConnectedChefProfile = connect()(ChefProfile);
+let mapStateToProps= function( state){
+    return {
+        userName : state.userName
+    }
+}
+
+let ConnectedChefProfile = connect(mapStateToProps)(ChefProfile);
 export default ConnectedChefProfile
