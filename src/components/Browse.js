@@ -13,6 +13,7 @@ class Browse extends Component {
 
         // bindings
         this.displayMealDescription = this.displayMealDescription.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
     componentDidMount(){
         fetch('/getallmeals')
@@ -32,6 +33,13 @@ class Browse extends Component {
         })
     }
 
+    closeModal(evt)
+    {
+        this.setState({
+            visible: false
+        })
+    }
+
     render(){
         return (
             <>
@@ -40,7 +48,7 @@ class Browse extends Component {
                     width="400"
                     height="300"
                     effect="fadeInUp"
-                    onClickAway={() => this.closeModal()}
+                    onClickAway={this.closeModal}
                 >
                     <MealDescription
                         mealId={this.state.displayedMealId} />
