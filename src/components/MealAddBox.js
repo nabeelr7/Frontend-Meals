@@ -72,6 +72,8 @@ class MealAddBox extends Component {
                 console.log("Meal Added")
             }
         })
+
+        this.props.closeModal()
     }
 
     render() {

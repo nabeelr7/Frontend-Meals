@@ -36,7 +36,7 @@ class ChefDashboard extends Component {
                     onClickAway={() => this.closeModal()}
                 >
 
-                <MealAddBox />
+                <MealAddBox closeModal={this.closeModal}/>
 
             </Modal>
         </>
