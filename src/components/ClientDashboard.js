@@ -22,7 +22,7 @@ class ClientDashboard extends Component{
         this.setState({profile: parsed})})
     }
     render(){
-        if (!profile){return <div>Loading..</div>}
+        if (!this.state.profile){return <div>Loading..</div>}
         else
         {return(<div>
             <img className='clientProfilePic' alt="profilePic" src = {this.props.image}></img>
@@ -39,5 +39,5 @@ let mapStateToProps= function(state){
     }
 }
 
-let ConnectedChefProfile = connect(mapStateToProps)(ClientDashboard);
+let ConnectedClientDashboard = connect(mapStateToProps)(ClientDashboard);
 export default ConnectedClientDashboard
