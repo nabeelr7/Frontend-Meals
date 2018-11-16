@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import ArrayToUl from './ArrayToUl';
+import MealOrderForm from './MealOrderForm';
 
 
 class MealDescription extends Component
@@ -18,12 +19,12 @@ class MealDescription extends Component
             image: '',
             ingredients: [],
             diet: [],
-            userName: ''
+            chefName: ''
         }
 
         // Bindings
         this.processServerResponse = this.processServerResponse.bind(this);
-        this.orderThisMeal = this.orderThisMeal.bind(this);
+        this.showMealOrderForm = this.showMealOrderForm.bind(this);
     }
 
     componentDidUpdate(prevProps)
@@ -57,7 +58,7 @@ class MealDescription extends Component
         })
     }
 
-    orderThisMeal(evt)
+    showMealOrderForm(evt)
     {
         console.log("Someone wants to order a meal. Quick, to the batmobile!");
     }
@@ -76,8 +77,10 @@ class MealDescription extends Component
                         <ArrayToUl array={this.state.diet} />
                     </div>
 
+                    <MealOrderForm />
+
                     <div>
-                        <button onClick={this.orderThisMeal}>Order this meal</button>
+                        <button onClick={this.showMealOrderForm}>Order this meal</button>
                         <Link to={'/chef/' + this.state.chefName}><button>Chef profile</button></Link>
                     </div>
                 </div>
