@@ -65,7 +65,9 @@ class MealDescription extends Component
     render()
     {
         return (<div>
-                    <img src={this.state.image} />
+                    <div className='modal-top'>
+                    <img src={this.state.image} className='modal-img'/>
+                    </div>
                     <div>{this.state.title}</div>
                     <div>{this.state.description}</div>
                     <div>{this.state.price + '$'}</div>
