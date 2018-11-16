@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import StripeCheckout from './stripe.js';
+import StripeCheckout from './Stripe.js';
 
 
 
