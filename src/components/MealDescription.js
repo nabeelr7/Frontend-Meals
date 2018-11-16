@@ -1,67 +1,10 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import ArrayToUl from './ArrayToUl';
-
+import ArrayToUl from './ArrayToUl'
+import {Link} from 'react-router-dom'
 
 class MealDescription extends Component
-{   
-    constructor(props)
-    {
-        super(props);
-
-        this.state={
-            _id: '',
-            title: '',
-            description: '',
-            price: 0,
-            image: '',
-            ingredients: [],
-            diet: [],
-            userName: ''
-        }
-
-        // Bindings
-        this.processServerResponse = this.processServerResponse.bind(this);
-        this.orderThisMeal = this.orderThisMeal.bind(this);
-    }
-
-    componentDidUpdate(prevProps)
-    {
-        if(!prevProps ||
-            prevProps.mealId !== this.props.mealId)
-        {
-            fetch('/getmealdescription', {
-                method:"POST",
-                credentials: 'include',
-                body: JSON.stringify({_id: this.props.mealId})
-            })
-            .then(function(response){ return response.text()})
-            .then(this.processServerResponse)
-        }
-    }
-
-    processServerResponse(response)
-    {
-        let parsed = JSON.parse(response);
-
-        this.setState({
-            chefName: parsed.userName,
-            title: parsed.title,
-            description: parsed.description,
-            price: parseInt(parsed.price),
-            ingredients: parsed.ingredients,
-            diet: parsed.diet,
-            image: parsed.image
-
-        })
-    }
-
-    orderThisMeal(evt)
-    {
-        console.log("Someone wants to order a meal. Quick, to the batmobile!");
-    }
-
+{
     render()
     {
         return (<div>
@@ -96,4 +39,4 @@ function mapStateToProps(state)
     }
 }
 
-export default connect(mapStateToProps)(MealDescription);
+export default connect()(MealDescription);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MealCard from './MealCard.js'
-import MealDescription from './MealDescription.js';
+import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
 import Modal from 'react-awesome-modal'
 
 class Browse extends Component {
@@ -50,7 +50,7 @@ class Browse extends Component {
                     onClickAway={this.closeModal}
                     width='50%'
                 >
-                    <MealDescription
+                    <MealDescriptionAndOrderForm
                         mealId={this.state.displayedMealId} />
                 </Modal>
             {this.state.items.map((item)=>{

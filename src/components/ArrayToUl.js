@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import shortId from 'shortid';
 
 /** A simple component that takes an array of strings as props (propname: 'array')
  * and renders a 
@@ -17,7 +18,7 @@ class ArrayToUl extends Component
 
         for (let i = 0; i < this.props.array.length; i++)
         {
-            ret.push(<li>{this.props.array[i]}</li>);
+            ret.push(<li key={shortId.generate()}>{this.props.array[i]}</li>);
         }
 
         return ret;

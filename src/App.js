@@ -9,7 +9,7 @@ import Header from './components/Header.js';
 import Bottom from './components/Bottom.js';
 import MealAddBox from './components/MealAddBox';
 import ChefDashboard from './components/ChefDashboard.js';
-import MealDescription from './components/MealDescription';
+import MealDescriptionAndOrderForm from './components/MealDescriptionAndOrderForm';
 import Browse from './components/Browse'
 import ChefProfile from './components/ChefProfile'
 import Homepage from './components/Homepage'
@@ -69,7 +69,7 @@ class App extends Component {
             <Route exact={true} path='/setProfile' component={setupProfile}/>
             <Route exact={true} path='/addmeal' component={MealAddBox}/>
             <Route exact={true} path='/chefdashboard' component={ChefDashboard}/>
-            <Route exact={true} path='/meal/:mealId' component={MealDescription} />
+            <Route exact={true} path='/meal/:mealId' component={MealDescriptionAndOrderForm} />
             <Route exact={true} path='/browse' component={Browse}/>
             <Route exact={true} path='/chef/:chefName' component={ChefProfile}/>
 

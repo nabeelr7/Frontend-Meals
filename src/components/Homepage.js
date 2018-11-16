@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import MealDescription from './MealDescription'
+import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm'
 import Modal from 'react-awesome-modal'
 import MealCard from './MealCard.js'
 
@@ -48,7 +48,7 @@ class Homepage extends Component {
                     onClickAway={this.closeModal}
                     width='50%'
                 >
-                    <MealDescription
+                    <MealDescriptionAndOrderForm
                         mealId={this.state.displayedMealId} />
                 </Modal>
                 {this.state.items.map((item) => {
