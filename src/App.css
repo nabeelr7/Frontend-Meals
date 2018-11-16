@@ -50,3 +50,8 @@ display: flex;
 flex-flow: row wrap;
 }
 
+.modal-img{
+  max-width: 25%;
+  max-height: 50%;
+}
+

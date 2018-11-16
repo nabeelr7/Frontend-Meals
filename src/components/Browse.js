@@ -50,6 +50,7 @@ class Browse extends Component {
                     visible={this.state.visible}
                     effect="fadeInUp"
                     onClickAway={this.closeModal}
+                    width='50%'
                 >
                     <MealDescriptionAndOrderForm
                         mealId={this.state.displayedMealId} />
