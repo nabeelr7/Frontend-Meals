@@ -57,7 +57,7 @@ class ChefProfile extends Component {
         else {
             return (<>
                 <div className='chefInfo'>
-                    <img className='chefProfilePic' alt="profilePic" src={this.state.profile.profilePicturePath}></img>
+                    <img className='chefProfilePic' height="300px" alt="profilePic" src={this.state.profile.profilePicturePath}></img>
                     <div>{this.state.profile.userName}</div>
                     <br />
                     <div>{this.state.profile.bio}</div>
@@ -77,10 +77,11 @@ class ChefProfile extends Component {
 
                 </Modal>
                 <div className='chefMeals'>
+                    <div>Meals Offered:</div>
                     {this.state.items.map((item) => {
                         return (
                             <div className='item-card'>
-                                <img src={item.image} alt='meal pic' />
+                                <img src={item.image} height="200px" alt='meal pic' />
                                 <div>{item.price}</div>
                                 <div>{item.title}</div>
                                 <div>{item.description}</div>
