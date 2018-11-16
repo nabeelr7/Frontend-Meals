@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StripeCheckout from './Stripe.js';
+import Requests from './Requests'
 
 
 
@@ -41,12 +42,16 @@ class ClientDashboard extends Component{
     render(){
         if (!this.state.profile){return <div>Loading..</div>}
         else
-        {return(<div>
+        {return(
+        <>
+        <div>
             <img  className='clientProfilePic' alt="profilePic" height='300px' src = {this.state.profile.profilePicturePath}></img>
             <div>{this.state.profile.userName}</div>
             <div>{this.state.profile.bio}</div>
             <br/>
         </div>
+        <Requests/>
+        </>
         )}
     }
 }
