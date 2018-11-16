@@ -12,6 +12,7 @@ import ChefDashboard from './components/ChefDashboard.js';
 import MealDescription from './components/MealDescription';
 import Browse from './components/Browse'
 import ChefProfile from './components/ChefProfile'
+import Homepage from './components/Homepage'
 
 class App extends Component {
   constructor() {
@@ -49,7 +50,7 @@ class App extends Component {
 
   renderHomePage()
   {
-    return <div>Homepage</div>
+    return <Homepage/>
   }
 
   render() {
