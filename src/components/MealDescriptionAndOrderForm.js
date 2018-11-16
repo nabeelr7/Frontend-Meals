@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import ArrayToUl from './ArrayToUl';
+import MealDescription from './MealDescription';
 import MealOrderForm from './MealOrderForm';
+import CSSTransitionReplace from 'react-css-transition-replace';
 
 
 class MealDescriptionAndOrderForm extends Component
@@ -12,6 +12,7 @@ class MealDescriptionAndOrderForm extends Component
         super(props);
 
         this.state={
+            ordering: false,
             _id: '',
             title: '',
             description: '',
@@ -24,7 +25,8 @@ class MealDescriptionAndOrderForm extends Component
 
         // Bindings
         this.processServerResponse = this.processServerResponse.bind(this);
-        this.showMealOrderForm = this.showMealOrderForm.bind(this);
+        this.showOrderForm = this.showOrderForm.bind(this);
+        this.hideOrderForm = this.hideOrderForm.bind(this);
     }
 
     componentDidUpdate(prevProps)
@@ -58,34 +60,64 @@ class MealDescriptionAndOrderForm extends Component
         })
     }
 
-    showMealOrderForm(evt)
+    showOrderForm()
     {
-        console.log("Someone wants to order a meal. Quick, to the batmobile!");
+        this.setState({
+            ordering: true
+        })
+    }
+
+    hideOrderForm()
+    {
+        this.setState({
+            ordering: false
+        })
     }
 
     render()
     {
         return (<div>
-                    <img src={this.state.image} />
-                    <div>{this.state.title}</div>
-                    <div>{this.state.description}</div>
-                    <div>{this.state.price + '$'}</div>
-                    <div>ingredients: 
-                        <ArrayToUl array={this.state.ingredients} />
-                    </div>
-                    <div>dietary considerations: 
-                        <ArrayToUl array={this.state.diet} />
-                    </div>
+                        { !this.state.ordering && <MealDescription  
+                                                    key="randomKey"
+                                                    title={this.state.title}
+                                                    description={this.state.description}
+                                                    price={this.state.price}
+                                                    ingredients={this.state.ingredients}
+                                                    diet={this.state.diet}
+                                                    image={this.state.image}
+                                                    chefName={this.state.chefName}
+                                                    showOrderForm={this.showOrderForm}
+                                                    />}
 
-                    <MealOrderForm />
-
-                    <div>
-                        <button onClick={this.showMealOrderForm}>Order this meal</button>
-                        <Link to={'/chef/' + this.state.chefName}><button>Chef profile</button></Link>
-                    </div>
-                </div>
+                        { this.state.ordering && <MealOrderForm 
+                                                    key="makeMeAKey"
+                                                    hideOrderForm={this.hideOrderForm}/>}
+        </div>
         )
-        
+        /*return (<div>
+                    <CSSTransitionReplace
+                        transitionName="crossFade"
+                        transitionEnterTimeout={1000}
+                        transitionLeaveTimeout={1000}>
+
+                        { !this.state.ordering && <MealDescription  
+                                                    key="randomKey"
+                                                    title={this.state.title}
+                                                    description={this.state.description}
+                                                    price={this.state.price}
+                                                    ingredients={this.state.ingredients}
+                                                    diet={this.state.diet}
+                                                    image={this.state.image}
+                                                    chefName={this.state.chefName}
+                                                    showOrderForm={this.showOrderForm}
+                                                    />}
+
+                        { this.state.ordering && <MealOrderForm 
+                                                    key="makeMeAKey"
+                                                    hideOrderForm={this.hideOrderForm}/>}
+          
+                    </CSSTransitionReplace>
+                </div>) */
     }
 }
 

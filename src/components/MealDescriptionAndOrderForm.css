@@ -1,0 +1,30 @@
+.crossFade-appear {
+  opacity: 0.01;
+}
+
+.crossFade-appear.crossFade-appear-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.crossFade-enter {
+    opacity: 0.01;
+  }
+  
+.crossFade-enter.crossFade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+  
+.crossFade-leave {
+  opacity: 1;
+}
+  
+.crossFade-leave.crossFade-leave-active {
+  opacity: 0.01;
+  transition: opacity 1000ms ease-in;
+}
+
+.crossFade-height {
+  transition: height .5s ease-in-out;
+}

@@ -9,6 +9,7 @@
     "normalize.css": "^8.0.1",
     "react": "^16.6.1",
     "react-awesome-modal": "^2.0.5",
+    "react-css-transition-replace": "^3.0.3",
     "react-datepicker": "^1.8.0",
     "react-dom": "^16.6.1",
     "react-redux": "^5.1.1",
