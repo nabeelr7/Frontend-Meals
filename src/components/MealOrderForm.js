@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
@@ -19,6 +20,7 @@ class MealOrderForm extends Component
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleQuantityChange = this.handleQuantityChange.bind(this);
         this.cancel = this.cancel.bind(this);
+        this.sendRequest = this.sendRequest.bind(this);
     }
 
     handleDateChange(date)
@@ -38,6 +40,24 @@ class MealOrderForm extends Component
     cancel(evt)
     {
         this.props.hideOrderForm();
+    }
+
+    sendRequest(evt)
+    {
+
+    }
+
+    processServerResponse(response)
+    {
+        let parsed = JSON.parse(response);
+
+        if(parsed.success)
+        {
+            alert('request placed successfully!');
+
+            this.props.hideOrderForm();
+            this.props.closeModal();
+        }
     }
 
     render()
@@ -63,4 +83,11 @@ class MealOrderForm extends Component
     }
 }
 
-export default MealOrderForm;
+function mapStateToProps(state)
+{
+    return {
+        userName: state.userName
+    }
+}
+
+export default connect(mapStateToProps)(MealOrderForm);

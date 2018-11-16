@@ -53,7 +53,8 @@ class Browse extends Component {
                     width='50%'
                 >
                     <MealDescriptionAndOrderForm
-                        mealId={this.state.displayedMealId} />
+                        mealId={this.state.displayedMealId} 
+                        closeModal={this.closeModal}/>
                 </Modal>
             {this.state.items.map((item)=>{
                 return <MealCard 

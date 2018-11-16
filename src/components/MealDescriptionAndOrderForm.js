@@ -91,6 +91,8 @@ class MealDescriptionAndOrderForm extends Component
 
                         { this.state.ordering && <MealOrderForm 
                                                     key="makeMeAKey"
+                                                    mealId={this.props.mealId}
+                                                    chefName={this.state.chefName}
                                                     hideOrderForm={this.hideOrderForm}/>}
         </div>
         )
