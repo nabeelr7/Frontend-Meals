@@ -21,6 +21,7 @@ class MealOrderForm extends Component
         this.handleQuantityChange = this.handleQuantityChange.bind(this);
         this.cancel = this.cancel.bind(this);
         this.sendRequest = this.sendRequest.bind(this);
+        this.processServerResponse = this.processServerResponse.bind(this);
     }
 
     handleDateChange(date)
@@ -44,7 +45,19 @@ class MealOrderForm extends Component
 
     sendRequest(evt)
     {
-
+        fetch('/placerequest', {
+            method: "POST",
+            body: JSON.stringify({
+                userName: this.props.userName ,
+                chefName: this.props.chefName,
+                mealId: this.props.mealId ,
+                requestStatus: 0,
+                dueDate: this.state.chosenDate.toDate(),
+                quantity: this.state.quantity
+            })
+        }).then(function(x){
+            return x.text()
+        }).then(this.processServerResponse)
     }
 
     processServerResponse(response)
@@ -56,7 +69,7 @@ class MealOrderForm extends Component
             alert('request placed successfully!');
 
             this.props.hideOrderForm();
-            this.props.closeModal();
+            //this.props.closeModal();
         }
     }
 
