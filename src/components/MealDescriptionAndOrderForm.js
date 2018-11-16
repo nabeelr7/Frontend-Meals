@@ -5,7 +5,7 @@ import ArrayToUl from './ArrayToUl';
 import MealOrderForm from './MealOrderForm';
 
 
-class MealDescription extends Component
+class MealDescriptionAndOrderForm extends Component
 {   
     constructor(props)
     {
@@ -98,4 +98,4 @@ function mapStateToProps(state)
     }
 }
 
-export default connect(mapStateToProps)(MealDescription);
+export default connect(mapStateToProps)(MealDescriptionAndOrderForm);

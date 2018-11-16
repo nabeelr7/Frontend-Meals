@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MealCard from './MealCard.js'
-import MealDescription from './MealDescription.js';
+import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
 import Modal from 'react-awesome-modal'
 
 class Browse extends Component {
     constructor(){
         super()
         this.state={
-            items: []
+            items: [],
+            searchType: 'title'
         }
 
         // bindings
@@ -42,13 +43,13 @@ class Browse extends Component {
 
     render(){
         return (
-            <>
+            <div className='browse'>
             <Modal 
                     visible={this.state.visible}
                     effect="fadeInUp"
                     onClickAway={this.closeModal}
                 >
-                    <MealDescription
+                    <MealDescriptionAndOrderForm
                         mealId={this.state.displayedMealId} />
                 </Modal>
             {this.state.items.map((item)=>{
@@ -59,8 +60,9 @@ class Browse extends Component {
                 image={item.image}
                 displayMeal={this.displayMealDescription}/>
             })}
-            </>
+            </div>
         )
     }
 }
+
 export default Browse

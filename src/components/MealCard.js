@@ -19,7 +19,9 @@ class MealCard extends Component {
     render() {
         return (
             <div className='card'>
-                <img src={this.props.image} alt='meal img' />
+            <div className='card-top'>
+                <img src={this.props.image} alt='meal img' className='card-img'/>
+                </div>
                 <div className='card-bottom'>
                     <div>{this.props.title}</div>
                     <div>{this.props.price}</div>

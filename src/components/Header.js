@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import './Header.css';
+import SearchBar from './SearchBar'
 
 class Header extends Component
 {
@@ -47,13 +48,19 @@ class Header extends Component
                     <div className='header-bar'>
 
                         <div className='header-lefthand-side'>
+                        <Link to='/'><img height='50px' alt="logoLink" src='/rawimages/logo.png'></img></Link>
+                        <SearchBar/>
+                        <br/>
+                        <Link to ='/browse'><button>Browse</button></Link>
+                        
+                       
                             
                         </div>
 
                         <div className='header-righthand-side'>
                         {!this.props.loggedIn &&  <Link to='/login'><button>Login</button></Link>}
                         {!this.props.loggedIn &&  <Link to='/signup'><button>Signup</button></Link>}
-                         {this.props.loggedIn && <button onClick={this.logout}>Logout</button>}
+                         {this.props.loggedIn && <Link to='/'><button onClick={this.logout}>Logout</button></Link>}
                          {this.props.loggedIn && <Link to='/chefdashboard'><button >My Dashboard</button></Link>}
                             
                         </div>
