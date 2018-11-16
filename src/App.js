@@ -13,6 +13,7 @@ import MealDescriptionAndOrderForm from './components/MealDescriptionAndOrderFor
 import Browse from './components/Browse'
 import ChefProfile from './components/ChefProfile'
 import Homepage from './components/Homepage'
+import ClientDashboard from './components/ClientDashboard'
 
 class App extends Component {
   constructor() {
@@ -72,7 +73,8 @@ class App extends Component {
             <Route exact={true} path='/meal/:mealId' component={MealDescriptionAndOrderForm} />
             <Route exact={true} path='/browse' component={Browse}/>
             <Route exact={true} path='/chef/:chefName' component={ChefProfile}/>
-
+            <Route exact={true} path='/clientdashboard' component={ClientDashboard}/>
+        
             <Bottom/>
 
           </div>
@@ -84,7 +86,8 @@ class App extends Component {
 
 let mapStateToProps = function (state) {
   return {
-    userName: state.userName
+    userName: state.userName,
+    userType: state.userType
   }
 }
 

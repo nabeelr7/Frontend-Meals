@@ -64,8 +64,13 @@ class ChefDashboard extends Component {
     }
 
     render() {
+        if (!this.state.profile){return (<div>loading..</div>)}
         return (<>
             <div className="chefInfoTitle"> My Info </div>
+            <img height='200px' alt='profilePic' src={this.state.profile.profilePicturePath}></img>
+            <div>{this.state.profile.userName}</div>
+            <div>{this.state.profile.bio}</div>
+            
         <input type="button" value="Add A Meal" onClick={() => this.openModal()} />
                 <Modal 
                     visible={this.state.visible}

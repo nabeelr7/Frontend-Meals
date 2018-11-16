@@ -63,7 +63,7 @@ class Header extends Component
                         {!this.props.loggedIn &&  <Link to='/login'><button>Login</button></Link>}
                         {!this.props.loggedIn &&  <Link to='/signup'><button>Signup</button></Link>}
                          {this.props.loggedIn && <Link to='/'><button onClick={this.logout}>Logout</button></Link>}
-                         {this.props.loggedIn && this.props.userType==='host' && <Link to='/chefdashboard'><button >My Dashboard</button></Link>}
+                         {this.props.loggedIn && this.props.userType==='chef' && <Link to='/chefdashboard'><button >My Dashboard</button></Link>}
                          {this.props.loggedIn && this.props.userType==='client' && <Link to='/clientdashboard'><button >My Dashboard</button></Link>}
                             
                         </div>
