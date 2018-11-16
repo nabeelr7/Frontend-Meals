@@ -69,7 +69,7 @@ class MealOrderForm extends Component
             alert('request placed successfully!');
 
             this.props.hideOrderForm();
-            //this.props.closeModal();
+            this.props.closeModal();
         }
     }
 
