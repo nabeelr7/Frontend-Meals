@@ -24,7 +24,7 @@ class MealDescription extends Component
     {
         return (
             <div>
-                    <img src={this.props.image} />
+                    <img height='300px' src={this.props.image} />
                     <div>{this.props.title}</div>
                     <div>{this.props.description}</div>
                     <div>{this.props.price + '$'}</div>

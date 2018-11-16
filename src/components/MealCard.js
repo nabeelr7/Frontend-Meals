@@ -20,7 +20,7 @@ class MealCard extends Component {
         return (
             <div className='card'>
             <div className='card-top'>
-                <img src={this.props.image} alt='meal img' className='card-img'/>
+                <img height='300px' src={this.props.image} alt='meal img' className='card-img'/>
                 </div>
                 <div className='card-bottom'>
                     <div>{this.props.title}</div>

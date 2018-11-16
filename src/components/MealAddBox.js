@@ -57,6 +57,7 @@ class MealAddBox extends Component {
         formData.append('image', this.state.file)
         formData.append('diet', this.state.diet)
         formData.append('ingredients', this.state.ingredients)
+        formData.append('coordinates', this.props.coordinates)
 
         console.log(formData)
 
@@ -70,6 +71,7 @@ class MealAddBox extends Component {
             let parsed = JSON.parse(res)
             if (parsed.success){
                 console.log("Meal Added")
+                alert('Meal Added!')
             }
         })
 
