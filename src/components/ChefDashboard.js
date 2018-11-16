@@ -83,6 +83,7 @@ class ChefDashboard extends Component {
                     closeModal={this.closeModal}/>
 
             </Modal>
+            
         </>
         )
     }

@@ -57,7 +57,7 @@ class ChefProfile extends Component {
         else {
             return (<>
                 <div className='chefInfo'>
-                    <img className='chefProfilePic' alt="profilePic" src={this.state.profile.image}></img>
+                    <img className='chefProfilePic' alt="profilePic" src={this.state.profile.profilePicturePath}></img>
                     <div>{this.state.profile.userName}</div>
                     <br />
                     <div>{this.state.profile.bio}</div>
