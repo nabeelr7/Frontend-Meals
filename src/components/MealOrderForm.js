@@ -67,8 +67,12 @@ class MealOrderForm extends Component
         if(parsed.success)
         {
             alert('request placed successfully!');
-
-            this.props.hideOrderForm();
+           
+            // depending on the context (what component is using this one)
+            // we may or may not have this property passed to us
+            if (this.props.hideOrderForm){
+                this.props.hideOrderForm();
+            }
             this.props.closeModal();
         }
     }
