@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import StripeCheckout from './stripe.js';
+
 
 
 class ClientDashboard extends Component{
@@ -20,6 +22,21 @@ class ClientDashboard extends Component{
         .then((response)=>{
         let parsed=JSON.parse(response)
         this.setState({profile: parsed})})
+
+        fetch('/getrequests', {
+            method: "POST",
+            body: JSON.stringify({
+                userName: this.props.userName
+            })
+        }).then(function (x){
+            return x.text()
+        }).then(function(response){
+            let parsed = JSON.parse(response)
+            if (parsed.success) {
+                this.setState({requests: parsed.result})
+            // DO OTHER STUFF M,AP THROUGH POUT IN DIVS SORT BY STATUS ETC
+        }
+        })
     }
     render(){
         if (!this.state.profile){return <div>Loading..</div>}
@@ -35,7 +52,8 @@ class ClientDashboard extends Component{
 
 let mapStateToProps= function(state){
     return {
-        userName : state.userName
+        userName : state.userName,
+        userType : state.userType
     }
 }
 

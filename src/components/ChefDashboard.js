@@ -25,6 +25,43 @@ class ChefDashboard extends Component {
             visible: false
         })
     }
+    componentDidMount(){
+
+        fetch('/getprofile', {
+            method: "POST",
+            body: JSON.stringify({ userName: this.props.userName })
+        }).then((x) => x.text())
+            .then((response) => {
+                let parsed = JSON.parse(response)
+                this.setState({ profile: parsed })
+            })
+
+        fetch('/getitemsbychef', {
+            method: "POST",
+            body: JSON.stringify({ userName: this.props.userName })
+        }).then((x) => {
+            return x.text()
+        }).then((response) => {
+            let parsed = JSON.parse(response)
+            this.setState({ items: parsed })
+            console.log(response);
+        })
+    
+        fetch('/getrequests', {
+            method: "POST",
+            body: JSON.stringify({
+                chefName: this.props.userName,
+            })
+        }).then(function (x){
+            return x.text()
+        }).then(function(response){
+            let parsed = JSON.parse(response)
+            if (parsed.success) {
+                console.log(parsed.msg)
+                //HERE DO STUFF WITH THE REQUESTS!==========
+            }
+        })
+    }
 
     render() {
         return (<>
@@ -43,6 +80,11 @@ class ChefDashboard extends Component {
         )
     }
 }
+let mapStateToProps = function(state){
+    return{
+        userName: state.userName
+    }
+}
 
-let ConnectedChefDashboard = connect()(ChefDashboard);
+let ConnectedChefDashboard = connect(mapStateToProps)(ChefDashboard);
 export default ConnectedChefDashboard

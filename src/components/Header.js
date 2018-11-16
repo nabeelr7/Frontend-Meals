@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import './Header.css';
 import SearchBar from './SearchBar'
+import StripeCheckout from './Stripe.js';
 
 class Header extends Component
 {
@@ -52,6 +53,7 @@ class Header extends Component
                         <SearchBar/>
                         <br/>
                         <Link to ='/browse'><button>Browse</button></Link>
+                        <StripeCheckout></StripeCheckout>
                         
                        
                             
@@ -61,7 +63,8 @@ class Header extends Component
                         {!this.props.loggedIn &&  <Link to='/login'><button>Login</button></Link>}
                         {!this.props.loggedIn &&  <Link to='/signup'><button>Signup</button></Link>}
                          {this.props.loggedIn && <Link to='/'><button onClick={this.logout}>Logout</button></Link>}
-                         {this.props.loggedIn && <Link to='/chefdashboard'><button >My Dashboard</button></Link>}
+                         {this.props.loggedIn && this.props.userType==='host' && <Link to='/chefdashboard'><button >My Dashboard</button></Link>}
+                         {this.props.loggedIn && this.props.userType==='client' && <Link to='/clientdashboard'><button >My Dashboard</button></Link>}
                             
                         </div>
 
@@ -77,7 +80,8 @@ class Header extends Component
 function mapStateToProps(state)
 {
     return {
-        loggedIn: state.loggedIn
+        loggedIn: state.loggedIn,
+        userType: state.userType
     }
 }
 
