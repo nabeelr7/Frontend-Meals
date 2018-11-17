@@ -74,6 +74,7 @@ class ChefProfile extends Component {
                         userName={this.state.currentItem.userName}
                         chefName={this.state.currentItem.chefName}
                         mealId={this.state.currentItem.mealId}
+                        mealTitle={this.state.currentItem.title}
                     />
 
                 </Modal>

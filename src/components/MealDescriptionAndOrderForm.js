@@ -93,6 +93,7 @@ class MealDescriptionAndOrderForm extends Component
                                                     key="makeMeAKey"
                                                     mealId={this.props.mealId}
                                                     chefName={this.state.chefName}
+                                                    mealTitle={this.state.title}
                                                     hideOrderForm={this.hideOrderForm}
                                                     closeModal={this.props.closeModal}/>}
         </div>

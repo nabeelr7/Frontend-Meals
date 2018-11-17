@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-awesome-modal';
-import MealAddBox from './MealAddBox'
-import Requests from './Requests'
+import MealAddBox from './MealAddBox';
 
 class ChefDashboard extends Component {
     constructor() {

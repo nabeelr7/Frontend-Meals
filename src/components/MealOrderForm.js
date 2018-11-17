@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import { withRouter } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
@@ -42,17 +43,34 @@ class MealOrderForm extends Component
     {
         // Depending on the context, we may or may not have this prop defined,
         // so check if it exists before calling
-        if (this.props.hideOrderForm) { this.props.hideOrderForm(); }
+        if (this.props.hideOrderForm) 
+        { 
+            this.props.hideOrderForm(); 
+        }
+        else
+        {
+            this.props.closeModal();
+        }
     }
 
     sendRequest(evt)
     {
+        // You have to be logged in to place an order,
+        // if not, we send you to the login page... should be clear!
+        if (!this.props.loggedIn)
+        {
+            this.props.history.push('/login');
+            return;
+        }
+
+        // Otherwise, place the request
         fetch('/placerequest', {
             method: "POST",
             body: JSON.stringify({
                 userName: this.props.userName ,
                 chefName: this.props.chefName,
                 mealId: this.props.mealId ,
+                mealTitle: this.props.mealTitle,
                 requestStatus: 0,
                 dueDate: this.state.chosenDate.toDate(),
                 quantity: this.state.quantity
@@ -105,8 +123,9 @@ class MealOrderForm extends Component
 function mapStateToProps(state)
 {
     return {
-        userName: state.userName
+        userName: state.userName,
+        loggedIn: state.loggedIn
     }
 }
 
-export default connect(mapStateToProps)(MealOrderForm);
+export default withRouter(connect(mapStateToProps)(MealOrderForm));

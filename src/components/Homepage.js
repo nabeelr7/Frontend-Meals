@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import shortId from 'shortid';
 import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm'
 import Modal from 'react-awesome-modal'
 import MealCard from './MealCard.js'
@@ -55,6 +56,7 @@ class Homepage extends Component {
                 {this.state.items.map((item) => {
                     return (
                         <MealCard
+                            key={shortId.generate()}
                             _id={item._id}
                             title={item.title}
                             price={item.price}
