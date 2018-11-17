@@ -42,7 +42,7 @@ class Signup extends Component {
         event.preventDefault()
         //call geocode to get coordinates
         
-        function geocode(){
+        let geocode = function (){
             let fullAddress = this.state.address+' '+this.state.city+' '+this.state.postal
             axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
                 params: {

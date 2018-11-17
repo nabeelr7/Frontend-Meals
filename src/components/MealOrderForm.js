@@ -40,7 +40,9 @@ class MealOrderForm extends Component
 
     cancel(evt)
     {
-        this.props.hideOrderForm();
+        // Depending on the context, we may or may not have this prop defined,
+        // so check if it exists before calling
+        if (this.props.hideOrderForm) { this.props.hideOrderForm(); }
     }
 
     sendRequest(evt)

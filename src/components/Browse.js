@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import MealCard from './MealCard.js'
 import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
 import Modal from 'react-awesome-modal'
@@ -45,12 +44,11 @@ class Browse extends Component {
         return (
             <div className='browse'>
             <Modal 
-                    width="600"
+                    width="50%"
                     height="500"
                     visible={this.state.visible}
                     effect="fadeInUp"
                     onClickAway={this.closeModal}
-                    width='50%'
                 >
                     <MealDescriptionAndOrderForm
                         mealId={this.state.displayedMealId} 

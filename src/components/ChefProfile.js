@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-awesome-modal';
-import MealOrderFrom from './MealOrderForm'
+import MealOrderFrom from './MealOrderForm';
+import shortId from 'shortid';
 
 class ChefProfile extends Component {
     constructor() {
@@ -80,12 +81,12 @@ class ChefProfile extends Component {
                     <div>Meals Offered:</div>
                     {this.state.items.map((item) => {
                         return (
-                            <div className='item-card'>
+                            <div key={shortId.generate()} className='item-card'>
                                 <img src={item.image} height="200px" alt='meal pic' />
                                 <div>{item.price}</div>
                                 <div>{item.title}</div>
                                 <div>{item.description}</div>
-                                <ul>{item.diet.map((item) => <li>{item}</li>)}</ul>
+                                <ul>{item.diet.map((item) => <li key={shortId.generate()}>{item}</li>)}</ul>
                                 <input type="button" value="Order" onClick={() => this.openModal(item)} />
                             </div>
                         )
