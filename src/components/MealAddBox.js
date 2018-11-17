@@ -57,7 +57,7 @@ class MealAddBox extends Component {
         formData.append('image', this.state.file)
         formData.append('diet', this.state.diet)
         formData.append('ingredients', this.state.ingredients)
-        formData.append('coordinates', this.props.coordinates)
+        formData.append('coordinates', JSON.stringify(this.props.coordinates))
 
         console.log(formData)
 

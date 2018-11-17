@@ -26,8 +26,21 @@ class ChefDashboard extends Component {
             visible: false
         })
     }
-    componentDidMount(){
 
+    componentDidUpdate(prevProps){
+        if(prevProps.userName === undefined && this.props.userName){
+            fetch('/getprofile', {
+                method: "POST",
+                body: JSON.stringify({ userName: this.props.userName })
+            }).then((x) => x.text())
+                .then((response) => {
+                    let parsed = JSON.parse(response)
+                    this.setState({ profile: parsed })
+                })
+        }
+    }
+
+    componentDidMount(){
         fetch('/getprofile', {
             method: "POST",
             body: JSON.stringify({ userName: this.props.userName })
@@ -36,6 +49,7 @@ class ChefDashboard extends Component {
                 let parsed = JSON.parse(response)
                 this.setState({ profile: parsed })
             })
+        
 
         fetch('/getitemsbychef', {
             method: "POST",
@@ -84,7 +98,7 @@ class ChefDashboard extends Component {
                     closeModal={this.closeModal}/>
 
             </Modal>
-        <Requests/>            
+        {/* <Requests/>             */}
         </>
         )
     }
