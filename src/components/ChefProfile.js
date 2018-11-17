@@ -42,9 +42,17 @@ class ChefProfile extends Component {
                 this.setState({ profile: parsed })
             })
 
+        let body = {
+            userName: chefName
+        }
+
+        if (this.props.loggedIn){
+            body.userCoordinates = this.props.userCoordinates;
+        }
+
         fetch('/getitemsbychef', {
             method: "POST",
-            body: JSON.stringify({ userName: chefName })
+            body: JSON.stringify(body)
         }).then((x) => {
             return x.text()
         }).then((response) => {
@@ -101,7 +109,9 @@ class ChefProfile extends Component {
 
 let mapStateToProps = function (state) {
     return {
-        userName: state.userName
+        userName: state.userName,
+        loggedIn: state.loggedIn,
+        userCoordinates: state.userCoordinates
     }
 }
 

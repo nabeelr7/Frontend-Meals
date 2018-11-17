@@ -13,7 +13,8 @@ let reducer= function(state, action)
                 ...state,
                 userName: action.userName,
                 loggedIn: true,
-                userType: action.userType
+                userType: action.userType,
+                userCoordinates: action.userCoordinates
             }
 
         case 'loggedOut':
@@ -21,6 +22,7 @@ let reducer= function(state, action)
                 ...state,
                 userName: '',
                 userType: '',
+                userCoordinates: undefined,
                 loggedIn: false
             }
             

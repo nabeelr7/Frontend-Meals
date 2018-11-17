@@ -17,11 +17,15 @@ onSubmit(event){
     event.preventDefault()
     let search = this.state.searchInput;
     let body = {query: search};
+
+    if (this.props.loggedIn)
+    {
+        body.userCoordinates = this.props.userCoordinates;
+    }
+
     fetch('/searchmeals', {
         method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-          },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(body)
     }).then(x=>x.text()
     ).then(response=>{
@@ -58,5 +62,13 @@ render(){
     )}
 }
 
-let ConnectedSearchBar = connect()(SearchBar)
+function mapStateToProps(state)
+{
+    return {
+        loggedIn: state.loggedIn,
+        userCoordinates: state.userCoordinates
+    }
+}
+
+let ConnectedSearchBar = connect(mapStateToProps)(SearchBar)
 export default withRouter(ConnectedSearchBar)

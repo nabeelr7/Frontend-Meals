@@ -48,11 +48,18 @@ class ChefDashboard extends Component {
                 let parsed = JSON.parse(response)
                 this.setState({ profile: parsed })
             })
-        
+
+        let body = {
+            userName: this.props.userName
+        }
+
+        if (this.props.loggedIn){
+            body.userCoordinates = this.props.userCoordinates;
+        }
 
         fetch('/getitemsbychef', {
             method: "POST",
-            body: JSON.stringify({ userName: this.props.userName })
+            body: JSON.stringify(body)
         }).then((x) => {
             return x.text()
         }).then((response) => {
@@ -104,7 +111,9 @@ class ChefDashboard extends Component {
 }
 let mapStateToProps = function(state){
     return{
-        userName: state.userName
+        userName: state.userName,
+        loggedIn: state.loggedIn,
+        userCoordinates: state.userCoordinates
     }
 }
 
