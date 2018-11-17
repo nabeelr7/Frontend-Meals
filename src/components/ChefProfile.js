@@ -35,7 +35,7 @@ class ChefProfile extends Component {
         let chefName = this.props.match.params.chefName
         fetch('/getprofile', {
             method: "POST",
-            body: JSON.stringify({ userName: this.props.userName, chefName: chefName })
+            body: JSON.stringify({ userName: chefName })
         }).then((x) => x.text())
             .then((response) => {
                 let parsed = JSON.parse(response)
