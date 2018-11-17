@@ -2,56 +2,34 @@ import React, { Component } from 'react';
 import MealCard from './MealCard.js'
 import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
 import Modal from 'react-awesome-modal'
-import {connect} from 'react-redux';
+import ReactMapGL, {Marker} from 'react-map-gl';
 
-class Browse extends Component {
+class BrowseChefs extends Component {
     constructor(){
         super()
         this.state={
-            items: [],
+            chefs: [],
             searchType: 'title'
         }
+
         // bindings
-        this.displayMealDescription = this.displayMealDescription.bind(this);
+        this.displayChefDescription = this.displayChefDescription.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        
     }
-
-    componentDidUpdate(prevProps){
-        if(!prevProps ||
-            prevProps.searchResults !== this.props.searchResults){
-                this.setState({items: this.props.searchResults})
-            }
-        else
-        {fetch('/getallmeals')
-        .then(function(x){
-            return x.text()
-        }).then(function(res){
-            let parsed = JSON.parse(res)
-            this.setState({items: parsed})
-        }.bind(this))
-    }
-    }
-    
-
     componentDidMount(){
-        if(this.props.searchResults){
-            this.setState({items: this.props.searchResults})
-        }
-        else
-        {fetch('/getallmeals')
+        fetch('/getallchefs')           //write an endpoint for /getallchefs
         .then(function(x){
             return x.text()
         }).then(function(res){
             let parsed = JSON.parse(res)
-            this.setState({items: parsed})
+            this.setState({chefs: parsed})
         }.bind(this))
-        }
     }
-    displayMealDescription(mealId)
+
+    displayChefsDescription(mealId)
     {
         this.setState({
-            displayedMealId: mealId,
+            displayedChef: chefName,
             visible: true
         })
     }
@@ -62,8 +40,7 @@ class Browse extends Component {
             visible: false
         })
     }
-    
-    
+
     render(){
         return (
             <div className='browse'>
@@ -90,10 +67,5 @@ class Browse extends Component {
         )
     }
 }
-let mapStateToProps = function(state){
-    return{
-        searchResults: state.searchBarResults
-    }
-}
-let connectedBrowse = connect(mapStateToProps)(Browse)
-export default connectedBrowse
+
+export default BrowseChefs

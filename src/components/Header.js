@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import './Header.css';
 import SearchBar from './SearchBar'
 import StripeCheckout from './Stripe.js';
-
+import {withRouter} from 'react-router';
 class Header extends Component
 {
     constructor(props)
@@ -13,6 +13,7 @@ class Header extends Component
 
         // Bindings
         this.logout = this.logout.bind(this);
+        this.clearResAndBrowse=this.clearResAndBrowse.bind(this)
     }
 
     logout(evt)
@@ -41,7 +42,12 @@ class Header extends Component
     goToDash(){
 
     }
-
+    clearResAndBrowse(){
+        if (this.props.searchResults){
+            this.props.dispatch({type: 'topSearchBarResults', res: []})
+            }
+        this.props.history.push('/browse')
+    }
     render()
     {
         return (<div className='header'>
@@ -52,7 +58,7 @@ class Header extends Component
                         <Link to='/'><img height='50px' alt="logoLink" src='/rawimages/logo.png'></img></Link>
                         <SearchBar/>
                         <br/>
-                        <Link to ='/browse'><button>Browse</button></Link>
+                        <button onClick={this.clearResAndBrowse}>Browse</button>
                         <StripeCheckout></StripeCheckout>
                         
                        
@@ -81,8 +87,9 @@ function mapStateToProps(state)
 {
     return {
         loggedIn: state.loggedIn,
-        userType: state.userType
+        userType: state.userType,
+        searchResults: state.searchBarResults
     }
 }
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
