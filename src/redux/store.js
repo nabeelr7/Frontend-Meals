@@ -30,7 +30,14 @@ let reducer= function(state, action)
         case 'topSearchBarResults':
             return {
                 ...state,
-                searchBarResults: action.res
+                searchBarResults: action.res,
+                searching: true
+            }
+
+        case 'stopSearching':
+            return {
+                ...state,
+                searching: false
             }
 
         default:

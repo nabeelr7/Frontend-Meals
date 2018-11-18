@@ -19,11 +19,18 @@ class Browse extends Component {
     }
 
     componentDidUpdate(prevProps){
+        // Look for changed search results, that means that we're searching and that the results
+        // need rendering
         if(!prevProps ||
-            prevProps.searchResults !== this.props.searchResults){
+            prevProps.searchResults !== this.props.searchResults)
+            {
                 this.setState({items: this.props.searchResults})
             }
-        else
+        
+        /*
+        if(!this.props.searching &&
+            prevState &&
+            prevState.items !== this.state.items)
         {
             // If the user is logged in, we'll pass his coordinates along with the
             // fetch so the server can crunch the distance for us
@@ -38,28 +45,43 @@ class Browse extends Component {
                 method: 'POST',
                 body: JSON.stringify(body)
             })
-        .then(function(x){
-            return x.text()
-        }).then(function(res){
-            let parsed = JSON.parse(res)
-            this.setState({items: parsed})
-        }.bind(this))
-    }
+            .then(function(x){
+                return x.text()
+            }).then(function(res){
+                let parsed = JSON.parse(res)
+                this.setState({items: parsed})
+            }.bind(this))
+        }*/
     }
     
 
     componentDidMount(){
-        if(this.props.searchResults){
+        // If we're searching, display search results
+        if(this.props.searching){
             this.setState({items: this.props.searchResults})
         }
-        else
-        {fetch('/getallmeals')
-        .then(function(x){
-            return x.text()
-        }).then(function(res){
-            let parsed = JSON.parse(res)
-            this.setState({items: parsed})
-        }.bind(this))
+        else// Otherwise, fetch all meals
+        {
+            // If the user is logged in, we'll pass his coordinates along with the
+            // fetch so the server can crunch the distance for us
+            let body = {};
+
+            if (this.props.loggedIn)
+            {
+                body.userCoordinates = this.props.userCoordinates;
+            }
+
+            fetch('/getallmeals',{
+                method: 'POST',
+                body: JSON.stringify(body)
+            })
+            .then(function(x){
+                return x.text()
+            })
+            .then(function(res){
+                let parsed = JSON.parse(res)
+                this.setState({items: parsed})
+            }.bind(this))
         }
     }
     displayMealDescription(mealId)
@@ -109,6 +131,7 @@ class Browse extends Component {
 let mapStateToProps = function(state){
     return{
         searchResults: state.searchBarResults,
+        searching: state.searching,
         loggedIn: state.loggedIn,
         userCoordinates: state.userCoordinates
     }
