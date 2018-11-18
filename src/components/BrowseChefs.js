@@ -29,12 +29,13 @@ class BrowseChefs extends Component {
         if (this.props.loggedIn && this.props.userCoordinates) {
             fetch('/getallchefs', {
                 method: "POST",
-                body: JSON.stringify(this.props.userCoordinates)
+                body: JSON.stringify({userCoordinates: this.props.userCoordinates})
             }).then(function (x) {
                 return x.text()
             }).then(function (res) {
                 let parsed = JSON.parse(res)
-                parsed = parsed.sort(function (a, b) { return a - b })
+                console.log(parsed)
+                parsed = parsed.sort(function (a, b) { return a.distance - b.distance })
                 this.setState({ chefs: parsed })
             }.bind(this))
         }
@@ -92,7 +93,7 @@ class BrowseChefs extends Component {
                         mapboxApiAccessToken={'pk.eyJ1IjoiZGF2aWRkZWFuIiwiYSI6ImNqb2tzaG5kcTBqYngzam1veGV4NWJjbnEifQ.DjftYUu4GtL7KOAiBHVd8g'}
                         latitude={this.props.userCoordinates.lat}
                         longitude={this.props.userCoordinates.lng}
-                        zoom={12}
+                        zoom={14}
                         boxZoom={true}
                         doubleClickZoom={true}
                         dragPan={true}
@@ -114,9 +115,12 @@ class BrowseChefs extends Component {
                     {this.state.chefs.map(function (chef) {
                         return (
                             <div  className='chefOption'>
-                                <img src={chef.profilePicturePath} height="200px" alt='chefProfilePic' />
-                                <div>{chef.userName}</div>
+                               <Link to={`/chef/${chef.userName}`}>
+                                    <img src={chef.profilePicturePath} height="200px" alt='chefProfilePic' />
+                                </Link>
+                                <div>{chef.userName} is {chef.distance} meters away </div>
                             </div>
+                            
                         )
                     })}
 

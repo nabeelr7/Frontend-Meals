@@ -5,7 +5,7 @@ import StripeCheckout from 'react-stripe-checkout';
 
 class App extends Component{
   onToken = (token) => {
-    console.log("hello world") //HERE CHANGE STATUS TO PAYED
+    // console.log("hello world") //HERE CHANGE STATUS TO PAYED
     fetch('/save-stripe-token', {
       method: 'POST',
       body: JSON.stringify(token),
