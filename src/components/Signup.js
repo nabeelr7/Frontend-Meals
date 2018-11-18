@@ -13,7 +13,7 @@ class Signup extends Component {
         this.handlePasswordChange = this.handlePasswordChange.bind(this)
         this.handleAddressChange = this.handleAddressChange.bind(this)
         this.handleCityChange = this.handleCityChange.bind(this)
-        this.handlePostalChange = this.handlePostalChange.bind(this)
+        
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     handleChefType() {
@@ -34,16 +34,14 @@ class Signup extends Component {
     handleCityChange(event) {
         this.setState({ city: event.target.value })
     }
-    handlePostalChange(event) {
-        this.setState({ postal: event.target.value })
     
-    }
+    
     handleSubmit(event) {
         event.preventDefault()
         //call geocode to get coordinates
         
         let geocode = function (){
-            let fullAddress = this.state.address+' '+this.state.city+' '+this.state.postal
+            let fullAddress = this.state.address+' '+this.state.city
             axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
                 params: {
                     address: fullAddress,
@@ -61,7 +59,7 @@ class Signup extends Component {
                         address: {
                             street: this.state.address,
                             city: this.state.city,
-                            postal: this.state.postal
+                            
                         },
                         coordinates: coordinates
                     })
@@ -122,7 +120,6 @@ class Signup extends Component {
                         <div>Address</div>
                         <input type='text' placeholder='Number and Street' onChange={this.handleAddressChange} />
                         <input type='text' placeholder='City' onChange={this.handleCityChange} />
-                        <input type='text' placeholder='Postal Code' onChange={this.handlePostalChange} />
                         <input type='submit' />
                     </form>
                 </div>
