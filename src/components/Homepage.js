@@ -4,6 +4,7 @@ import shortId from 'shortid';
 import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm'
 import Modal from 'react-awesome-modal'
 import MealCard from './MealCard.js'
+import {Link} from 'react-router-dom';
 
 
 
@@ -51,9 +52,9 @@ class Homepage extends Component {
         })
     }
     render() {
-        return (
+        return (<>
             <div className='featured-container'>
-                <div>Featured Meals</div>
+                <div>Featured Meals<Link to='/browse'><div>see more..</div></Link></div>
                 <div className='browse'>
                 <Modal
                     visible={this.state.visible}
@@ -78,6 +79,14 @@ class Homepage extends Component {
                 })}
                 </div>
             </div>
+            <div className='featured-chefs-container'>
+            <div>Featured Chefs<Link to='/browsechefs'><div>see more..</div></Link></div>
+                <div className='browse'>
+                
+                </div>
+            
+            </div>
+            </>
         )
     }
 }

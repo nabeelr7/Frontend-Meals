@@ -125,24 +125,22 @@ class Browse extends Component {
     }
     
     render(){
-        return (
+        return (<>
+            <Link to='/browse'><button onClick={this.browseChefsButton}>Browse Meals</button></Link>
+           <Link to='/browsechefs'> <button >Browse Chefs</button> </Link>
             <div className='browse'>
 
-                <div>
-                    <button onClick={this.browse}>Browse Meals</button>
-                    <Link to='/browsechefs'> <button >Browse Chefs</button> </Link>
-                </div>
-                
-                <Modal 
-                        width="50%"
-                        height="500"
-                        visible={this.state.visible}
-                        effect="fadeInUp"
-                        onClickAway={this.closeModal}
-                    >
-                        <MealDescriptionAndOrderForm
-                            mealId={this.state.displayedMealId} 
-                            closeModal={this.closeModal}/>
+
+            <Modal 
+                    width="50%"
+                    height="500"
+                    visible={this.state.visible}
+                    effect="fadeInUp"
+                    onClickAway={this.closeModal}
+                >
+                    <MealDescriptionAndOrderForm
+                        mealId={this.state.displayedMealId} 
+                        closeModal={this.closeModal}/>
                 </Modal>
 
                 {this.state.renderedItems.map((item)=>{
@@ -156,6 +154,7 @@ class Browse extends Component {
                 })}
 
             </div>
+            </>
         )
     }
 }

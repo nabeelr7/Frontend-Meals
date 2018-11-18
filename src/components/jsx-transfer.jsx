@@ -67,17 +67,6 @@ class BrowseChefs extends Component {
 
                     </ReactMapGL>
                 </div>
-                <div className='chefProfiles'>
-                    {this.state.chefs.map(function (chef) {
-                        return (
-                            <div  className='chefOption'>
-                                <img src={chef.profilePicturePath} height="200px" alt='chefProfilePic' />
-                                <div>{chef.userName}</div>
-                            </div>
-                        )
-                    })}
-
-                </div>
             </>
             )
         }
@@ -113,7 +102,7 @@ class BrowseChefs extends Component {
                 <div className='chefProfiles'>
                     {this.state.chefs.map(function (chef) {
                         return (
-                            <div  className='chefOption'>
+                            <div key={shortId.generate()} className='item-card'>
                                 <img src={chef.profilePicturePath} height="200px" alt='chefProfilePic' />
                                 <div>{chef.userName}</div>
                             </div>

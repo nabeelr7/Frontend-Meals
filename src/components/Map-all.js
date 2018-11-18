@@ -3,22 +3,41 @@ import {connect} from 'react-redux';
 
 import ReactMapGL from 'react-map-gl';
 
-
+let viewWid = Math.max(window.innerWidth || 0);
+let viewHei = Math.max(window.innerHeight || 0);
 class Map extends Component {
   constructor(){
     super();
   
   this.state = {
     viewport: {
-      width: 400,
-      height: 400,
+      width: viewWid,
+      height: viewHei,
       latitude: 45.5014,
       longitude: -73.5691,
       zoom: 10
     }
   };
 }
+adjustView = () => {
+  let newViewWid = Math.max(window.innerWidth || 0);
+  let newViewHei = Math.max(window.innerHeight || 0);
+  this.setState({
+    viewport: {
+      height: newViewHei,
+      width: newViewWid,
+      latitude: this.state.viewport.latitude,
+      longitude: this.state.viewport.longitude,
+      zoom: this.state.viewport.zoom
+    }
+  });
+};
 
+//checks if window size changes to adjust viewport
+
+componentDidMount = () => {
+  window.addEventListener("resize", this.adjustView);
+};
   render() {
     return (
       <ReactMapGL
