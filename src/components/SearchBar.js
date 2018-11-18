@@ -51,7 +51,7 @@ render(){
                 className='searchBar' 
                 placeholder="Search" 
                 type="text" 
-                
+                value={this.state.searchInput}
                 onChange={this.handleSearchChange}
                 />
             <input
