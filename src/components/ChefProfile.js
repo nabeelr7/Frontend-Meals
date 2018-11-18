@@ -19,9 +19,9 @@ class ChefProfile extends Component {
     openModal(item) {
         this.setState({
             currentItem: {
-                userName: item.userName,
-                chefName: item.chefName,
-                mealId: item.mealId
+                chefName: item.userName,
+                mealId: item._id,
+                title: item.title
             },
             visible: true
         });
@@ -89,7 +89,6 @@ class ChefProfile extends Component {
 
                     <MealOrderFrom
                         closeModal={this.closeModal}
-                        userName={this.state.currentItem.userName}
                         chefName={this.state.currentItem.chefName}
                         mealId={this.state.currentItem.mealId}
                         mealTitle={this.state.currentItem.title}
