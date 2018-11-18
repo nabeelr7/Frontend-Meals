@@ -66,7 +66,6 @@ class ChefDashboard extends Component {
         }).then((response) => {
             let parsed = JSON.parse(response)
             this.setState({ items: parsed })
-            console.log(response);
         })
     
         fetch('/getrequests', {
@@ -79,7 +78,6 @@ class ChefDashboard extends Component {
         }).then(function(response){
             let parsed = JSON.parse(response)
             if (parsed.success) {
-                console.log(parsed.msg)
                 //HERE DO STUFF WITH THE REQUESTS!==========
             }
         })

@@ -59,7 +59,6 @@ class MealAddBox extends Component {
         formData.append('ingredients', this.state.ingredients)
         formData.append('coordinates', JSON.stringify(this.props.coordinates))
 
-        console.log(formData)
 
         fetch('/addmeal', {
             method: "POST",
@@ -67,7 +66,6 @@ class MealAddBox extends Component {
         }).then(function(x){
             return x.text()
         }).then(function(res){
-            console.log(res)
             let parsed = JSON.parse(res)
             if (parsed.success){
                 console.log("Meal Added")

@@ -59,7 +59,6 @@ class ChefProfile extends Component {
         }).then((response) => {
             let parsed = JSON.parse(response)
             this.setState({ items: parsed })
-            console.log(response);
         })
     }
     render() {

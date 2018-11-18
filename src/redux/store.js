@@ -40,6 +40,12 @@ let reducer= function(state, action)
                 searching: false
             }
 
+        case 'updateRequests':
+            return {
+                ...state,
+                updatedRequests: action.updatedRequests
+            }
+
         default:
             return state;
     }

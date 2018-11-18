@@ -51,7 +51,6 @@ class Signup extends Component {
                     }
              })
              .then(function(response){
-                 console.log(response) 
                  let coordinates=response.data.results[0].geometry.location
                  fetch("/signup", {
                     method: "POST",
