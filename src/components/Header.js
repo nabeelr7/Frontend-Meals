@@ -5,6 +5,7 @@ import './Header.css';
 import SearchBar from './SearchBar'
 import StripeCheckout from './Stripe.js';
 import {withRouter} from 'react-router';
+
 class Header extends Component
 {
     constructor(props)
@@ -13,7 +14,7 @@ class Header extends Component
 
         // Bindings
         this.logout = this.logout.bind(this);
-        this.clearResAndBrowse=this.clearResAndBrowse.bind(this)
+        this.sendToBrowse = this.sendToBrowse.bind(this)
     }
 
     logout(evt)
@@ -25,7 +26,7 @@ class Header extends Component
         })
         .then(function(response){ return response.text()})
         .then(function(response){
-            console.log(response)
+            
             let parsed = JSON.parse(response);
            
             if(parsed.success)
@@ -39,15 +40,14 @@ class Header extends Component
 
         }.bind(this))
     }
-    goToDash(){
 
+    sendToBrowse(evt)
+    {
+        // We need to make sure the browse component doesn't think we're searching before we navigate
+        this.props.dispatch({type: 'stopSearching'});
+        this.props.history.push('/browse');
     }
-    clearResAndBrowse(){
-        if (this.props.searchResults){
-            this.props.dispatch({type: 'topSearchBarResults', res: []})
-            }
-        this.props.history.push('/browse')
-    }
+    
     render()
     {
         return (<div className='header'>
@@ -55,23 +55,19 @@ class Header extends Component
                     <div className='header-bar'>
 
                         <div className='header-lefthand-side'>
-                        <Link to='/'><img height='50px' alt="logoLink" src='/rawimages/logo.png'></img></Link>
-                        <SearchBar/>
-                        <br/>
-                        <button onClick={this.clearResAndBrowse}>Browse</button>
-                        <StripeCheckout></StripeCheckout>
-                        
-                       
-                            
+                            <Link to='/'><img height='50px' alt="logoLink" src='/rawimages/logo.png'></img></Link>
+                            <SearchBar/>
+                            <br/>
+                            <button onClick={this.sendToBrowse}>Browse</button>
+                            <StripeCheckout></StripeCheckout>
                         </div>
 
                         <div className='header-righthand-side'>
-                        {!this.props.loggedIn &&  <Link to='/login'><button>Login</button></Link>}
-                        {!this.props.loggedIn &&  <Link to='/signup'><button>Signup</button></Link>}
-                         {this.props.loggedIn && <Link to='/'><button onClick={this.logout}>Logout</button></Link>}
-                         {this.props.loggedIn && this.props.userType==='chef' && <Link to='/chefdashboard'><button >My Dashboard</button></Link>}
-                         {this.props.loggedIn && this.props.userType==='client' && <Link to='/clientdashboard'><button >My Dashboard</button></Link>}
-                            
+                            {!this.props.loggedIn &&  <Link to='/login'><button>Login</button></Link>}
+                            {!this.props.loggedIn &&  <Link to='/signup'><button>Signup</button></Link>}
+                            {this.props.loggedIn && <Link to='/'><button onClick={this.logout}>Logout</button></Link>}
+                            {(this.props.loggedIn && this.props.userType==='chef') && <Link to='/chefdashboard'><button >My Dashboard</button></Link>}
+                            {(this.props.loggedIn && this.props.userType==='client') && <Link to='/clientdashboard'><button >My Dashboard</button></Link>}     
                         </div>
 
                     </div>
