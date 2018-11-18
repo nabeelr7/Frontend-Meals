@@ -4,6 +4,7 @@ import shortId from 'shortid';
 import MealCard from './MealCard.js';
 import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
 import Modal from 'react-awesome-modal';
+import {Link} from 'react-router-dom';
 
 class Browse extends Component {
     constructor(){
@@ -76,11 +77,19 @@ class Browse extends Component {
             visible: false
         })
     }
-    
+    browseMealsButton(){
+        
+    }
+    browseChefsButton(){}
     
     render(){
         return (
             <div className='browse'>
+
+            <Link to='/browse'><button onClick={this.browseChefsButton}>Browse Meals</button></Link>
+           <Link to='/browsechefs'> <button >Browse Chefs</button> </Link>
+            
+
             <Modal 
                     width="50%"
                     height="500"
