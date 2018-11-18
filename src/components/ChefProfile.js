@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Modal from 'react-awesome-modal';
 import MealOrderFrom from './MealOrderForm';
 import shortId from 'shortid';
+import ReactMapGL, {Marker} from 'react-map-gl';
 
 class ChefProfile extends Component {
     constructor() {
@@ -62,6 +63,15 @@ class ChefProfile extends Component {
                     <div>{this.state.profile.userName}</div>
                     <br />
                     <div>{this.state.profile.bio}</div>
+                </div>
+                <div className='chefLocationMap' style={{textAlign:'start'}}>
+                     <ReactMapGL width={305} height={300} mapboxApiAccessToken={'pk.eyJ1IjoiZGF2aWRkZWFuIiwiYSI6ImNqb2tzaG5kcTBqYngzam1veGV4NWJjbnEifQ.DjftYUu4GtL7KOAiBHVd8g'} 
+                     latitude={this.state.profile.coordinates.lat} 
+                     longitude={this.state.profile.coordinates.lng} zoom={14}>
+                         <Marker latitude={this.state.profile.coordinates.lat} longitude={this.state.profile.coordinates.lng} offsetLeft={-20} offsetTop={-10}>
+                            <img height='25px' src='/rawImages/marker.png'></img>
+                        </Marker>
+                     </ReactMapGL>
                 </div>
                 <Modal
                     visible={this.state.visible}
