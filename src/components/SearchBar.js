@@ -33,7 +33,7 @@ onSubmit(event){
         console.log(parsed)
         this.props.dispatch({type: 'topSearchBarResults', res: parsed})
         
-        this.props.history.push('/seachResults')
+        this.props.history.push('/browse')
         
     })
     this.setState({searchInput: ''})

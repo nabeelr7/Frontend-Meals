@@ -13,7 +13,8 @@ import MealDescriptionAndOrderForm from './components/MealDescriptionAndOrderFor
 import Browse from './components/Browse'
 import ChefProfile from './components/ChefProfile'
 import Homepage from './components/Homepage'
-import ClientDashboard from './components/ClientDashboard'
+import ClientDashboard from './components/ClientDashboard';
+
 
 class App extends Component {
   constructor() {
@@ -63,8 +64,7 @@ class App extends Component {
 
             <Header />
 
-            
-
+          
             <Route exact={true} path='/' render={this.renderHomePage} />
             <Route exact={true} path='/signup' component={Signup}/>
             <Route exact={true} path='/login' component={Login}/>
@@ -75,7 +75,7 @@ class App extends Component {
             <Route exact={true} path='/browse' component={Browse}/>
             <Route exact={true} path='/chef/:chefName' component={ChefProfile}/>
             <Route exact={true} path='/clientdashboard' component={ClientDashboard}/>
-        
+            
             <Bottom/>
 
           </div>

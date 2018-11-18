@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-awesome-modal';
 import MealAddBox from './MealAddBox';
+import Requests from './Requests'
 
 class ChefDashboard extends Component {
     constructor() {
@@ -104,7 +105,7 @@ class ChefDashboard extends Component {
                     closeModal={this.closeModal}/>
 
             </Modal>
-        {/* <Requests/>             */}
+        <Requests/>            
         </>
         )
     }

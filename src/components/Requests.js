@@ -24,11 +24,12 @@ class Requests extends Component {
                     this.setState({ foundResults: false })
                     return
                 }
-                this.setState({ requests: parsed })
-                let unanswered = this.state.requests.filter(item => item.status === 0)
-                let accepted = this.state.requests.filter(item => item.status === 1)
-                let declined = this.state.requests.filter(item => item.status === 2)
-                let paid = this.state.requests.filter(item => item.status === 3)
+                this.setState({ requests: parsed.result })
+                console.log(this.state)
+                let unanswered = this.state.requests.filter(item => item.requestStatus === 0)
+                let accepted = this.state.requests.filter(item => item.requestStatus === 1)
+                let declined = this.state.requests.filter(item => item.requestStatus === 2)
+                let paid = this.state.requests.filter(item => item.requestStatus === 3)
 
                 if (this.state.requests) {
                     this.setState({

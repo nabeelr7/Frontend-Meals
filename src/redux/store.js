@@ -1,7 +1,8 @@
 import {createStore} from 'redux';
 
 let initialState = {
-    loggedIn: false
+    loggedIn: false,
+    searchBarResults: []
 }
 
 let reducer= function(state, action)
