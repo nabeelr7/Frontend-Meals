@@ -18,7 +18,19 @@ class Homepage extends Component {
         this.closeModal = this.closeModal.bind(this)
     }
     componentDidMount() {
-        fetch('/getallmeals')
+        // If the user is logged in, we'll pass his coordinates along with the
+        // fetch so the server can crunch the distance for us
+        let body = {};
+
+        if (this.props.loggedIn)
+        {
+            body.userCoordinates = this.props.userCoordinates;
+        }
+
+        fetch('/getallmeals', {
+            method: 'POST',
+            body: JSON.stringify(body)
+        })
             .then((x) => x.text())
             .then((response) => {
                 let parsed = JSON.parse(response)
@@ -70,6 +82,14 @@ class Homepage extends Component {
     }
 }
 
-let ConnectedHomepage = connect()(Homepage)
+function mapStateToProps(state)
+{
+    return {
+        loggedIn: state.loggedIn,
+        userCoordinates: state.userCoordinates
+    }
+}
+
+let ConnectedHomepage = connect(mapStateToProps)(Homepage)
 
 export default ConnectedHomepage

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import MealCard from './MealCard.js'
-import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
-import Modal from 'react-awesome-modal'
 import {connect} from 'react-redux';
+import shortId from 'shortid';
+import MealCard from './MealCard.js';
+import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
+import Modal from 'react-awesome-modal';
 
 class Browse extends Component {
     constructor(){
@@ -23,7 +24,20 @@ class Browse extends Component {
                 this.setState({items: this.props.searchResults})
             }
         else
-        {fetch('/getallmeals')
+        {
+            // If the user is logged in, we'll pass his coordinates along with the
+            // fetch so the server can crunch the distance for us
+            let body = {};
+
+            if (this.props.loggedIn)
+            {
+                body.userCoordinates = this.props.userCoordinates;
+            }
+            
+            fetch('/getallmeals',{
+                method: 'POST',
+                body: JSON.stringify(body)
+            })
         .then(function(x){
             return x.text()
         }).then(function(res){
@@ -80,6 +94,7 @@ class Browse extends Component {
                 </Modal>
             {this.state.items.map((item)=>{
                 return <MealCard 
+                key={shortId.generate()}
                 _id={item._id}
                 title={item.title}
                 price={item.price}
@@ -90,9 +105,12 @@ class Browse extends Component {
         )
     }
 }
+
 let mapStateToProps = function(state){
     return{
-        searchResults: state.searchBarResults
+        searchResults: state.searchBarResults,
+        loggedIn: state.loggedIn,
+        userCoordinates: state.userCoordinates
     }
 }
 let connectedBrowse = connect(mapStateToProps)(Browse)

@@ -44,7 +44,8 @@ class App extends Component {
         this.props.dispatch({
           type: "loggedIn",
           userName: parsed.userName,
-          userType: parsed.userType
+          userType: parsed.userType,
+          userCoordinates: parsed.userCoordinates
           })
       }
     }.bind(this))
@@ -84,12 +85,5 @@ class App extends Component {
 }
 
 
-let mapStateToProps = function (state) {
-  return {
-    userName: state.userName,
-    userType: state.userType
-  }
-}
-
-let ConnectedApp = connect(mapStateToProps)(App)
+let ConnectedApp = connect()(App)
 export default ConnectedApp;

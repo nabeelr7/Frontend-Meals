@@ -34,10 +34,16 @@ class MealDescriptionAndOrderForm extends Component
         if(!prevProps ||
             prevProps.mealId !== this.props.mealId)
         {
+            let body = {_id: this.props.mealId};
+            
+            if(this.props.loggedIn) {
+                body.userCoordinates = this.props.userCoordinates;
+            }
+
             fetch('/getmealdescription', {
                 method:"POST",
                 credentials: 'include',
-                body: JSON.stringify({_id: this.props.mealId})
+                body: JSON.stringify(body)
             })
             .then(function(response){ return response.text()})
             .then(this.processServerResponse)
@@ -130,7 +136,8 @@ function mapStateToProps(state)
 {
     return {
         loggedIn: state.loggedIn,
-        userName: state.userName
+        userName: state.userName,
+        userCoordinates: state.userCoordinates
     }
 }
 

@@ -39,7 +39,8 @@ class Login extends Component {
                 this.props.dispatch({ 
                     type: "loggedIn", 
                     userName: this.state.userName,
-                    userType: parsed.userType
+                    userType: parsed.userType,
+                    userCoordinates: parsed.userCoordinates
                 })
 
                 // Send the user to the homepage ('/')
