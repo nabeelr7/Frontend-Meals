@@ -1,20 +1,22 @@
 import React, {Component} from 'react'
 import StripeCheckout from 'react-stripe-checkout';
+import { connect } from 'react-redux';
 
 
 
-class App extends Component{
+
+class Stripe extends Component{
   onToken = (token) => {
-    console.log("hello world") //HERE CHANGE STATUS TO PAYED
-    fetch('/save-stripe-token', {
-      method: 'POST',
-      body: JSON.stringify(token),
-    }).then(response => {
-      response.json().then(data => {
-        alert(`We are in business, ${data.email}`);
-        
-      });
-    });
+    fetch('/updaterequeststatus', {
+      method: "POST",
+      body: JSON.stringify({
+          _id: this.props._id,
+          status: 3
+      })
+  }).then(function(x){
+      return x.text()
+  })
+  this.props.fetchRequests()
   }
 
   // ...
@@ -25,9 +27,13 @@ class App extends Component{
       <StripeCheckout
         token={this.onToken}
         stripeKey="pk_test_CuOhEKUY2UlbwUf3tXYMQA6E"
+        bitcoin
       />
     )
   }
 
 }
-export default App
+
+let connectedStripe = connect()(Stripe)
+
+export default connectedStripe

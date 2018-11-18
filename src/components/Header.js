@@ -59,7 +59,6 @@ class Header extends Component
                             <SearchBar/>
                             <br/>
                             <button onClick={this.sendToBrowse}>Browse</button>
-                            <StripeCheckout></StripeCheckout>
                         </div>
 
                         <div className='header-righthand-side'>

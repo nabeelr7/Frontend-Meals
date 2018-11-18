@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from './Button'
+import StripeCheckout from './Stripe.js';
+
 
 class Requests extends Component {
     constructor(props) {
@@ -9,34 +11,38 @@ class Requests extends Component {
             requests: [],
             filteredRequests: {}
         }
+        //bindings
         this.mapItem = this.mapItem.bind(this)
         this.formatResponse = this.formatResponse.bind(this)
         this.fetchRequests = this.fetchRequests.bind(this)
     }
+    //function to sort request statuses
     formatResponse(response) {
         let parsed = JSON.parse(response)
         if (!parsed.success) {
             this.setState({ foundResults: true })
             return
         }
+        //send the new requests to the store so that re-renders can happen automatically when the props is changed
         this.props.dispatch({ type: "updateRequests", updatedRequests: parsed.result })
 
-        
-        if (this.props.allRequests) {
-            this.setState({ requests: this.props.allRequests })
-        }
-        
+        //assign the props to the state
+        this.setState({ requests: this.props.allRequests })
+
+
         let unanswered;
         let accepted;
         let declined;
         let paid;
 
+        //filtering based on req stat number. Checks to see that the state exists first
         if (this.state.requests) {
             unanswered = this.state.requests.filter(item => item.requestStatus === 0)
             accepted = this.state.requests.filter(item => item.requestStatus === 1)
             declined = this.state.requests.filter(item => item.requestStatus === 2)
             paid = this.state.requests.filter(item => item.requestStatus === 3)
             this.setState({
+                //makes a new state with filtered reqs
                 filteredRequests: {
                     unanswered: unanswered,
                     accepted: accepted,
@@ -46,6 +52,7 @@ class Requests extends Component {
             })
         }
     }
+    //fetch all reqs on boot
     componentDidMount() {
         fetch('/getrequests', {
             method: "POST",
@@ -56,9 +63,12 @@ class Requests extends Component {
         })
             .then(x => x.text())
             .then((response) => {
+                //send reqs to be formatted
                 this.formatResponse(response)
             })
     }
+
+    //this function gets called everytime a selection is made to get updated statuses
     fetchRequests() {
         fetch('/getrequests', {
             method: "POST",
@@ -66,12 +76,31 @@ class Requests extends Component {
                 userName: this.props.userName,
                 userType: this.props.userType
             })
-        })
-            .then(x => x.text())
+        }).then(x => x.text())
             .then((response) => {
+                //sent off to get formatted
                 this.formatResponse(response)
             })
     }
+
+    //function used with Stripe to update status
+    closePayment() {
+        fetch('/updaterequeststatus', {
+            method: "POST",
+            body: JSON.stringify({
+                _id: this.props._id,
+                status: 3
+            })
+        }).then(function (x) {
+            return x.text()
+        }).then(function (response) {
+            let parsed = JSON.parse(response)
+            this.props.dispatch({ type: "updateRequests", updatedRequests: parsed.result })
+        }.bind(this))
+        this.props.fetchRequests()
+    }
+
+    //map through reqs coming from state
     mapItem(array) {
         if (array.length < 1) {
             return (<div>None</div>)
@@ -83,8 +112,8 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <Button buttonName='Accept' _id={item._id} fetchRequests={this.fetchRequests}/>
-                        <Button buttonName='Decline' _id={item._id} fetchRequests={this.fetchRequests}/>
+                        <Button buttonName='Accept' _id={item._id} fetchRequests={this.fetchRequests} />
+                        <Button buttonName='Decline' _id={item._id} fetchRequests={this.fetchRequests} />
                     </div>
                 )
             } else if (this.props.userType === 'chef') {
@@ -103,7 +132,10 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>Chef: {item.chefName}</div>
-                        <Button buttonName='Pay Now' _id={item._id} fetchRequests={this.fetchRequests}/>
+                        <StripeCheckout
+                            _id={item._id}
+                            fetchRequests={this.fetchRequests}
+                        />
                     </div>
                 )
             } else if (this.props.userType === 'client') {
