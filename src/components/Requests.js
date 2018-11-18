@@ -48,13 +48,22 @@ class Requests extends Component {
     mapItem(array) {
         console.log(array)
         return array.map((item) => {
+            if (this.props.userType === 'chef'){
             return (
                 <div className='req'>
                     <div>{item.mealTitle}</div>
                     <div>Qty: {item.quantity}</div>
-                    <div>For {item.userName}</div>
+                    <div>For Client {item.userName}</div>
                 </div>
-            )
+            )} else if (this.props.userType === 'client') {
+                return (
+                    <div className='req'>
+                        <div>{item.mealTitle}</div>
+                        <div>Qty: {item.quantity}</div>
+                        <div>Chef: {item.chefName}</div>
+                    </div>
+                )
+            }
         })
     }
 
