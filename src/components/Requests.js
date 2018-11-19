@@ -96,8 +96,8 @@ class Requests extends Component {
         }).then(function (response) {
             let parsed = JSON.parse(response)
             this.props.dispatch({ type: "updateRequests", updatedRequests: parsed.result })
+            this.props.fetchRequests()
         }.bind(this))
-        this.props.fetchRequests()
     }
 
     //map through reqs coming from state
@@ -122,7 +122,6 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-
                     </div>
                 )
             }

@@ -22,6 +22,7 @@ class Button extends Component {
                 return x.text()
             }).then(function (response) {
                 let parsed = JSON.parse(response)
+                console.log(parsed)
                 this.props.dispatch({ type: "updateRequests", updatedRequests: parsed.result })
             }.bind(this))
             this.props.fetchRequests()
