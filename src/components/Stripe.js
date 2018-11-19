@@ -11,12 +11,16 @@ class Stripe extends Component{
       method: "POST",
       body: JSON.stringify({
           _id: this.props._id,
-          status: 3
+          status: 3,
+          userType: this.props.userType,
+          userName: this.props.userName
       })
   }).then(function(x){
       return x.text()
+  }).then(response=>{
+    this.props.formatResponse(response)
   })
-  this.props.fetchRequests()
+  
   }
 
   // ...
@@ -34,6 +38,13 @@ class Stripe extends Component{
 
 }
 
-let connectedStripe = connect()(Stripe)
+let mapStateToProps = function(state){
+  return {
+    userName: state.userName,
+    userType: state.userType
+  }
+}
+
+let connectedStripe = connect(mapStateToProps)(Stripe)
 
 export default connectedStripe

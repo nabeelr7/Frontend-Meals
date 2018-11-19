@@ -16,15 +16,14 @@ class Button extends Component {
                 method: "POST",
                 body: JSON.stringify({
                     _id: this.props._id,
-                    status: 1
+                    status: 1,
+                    userType: this.props.userType,
+                    userName: this.props.userName
                 })
             }).then(function (x) {
                 return x.text()
             }).then(function (response) {
-                let parsed = JSON.parse(response)
-                console.log(parsed)
-                this.props.dispatch({ type: "updateRequests", updatedRequests: parsed.result })
-                this.props.fetchRequests()
+                this.props.formatResponse(response)
             }.bind(this))
         }
         if (this.props.buttonName === 'Decline') {
@@ -32,14 +31,15 @@ class Button extends Component {
                 method: "POST",
                 body: JSON.stringify({
                     _id: this.props._id,
-                    status: 2
+                    status: 2,
+                    userType: this.props.userType,
+                    userName: this.props.userName
                 })
             }).then(function(x){
                 return x.text()
             }).then(function (response) {
                 let parsed = JSON.parse(response)
                 this.props.dispatch({ type: "updateRequests", updatedRequests: parsed.result })
-                this.props.fetchRequests()
             }.bind(this))
         }
     }
@@ -50,7 +50,13 @@ class Button extends Component {
     }
 }
 
+let mapStateToProps = function(state){
+    return {
+        userType: state.userType,
+        userName: state.userName
+    }
+}
 
-let ConnectedButton = connect()(Button)
+let ConnectedButton = connect(mapStateToProps)(Button)
 
 export default ConnectedButton

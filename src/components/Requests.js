@@ -14,10 +14,10 @@ class Requests extends Component {
         //bindings
         this.mapItem = this.mapItem.bind(this)
         this.formatResponse = this.formatResponse.bind(this)
-        this.fetchRequests = this.fetchRequests.bind(this)
     }
     //function to sort request statuses
     formatResponse(response) {
+        console.log('hi')
         let parsed = JSON.parse(response)
         if (!parsed.success) {
             this.setState({ foundResults: true })
@@ -68,35 +68,21 @@ class Requests extends Component {
             })
     }
 
-    //this function gets called everytime a selection is made to get updated statuses
-    fetchRequests() {
-        fetch('/getrequests', {
-            method: "POST",
-            body: JSON.stringify({
-                userName: this.props.userName,
-                userType: this.props.userType
-            })
-        }).then(x => x.text())
-            .then((response) => {
-                //sent off to get formatted
-                this.formatResponse(response)
-            })
-    }
-
     //function used with Stripe to update status
     closePayment() {
         fetch('/updaterequeststatus', {
             method: "POST",
             body: JSON.stringify({
                 _id: this.props._id,
-                status: 3
+                status: 3,
+                userType: this.props.userType,
+                userName: this.props.userName
             })
         }).then(function (x) {
             return x.text()
         }).then(function (response) {
             let parsed = JSON.parse(response)
             this.props.dispatch({ type: "updateRequests", updatedRequests: parsed.result })
-            this.props.fetchRequests()
         }.bind(this))
     }
 
@@ -112,8 +98,8 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <Button buttonName='Accept' _id={item._id} fetchRequests={this.fetchRequests} />
-                        <Button buttonName='Decline' _id={item._id} fetchRequests={this.fetchRequests} />
+                        <Button buttonName='Accept' _id={item._id}  formatResponse={this.formatResponse}/>
+                        <Button buttonName='Decline' _id={item._id}  />
                     </div>
                 )
             } else if (this.props.userType === 'chef') {
@@ -133,7 +119,7 @@ class Requests extends Component {
                         <div>Chef: {item.chefName}</div>
                         <StripeCheckout
                             _id={item._id}
-                            fetchRequests={this.fetchRequests}
+                            formatResponse={this.formatResponse}
                         />
                     </div>
                 )
