@@ -14,7 +14,8 @@ class MealOrderForm extends Component
 
         this.state = {
             chosenDate: moment(),
-            quantity: 1
+            quantity: 1,
+            orderProcessed: false
         }
 
         // Bindings
@@ -23,6 +24,7 @@ class MealOrderForm extends Component
         this.cancel = this.cancel.bind(this);
         this.sendRequest = this.sendRequest.bind(this);
         this.processServerResponse = this.processServerResponse.bind(this);
+        this.weAreDone = this.weAreDone.bind(this);
     }
 
     handleDateChange(date)
@@ -86,15 +88,21 @@ class MealOrderForm extends Component
 
         if(parsed.success)
         {
-            alert('request placed successfully!');
+            this.setState({orderProcessed: true})
            
-            // depending on the context (what component is using this one)
-            // we may or may not have this property passed to us
-            if (this.props.hideOrderForm){
-                this.props.hideOrderForm();
-            }
-            this.props.closeModal();
+            
         }
+    }
+
+    weAreDone(evt)
+    {
+        // depending on the context (what component is using this one)
+        // we may or may not have this property passed to us
+        if (this.props.hideOrderForm)
+        {
+            this.props.hideOrderForm();
+        }
+        this.props.closeModal();
     }
 
     render()
@@ -111,8 +119,17 @@ class MealOrderForm extends Component
                             </div>
 
                             <div>
-                                <button onClick={this.cancel}>Cancel</button>
-                                <button onClick={this.sendRequest}>Send request</button>
+                                {!this.state.orderProcessed &&<>
+                                                            <button onClick={this.cancel}>Cancel</button>
+                                                            <button onClick={this.sendRequest}>Send request</button>
+                                                            </>
+                                }
+
+                                {this.state.orderProcessed &&<>
+                                                            <p>Thank you for placing your order.</p>
+                                                            <button onClick={this.weAreDone}>OK</button>
+                                                            </>
+                                }
                             </div>
 
                         </div>
