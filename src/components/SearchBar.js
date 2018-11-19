@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
+import './Header.css'
 
 class SearchBar extends Component{
     constructor(props){
@@ -49,7 +50,7 @@ render(){
             className='seachContainer'>
             <input 
                 className='searchBar' 
-                placeholder="Search" 
+                placeholder="Looking for something?" 
                 type="text" 
                 value={this.state.searchInput}
                 onChange={this.handleSearchChange}
@@ -57,6 +58,7 @@ render(){
             <input
                 className='searchSubmit'
                 type='submit'
+                value='Search'
                 />
         </form>
     )}

@@ -58,8 +58,7 @@ class Header extends Component
                             </div>
                         <div className='header-lefthand-side'>
                             <SearchBar/>
-                            <br/>
-                            <button onClick={this.sendToBrowse}>Browse</button>
+                            <button className='browseBtn'onClick={this.sendToBrowse}>Browse</button>
                         </div>
 
                         <div className='header-righthand-side'>

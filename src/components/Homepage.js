@@ -76,9 +76,7 @@ class Homepage extends Component {
                 </div>
             </div>
             <div className='video-background'>
-            <div className='video-foreground'>
-            <iframe width="100%" title='video' src="https://www.youtube.com/embed/IZKqpyRa4xs?list=PL8r0pW5D30KWKR6ZlEN4VeXxgOGxdWZDn&autoplay=1" controls='0' allowfullscreen='1'></iframe>
-            </div>
+            <iframe width="560" height="315" title='video'src="https://www.youtube.com/embed/Qg4eP937_ro?controls=0&amp;start=1195&autoplay=1&fs=0&showinfo=0&autohide=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div className='featured-container'>
                 <div>Featured Meals<Link to='/browse'><div>see more..</div></Link></div>
