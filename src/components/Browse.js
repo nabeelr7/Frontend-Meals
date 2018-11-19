@@ -64,7 +64,10 @@ class Browse extends Component {
             this.checkRef5.current.checked = false;
             this.checkRef6.current.checked = false;
 
-            this.selectRef.current.selectedIndex = 0;
+            if(this.props.loggedIn)
+            {
+                this.selectRef.current.selectedIndex = 0;
+            }
 
             // set the new items and reset filter values
             this.setState({
@@ -197,7 +200,10 @@ class Browse extends Component {
         this.checkRef5.current.checked = false;
         this.checkRef6.current.checked = false;
 
-        this.selectRef.current.selectedIndex = 0;
+        if(this.props.loggedIn)
+        {
+            this.selectRef.current.selectedIndex = 0;
+        }
         
         // reset the state
         this.setState({
