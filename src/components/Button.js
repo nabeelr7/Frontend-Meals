@@ -24,8 +24,8 @@ class Button extends Component {
                 let parsed = JSON.parse(response)
                 console.log(parsed)
                 this.props.dispatch({ type: "updateRequests", updatedRequests: parsed.result })
+                this.props.fetchRequests()
             }.bind(this))
-            this.props.fetchRequests()
         }
         if (this.props.buttonName === 'Decline') {
             fetch('/updaterequeststatus', {
@@ -39,8 +39,8 @@ class Button extends Component {
             }).then(function (response) {
                 let parsed = JSON.parse(response)
                 this.props.dispatch({ type: "updateRequests", updatedRequests: parsed.result })
+                this.props.fetchRequests()
             }.bind(this))
-            this.props.fetchRequests()
         }
     }
     render() {
