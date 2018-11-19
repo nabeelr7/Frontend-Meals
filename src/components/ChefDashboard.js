@@ -42,6 +42,22 @@ class ChefDashboard extends Component {
                     this.setState({ profile: parsed })
                 })
         }
+        let body = {
+            userName: this.props.userName
+        }
+
+        if (this.props.loggedIn){
+            body.userCoordinates = this.props.userCoordinates;
+        }
+        fetch('/getitemsbychef', {
+            method: "POST",
+            body: JSON.stringify(body)
+        }).then((x) => {
+            return x.text()
+        }).then((response) => {
+            let parsed = JSON.parse(response)
+            this.setState({ items: parsed })
+        })
         
     }
 

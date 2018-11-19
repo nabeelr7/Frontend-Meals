@@ -21,6 +21,8 @@ removeMeal(){
         .then((response) => {
             let parsed = JSON.parse(response)
 
+            if (!parsed.success){console.log('something is wrong here, success was'+ parsed.succss)}
+
             if (parsed.success){
                 fetch('/getitemsbychef', {
                     method: 'POST',
@@ -28,7 +30,7 @@ removeMeal(){
                 }).then((x) => x.text())
                 .then((response) => {
                     let parsed = JSON.parse(response)   
-                    this.props.updateState(response)
+                    this.props.updateState(parsed)
                     
                     
                 })
