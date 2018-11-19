@@ -7,8 +7,18 @@ import Modal from 'react-awesome-modal';
 import {Link} from 'react-router-dom';
 
 class Browse extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
+
+        // References to our uncontrolled checkboxes and our select box
+        this.checkRef1 = React.createRef();
+        this.checkRef2 = React.createRef();
+        this.checkRef3 = React.createRef();
+        this.checkRef4 = React.createRef();
+        this.checkRef5 = React.createRef();
+        this.checkRef6 = React.createRef();
+
+        this.selectRef = React.createRef();
 
         this.state={
             renderedItems: [],
@@ -16,11 +26,15 @@ class Browse extends Component {
             itemsAreDirty: true,
             distanceFilter: 40000,
             priceFilter: 50,
-            allergenFilter: [],
+            allergenFilter: []
         }
 
         // Flag to run appyFilters on componentDidUptade
         this.needToApplyFilters = false;
+
+        // Handle sortby outside of state so we don't have to deal with setState, update, rerender
+        // We want to be able to sort right away
+        this.sortBy = '';
 
         // bindings
         this.displayMealDescription = this.displayMealDescription.bind(this);
@@ -30,6 +44,7 @@ class Browse extends Component {
         this.handlePriceChange = this.handlePriceChange.bind(this);
         this.handleAllergensChange = this.handleAllergensChange.bind(this);
         this.applyFilters = this.applyFilters.bind(this);
+        this.handleSortChange = this.handleSortChange.bind(this);
     }
 
     componentDidUpdate(prevProps){
@@ -37,10 +52,28 @@ class Browse extends Component {
         if(!prevProps ||
             prevProps.searchResults !== this.props.searchResults)
         {
+            // clear 'this.needToApplyFilters' and this.sortBy
+            this.needToApplyFilters = false;
+            this.sortBy = '';
+
+            // Uncheck checkboxes and select box
+            this.checkRef1.current.checked = false;
+            this.checkRef2.current.checked = false;
+            this.checkRef3.current.checked = false;
+            this.checkRef4.current.checked = false;
+            this.checkRef5.current.checked = false;
+            this.checkRef6.current.checked = false;
+
+            this.selectRef.current.selectedIndex = 0;
+
+            // set the new items and reset filter values
             this.setState({
                 itemsToWorkFrom: this.props.searchResults,
                 renderedItems: this.props.searchResults,
-                itemsAreDirty: true // we have search items, so dirty items (not a complete unaltered set)
+                itemsAreDirty: true, // we have search items, so dirty items (not a complete unaltered set)
+                distanceFilter: 40000,
+                priceFilter: 50,
+                allergenFilter: []
             });
         }
         else if(!this.props.searching && this.state.itemsAreDirty)
@@ -92,7 +125,6 @@ class Browse extends Component {
                 itemsToWorkFrom: this.props.searchResults,
                 renderedItems: this.props.searchResults,
                 itemsAreDirty: true
-
             });
         }
         else// Otherwise, fetch all meals
@@ -150,9 +182,30 @@ class Browse extends Component {
         evt.preventDefault();
         evt.stopPropagation();
 
-        // Consider the items to be dirty, and make sure 'this.props.searching' is false
+        // make sure 'this.props.searching' is false
         this.props.dispatch({type: 'stopSearching'});
-        this.setState({itemsAreDirty: true});
+
+        // Reset our apply filter flag and our sortBy
+        this.needToApplyFilters = false;
+        this.sortBy = ''
+
+        // Uncheck every checkbox and reset the select box
+        this.checkRef1.current.checked = false;
+        this.checkRef2.current.checked = false;
+        this.checkRef3.current.checked = false;
+        this.checkRef4.current.checked = false;
+        this.checkRef5.current.checked = false;
+        this.checkRef6.current.checked = false;
+
+        this.selectRef.current.selectedIndex = 0;
+        
+        // reset the state
+        this.setState({
+            itemsAreDirty: true,
+            distanceFilter: 40000,
+            priceFilter: 50,
+            allergenFilter: []
+        });
     }
 
     handleDistanceChange(evt)
@@ -188,6 +241,17 @@ class Browse extends Component {
                 allergenFilter: newFilter
             })
         }
+    }
+
+    handleSortChange(evt)
+    {
+        this.sortBy = evt.target.value;
+
+        // Sort
+        let sorted = this.sort(this.state.renderedItems);
+
+        // Set state to sorted array
+        this.setState({renderedItems: sorted})
     }
 
     applyFilters(evt)
@@ -240,15 +304,50 @@ class Browse extends Component {
 
         filteredItems = tmpArray;
         
-        // TODO: sort the array according to 'sort-by'
+        // sort the array (if logged in)
+        if (this.props.loggedIn)
+        {
+            filteredItems = this.sort(filteredItems);
+        }
 
         // Set state for rendered items to the filtered array
         this.setState({renderedItems: filteredItems});
     }
+
+    /** returns a copy of the passed array sorted according to 'this.sortBy' */
+    sort(arrayToSort)
+    {
+        let sorted = arrayToSort.slice();
+
+        sorted.sort(function(a, b){
+            
+            switch(this.sortBy)
+            {
+                case 'price':
+                    if (a.price < b.price) return -1;
+                    if (a.price > b.price) return 1;
+                    if (a.price === b.price) return 0;
+
+                case 'distance':
+                    let distanceA = parseInt(a.distance);
+                    let distanceB = parseInt(b.distance);
+
+                    if (distanceA < distanceB) return -1;
+                    if (distanceA > distanceB) return 1;
+                    if (distanceA === distanceB) return 0;
+
+                default:
+                    return 0;// happens when sortBy is ""
+            }
+        }.bind(this))
+
+        
+        return sorted;
+    }
     
     render(){
         return (<>
-                <Link to='/browse'><button onClick={this.browse}>Browse Meals</button></Link>
+                <Link to='/browse'><button onClick={this.browse}>Show all Meals</button></Link>
                 <Link to='/browsechefs'> <button >Browse Chefs</button> </Link>
 
                 <div className='filterContainer'>
@@ -276,13 +375,24 @@ class Browse extends Component {
                     </div>
 
                     <div>
-                        <label><input type='checkbox' name='vegan' onChange={this.handleAllergensChange} /> Vegan</label>
-                        <label><input type='checkbox' name='vegetarian' onChange={this.handleAllergensChange} /> Vegetarian</label>
-                        <label><input type='checkbox' name='gluten-free' onChange={this.handleAllergensChange} /> Gluten-free</label>
-                        <label><input type='checkbox' name='dairy-free' onChange={this.handleAllergensChange} /> Dairy-free</label>
-                        <label><input type='checkbox' name='nut-free' onChange={this.handleAllergensChange} /> Nut-free</label>
-                        <label><input type='checkbox' name='shellfish-free' onChange={this.handleAllergensChange} /> No Shellfish</label>
+                        <label><input type='checkbox' ref={this.checkRef1} name='vegan' onChange={this.handleAllergensChange} /> Vegan</label>
+                        <label><input type='checkbox' ref={this.checkRef2} name='vegetarian' onChange={this.handleAllergensChange} /> Vegetarian</label>
+                        <label><input type='checkbox' ref={this.checkRef3} name='gluten-free' onChange={this.handleAllergensChange} /> Gluten-free</label>
+                        <label><input type='checkbox' ref={this.checkRef4} name='dairy-free' onChange={this.handleAllergensChange} /> Dairy-free</label>
+                        <label><input type='checkbox' ref={this.checkRef5} name='nut-free' onChange={this.handleAllergensChange} /> Nut-free</label>
+                        <label><input type='checkbox' ref={this.checkRef6} name='shellfish-free' onChange={this.handleAllergensChange} /> No Shellfish</label>
                     </div>
+
+                    {this.props.loggedIn &&
+                                        <div>
+                                            <label>Sort by: </label>
+                                            <select ref={this.selectRef} onChange={this.handleSortChange}>
+                                                <option disabled selected value='' style={{display: 'none'}}> -- select an option -- </option>
+                                                <option value='price'>price</option>
+                                                <option value='distance'>distance</option>
+                                            </select>
+                                        </div>
+                    }
 
                 </div>
 

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 // import MealCard from './MealCard.js'
 // import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
 // import Modal from 'react-awesome-modal'
-import ReactMapGL, { Marker } from 'react-map-gl';
+import { Marker } from 'react-map-gl';
+import Map from './Map-chef.js';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -48,13 +49,14 @@ class BrowseChefs extends Component {
                 <Link to='/browse'><button >Browse Meals</button></Link>
                 <Link to='/browsechefs'> <button >Browse Chefs</button> </Link>
                 <div className='chefsLocationMap' style={{ textAlign: 'start' }}>
-                    <ReactMapGL
+                    <Map
+                        chefs = {this.state.chefs}
                         width={600}
                         height={600}
                         mapboxApiAccessToken={'pk.eyJ1IjoiZGF2aWRkZWFuIiwiYSI6ImNqb2tzaG5kcTBqYngzam1veGV4NWJjbnEifQ.DjftYUu4GtL7KOAiBHVd8g'}
                         latitude={45.5014}
                         longitude={-73.5691}
-                        zoom={14}
+                        zoom={13}
                     >
                         {this.state.chefs.map((item) => {
                             return <Marker
@@ -66,7 +68,7 @@ class BrowseChefs extends Component {
                             </Marker>
                         })}
 
-                    </ReactMapGL>
+                    </Map>
                 </div>
                 <div className='chefProfiles'>
                     {this.state.chefs.map(function (chef) {
@@ -87,16 +89,17 @@ class BrowseChefs extends Component {
                 <Link to='/browse'><button >Browse Meals</button></Link>
                 <Link to='/browsechefs'> <button >Browse Chefs</button> </Link>
                 <div className='chefsLocationMap' style={{ textAlign: 'start' }}>
-                    <ReactMapGL
+                    <Map
+                        chefs = {this.state.chefs}
                         width={600}
                         height={600}
                         mapboxApiAccessToken={'pk.eyJ1IjoiZGF2aWRkZWFuIiwiYSI6ImNqb2tzaG5kcTBqYngzam1veGV4NWJjbnEifQ.DjftYUu4GtL7KOAiBHVd8g'}
                         latitude={this.props.userCoordinates.lat}
                         longitude={this.props.userCoordinates.lng}
-                        zoom={14}
-                        boxZoom={true}
-                        doubleClickZoom={true}
-                        dragPan={true}
+                        zoom={13}
+                        // boxZoom={true}
+                        // doubleClickZoom={true}
+                        // dragPan={true}
                     // hash={true}
                     >
                         {this.state.chefs.map((item) => {
@@ -109,7 +112,7 @@ class BrowseChefs extends Component {
                             </Marker>
                         })}
 
-                    </ReactMapGL>
+                    </Map>
                 </div>
                 <div className='chefProfiles'>
                     {this.state.chefs.map(function (chef) {
