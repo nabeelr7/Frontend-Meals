@@ -84,7 +84,7 @@ class MealAddBox extends Component {
             { value: 'gluten-free', label: 'Gluten-Free' },
             { value: 'dairy-free', label: 'Dairy-Free' },
             { value: 'nut-free', label: 'Nut-Free' },
-            { value: 'shellfish', label: 'Contains Shellfish' }
+            { value: 'shellfish-free', label: 'No Shellfish' }
         ]
 
         return (
