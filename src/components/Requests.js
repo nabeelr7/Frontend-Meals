@@ -99,7 +99,7 @@ class Requests extends Component {
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
                         <Button buttonName='Accept' _id={item._id}  formatResponse={this.formatResponse}/>
-                        <Button buttonName='Decline' _id={item._id}  />
+                        <Button buttonName='Decline' _id={item._id}  formatResponse={this.formatResponse}/>
                     </div>
                 )
             } else if (this.props.userType === 'chef') {

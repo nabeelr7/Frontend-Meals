@@ -34,6 +34,7 @@ class Homepage extends Component {
         })
             .then((x) => x.text())
             .then((response) => {
+                console.log(response)
                 let parsed = JSON.parse(response)
                 parsed.splice(4)
                 this.setState({ items: parsed })

@@ -38,8 +38,7 @@ class Button extends Component {
             }).then(function(x){
                 return x.text()
             }).then(function (response) {
-                let parsed = JSON.parse(response)
-                this.props.dispatch({ type: "updateRequests", updatedRequests: parsed.result })
+                this.props.formatResponse(response)                
             }.bind(this))
         }
     }
