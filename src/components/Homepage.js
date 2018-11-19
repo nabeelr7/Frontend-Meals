@@ -4,6 +4,7 @@ import shortId from 'shortid';
 import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm'
 import Modal from 'react-awesome-modal'
 import MealCard from './MealCard.js'
+import ChefCard from './ChefCard.js'
 import {Link} from 'react-router-dom';
 
 
@@ -13,7 +14,9 @@ class Homepage extends Component {
         super()
         this.state = {
             items: [],
+            chefs: [],
             visible: false
+            
         }
         this.displayMealDescription = this.displayMealDescription.bind(this)
         this.closeModal = this.closeModal.bind(this)
@@ -38,6 +41,14 @@ class Homepage extends Component {
                 let parsed = JSON.parse(response)
                 parsed.splice(4)
                 this.setState({ items: parsed })
+            })
+        fetch('/getallchefs')
+        .then((x) => x.text())
+            .then((response) => {
+                console.log(response)
+                let parsed = JSON.parse(response)
+                parsed.splice(4)
+                this.setState({ chefs: parsed })
             })
     }
     displayMealDescription(mealId) {
@@ -83,7 +94,15 @@ class Homepage extends Component {
             <div className='featured-chefs-container'>
             <div>Featured Chefs<Link to='/browsechefs'><div>see more..</div></Link></div>
                 <div className='browse'>
-                
+                {this.state.chefs.map((chef) => {
+                    return (<>
+                        <ChefCard
+                            userName={chef.userName}
+                            profilePicturePath={chef.profilePicturePath}
+                            />
+                            </>
+                    )
+                })}
                 </div>
             
             </div>
