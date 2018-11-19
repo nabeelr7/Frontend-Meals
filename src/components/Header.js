@@ -53,17 +53,18 @@ class Header extends Component
         return (<div className='header'>
 
                     <div className='header-bar'>
-
+                        <div className='logo'>
+                            <Link to='/'><img height='60px' alt="logoLink" src='/rawimages/logo.png'></img></Link>
+                            </div>
                         <div className='header-lefthand-side'>
-                            <Link to='/'><img height='50px' alt="logoLink" src='/rawimages/logo.png'></img></Link>
                             <SearchBar/>
                             <br/>
                             <button onClick={this.sendToBrowse}>Browse</button>
                         </div>
 
                         <div className='header-righthand-side'>
-                            {!this.props.loggedIn &&  <Link to='/login'><button>Login</button></Link>}
-                            {!this.props.loggedIn &&  <Link to='/signup'><button>Signup</button></Link>}
+                            {!this.props.loggedIn &&  <Link to='/login'><button className='loginBtn'>Login</button></Link>}
+                            {!this.props.loggedIn &&  <Link to='/signup'><button className='signupBtn'>Signup</button></Link>}
                             {this.props.loggedIn && <Link to='/'><button onClick={this.logout}>Logout</button></Link>}
                             {(this.props.loggedIn && this.props.userType==='chef') && <Link to='/chefdashboard'><button >My Dashboard</button></Link>}
                             {(this.props.loggedIn && this.props.userType==='client') && <Link to='/clientdashboard'><button >My Dashboard</button></Link>}     
@@ -71,7 +72,7 @@ class Header extends Component
 
                     </div>
 
-                    <div className='halfPlate'>Share a Meal</div>
+                    <div className='halfPlate'>Meal Prep</div>
 
                 </div>
         )

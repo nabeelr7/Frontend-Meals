@@ -1,0 +1,26 @@
+.about-container {
+    height: 330px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(to right, #43cea2, #185a9d);
+    color: white;
+    margin-top: 30px;
+}
+
+.about-left, .about-right {
+    display: grid;
+    font-size: 28px;
+    grid-row-gap: 100px;
+}
+
+
+.video-background {
+    overflow: hidden;
+    z-index: -99;
+  }
+  .video-foreground,
+  .video-background iframe {
+    width: 100%;
+    height: 600px;
+  }

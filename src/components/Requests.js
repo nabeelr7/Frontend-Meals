@@ -136,7 +136,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div>Client has Payed! Now we wait to hear if they will pickup in person or send a car</div>
+                        <div>Client has Paid! Now we wait to hear if they will pickup in person or send a car</div>
                     </div>
                 )
             }
@@ -146,7 +146,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div>Client will in-person pick up </div>
+                        <div>Client will pick up in person </div>
                     </div>
                 )
             }
@@ -259,7 +259,7 @@ class Requests extends Component {
                     </div>
                     <br></br>
                     <div className='inPerson'>
-                        <div>Personal Pick Up</div>
+                        <div>Pick up in person</div>
 
                         {this.state.filteredRequests.inPerson && this.mapItem(this.state.filteredRequests.inPerson)}
 

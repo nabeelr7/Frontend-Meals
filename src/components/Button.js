@@ -41,7 +41,7 @@ class Button extends Component {
                 this.props.formatResponse(response)                
             }.bind(this))
         }
-        if (this.props.buttonName === 'Pickup_in_Person') {
+        if (this.props.buttonName === 'Pickup in Person') {
             fetch('/updaterequeststatus', {
                 method: "POST",
                 body: JSON.stringify({
@@ -56,7 +56,7 @@ class Button extends Component {
                 this.props.formatResponse(response)
             }.bind(this))
         }
-        if (this.props.buttonName === 'Will_Send_a_Car') {
+        if (this.props.buttonName === 'Will Send a Car') {
             fetch('/updaterequeststatus', {
                 method: "POST",
                 body: JSON.stringify({

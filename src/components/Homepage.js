@@ -6,6 +6,7 @@ import Modal from 'react-awesome-modal'
 import MealCard from './MealCard.js'
 import ChefCard from './ChefCard.js'
 import {Link} from 'react-router-dom';
+import './homepage.css'
 
 
 
@@ -26,8 +27,7 @@ class Homepage extends Component {
         // fetch so the server can crunch the distance for us
         let body = {};
 
-        if (this.props.loggedIn)
-        {
+        if (this.props.loggedIn) {
             body.userCoordinates = this.props.userCoordinates;
         }
 
@@ -65,34 +65,49 @@ class Homepage extends Component {
     }
     render() {
         return (<>
+            <div className='about-container'>
+                <div className='about-left'>
+                    <div className='about-content'>Trying to eat healthy? Dont have time to cook?</div>
+                    <div className='about-content'>Let someone else do it!</div>
+                </div>
+                <div className='about-right'>
+                    <div className='about-content'>Already prepping your meals for the week?</div>
+                    <div className='about-content'>Make extra and make money!</div>
+                </div>
+            </div>
+            <div className='video-background'>
+            <div className='video-foreground'>
+            <iframe width="100%" title='video' src="https://www.youtube.com/embed/IZKqpyRa4xs?list=PL8r0pW5D30KWKR6ZlEN4VeXxgOGxdWZDn&autoplay=1" controls='0' allowfullscreen='1'></iframe>
+            </div>
+            </div>
             <div className='featured-container'>
                 <div>Featured Meals<Link to='/browse'><div>see more..</div></Link></div>
                 <div className='browse'>
-                <Modal
-                    visible={this.state.visible}
-                    effect="fadeInUp"
-                    onClickAway={this.closeModal}
-                    width='50%'
-                >
-                    <MealDescriptionAndOrderForm
-                        mealId={this.state.displayedMealId}
-                        closeModal={this.closeModal} />
-                </Modal>
-                {this.state.items.map((item) => {
-                    return (
-                        <MealCard
-                            key={shortId.generate()}
-                            _id={item._id}
-                            title={item.title}
-                            price={item.price}
-                            image={item.image}
-                            displayMeal={this.displayMealDescription} />
-                    )
-                })}
+                    <Modal
+                        visible={this.state.visible}
+                        effect="fadeInUp"
+                        onClickAway={this.closeModal}
+                        width='50%'
+                    >
+                        <MealDescriptionAndOrderForm
+                            mealId={this.state.displayedMealId}
+                            closeModal={this.closeModal} />
+                    </Modal>
+                    {this.state.items.map((item) => {
+                        return (
+                            <MealCard
+                                key={shortId.generate()}
+                                _id={item._id}
+                                title={item.title}
+                                price={item.price}
+                                image={item.image}
+                                displayMeal={this.displayMealDescription} />
+                        )
+                    })}
                 </div>
             </div>
             <div className='featured-chefs-container'>
-            <div>Featured Chefs<Link to='/browsechefs'><div>see more..</div></Link></div>
+                <div>Featured Chefs<Link to='/browsechefs'><div>see more..</div></Link></div>
                 <div className='browse'>
                 {this.state.chefs.map((chef) => {
                     return (<>
@@ -104,15 +119,14 @@ class Homepage extends Component {
                     )
                 })}
                 </div>
-            
+
             </div>
-            </>
+        </>
         )
     }
 }
 
-function mapStateToProps(state)
-{
+function mapStateToProps(state) {
     return {
         loggedIn: state.loggedIn,
         userCoordinates: state.userCoordinates
