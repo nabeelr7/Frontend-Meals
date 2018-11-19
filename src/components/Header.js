@@ -71,7 +71,7 @@ class Header extends Component
 
                     </div>
 
-                    <div className='halfPlate'>Meal Prep</div>
+                    <div className='halfPlate'>Meal-Prep</div>
 
                 </div>
         )
