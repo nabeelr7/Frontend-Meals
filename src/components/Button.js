@@ -41,6 +41,36 @@ class Button extends Component {
                 this.props.formatResponse(response)                
             }.bind(this))
         }
+        if (this.props.buttonName === 'Pickup_in_Person') {
+            fetch('/updaterequeststatus', {
+                method: "POST",
+                body: JSON.stringify({
+                    _id: this.props._id,
+                    status: 4,
+                    userType: this.props.userType,
+                    userName: this.props.userName
+                })
+            }).then(function (x) {
+                return x.text()
+            }).then(function (response) {
+                this.props.formatResponse(response)
+            }.bind(this))
+        }
+        if (this.props.buttonName === 'Will_Send_a_Car') {
+            fetch('/updaterequeststatus', {
+                method: "POST",
+                body: JSON.stringify({
+                    _id: this.props._id,
+                    status: 5,
+                    userType: this.props.userType,
+                    userName: this.props.userName
+                })
+            }).then(function (x) {
+                return x.text()
+            }).then(function (response) {
+                this.props.formatResponse(response)
+            }.bind(this))
+        }
     }
     render() {
         return (

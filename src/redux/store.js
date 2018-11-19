@@ -2,7 +2,8 @@ import {createStore} from 'redux';
 
 let initialState = {
     loggedIn: false,
-    searchBarResults: []
+    searchBarResults: [],
+    updatedMeals: []
 }
 
 let reducer= function(state, action)
@@ -46,6 +47,11 @@ let reducer= function(state, action)
                 updatedRequests: action.updatedRequests
             }
 
+        case 'updateMeals':
+            return {
+                ...state,
+                updatedMeals: action.res
+            }
         default:
             return state;
     }

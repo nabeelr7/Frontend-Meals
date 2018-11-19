@@ -17,7 +17,7 @@ class Requests extends Component {
     }
     //function to sort request statuses
     formatResponse(response) {
-        console.log('hi')
+        console.log('the response' , response)
         let parsed = JSON.parse(response)
         if (!parsed.success) {
             this.setState({ foundResults: true })
@@ -26,28 +26,35 @@ class Requests extends Component {
         //send the new requests to the store so that re-renders can happen automatically when the props is changed
         this.props.dispatch({ type: "updateRequests", updatedRequests: parsed.result })
 
-        //assign the props to the state
-        this.setState({ requests: this.props.allRequests })
+        // //assign the props to the state
+        // this.setState({ requests: this.props.allRequests })
 
 
         let unanswered;
         let accepted;
         let declined;
         let paid;
+        let inPerson;
+        let byCar;
 
         //filtering based on req stat number. Checks to see that the state exists first
-        if (this.state.requests) {
-            unanswered = this.state.requests.filter(item => item.requestStatus === 0)
-            accepted = this.state.requests.filter(item => item.requestStatus === 1)
-            declined = this.state.requests.filter(item => item.requestStatus === 2)
-            paid = this.state.requests.filter(item => item.requestStatus === 3)
+        if (this.props.allRequests) {
+            unanswered = this.props.allRequests.filter(item => item.requestStatus === 0)
+            accepted = this.props.allRequests.filter(item => item.requestStatus === 1)
+            declined = this.props.allRequests.filter(item => item.requestStatus === 2)
+            paid = this.props.allRequests.filter(item => item.requestStatus === 3)
+            inPerson = this.props.allRequests.filter(item => item.requestStatus === 4)
+            byCar = this.props.allRequests.filter(item => item.requestStatus === 5)
+
             this.setState({
                 //makes a new state with filtered reqs
                 filteredRequests: {
                     unanswered: unanswered,
                     accepted: accepted,
                     declined: declined,
-                    paid: paid
+                    paid: paid,
+                    inPerson: inPerson,
+                    byCar: byCar
                 }
             })
         }
@@ -102,42 +109,130 @@ class Requests extends Component {
                         <Button buttonName='Decline' _id={item._id}  formatResponse={this.formatResponse}/>
                     </div>
                 )
-            } else if (this.props.userType === 'chef') {
+            } 
+            else if (this.props.userType === 'chef' && item.requestStatus === 1) {
                 return (
                     <div className='req'>
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
+                        <div>Awaiting Reply</div>
                     </div>
                 )
             }
+            else if (this.props.userType === 'chef' && item.requestStatus === 2) {
+                return (
+                    <div className='req'>
+                        <div>{item.mealTitle}</div>
+                        <div>Qty: {item.quantity}</div>
+                        <div>For Client {item.userName}</div>
+                        <div> Declined </div>
+                    </div>
+                )
+            }
+            else if (this.props.userType === 'chef' && item.requestStatus === 3) {
+                return (
+                    <div className='req'>
+                        <div>{item.mealTitle}</div>
+                        <div>Qty: {item.quantity}</div>
+                        <div>For Client {item.userName}</div>
+                        <div>Client has Payed! Now we wait to hear if they will pickup in person or send a car</div>
+                    </div>
+                )
+            }
+            else if (this.props.userType === 'chef' && item.requestStatus === 4) {
+                return (
+                    <div className='req'>
+                        <div>{item.mealTitle}</div>
+                        <div>Qty: {item.quantity}</div>
+                        <div>For Client {item.userName}</div>
+                        <div>Client will in-person pick up </div>
+                    </div>
+                )
+            }
+            else if (this.props.userType === 'chef' && item.requestStatus === 5) {
+                return (
+                    <div className='req'>
+                        <div>{item.mealTitle}</div>
+                        <div>Qty: {item.quantity}</div>
+                        <div>For Client {item.userName}</div>
+                        <div>Client will send a car</div>
+                    </div>
+                )
+            }
+            else if (this.props.userType === 'client'&& item.requestStatus === 0) {
+                return (
+                    <div className='req'>
+                        <div>{item.mealTitle}</div>
+                        <div>Qty: {item.quantity}</div>
+                        <div>Chef: {item.chefName}</div>
+                        <div>Awaiting the Chef's Reply</div> 
+                    </div>
+                )
+            }
+            
             else if (this.props.userType === 'client' && item.requestStatus === 1) {
                 return (
                     <div className='req'>
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>Chef: {item.chefName}</div>
+                        <div>The order has been accepted!</div>
                         <StripeCheckout
                             _id={item._id}
                             formatResponse={this.formatResponse}
                         />
                     </div>
                 )
-            } else if (this.props.userType === 'client') {
+            }else  if (this.props.userType === 'client' && item.requestStatus === 2) {
                 return (
                     <div className='req'>
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
-                        <div>Chef: {item.chefName}</div>
+                        <div>For Client {item.userName}</div>
+                        <div> Request Was Declined, Sorry ! </div>
                     </div>
                 )
             }
+            else  if (this.props.userType === 'client' && item.requestStatus === 3) {
+                return (
+                    <div className='req'>
+                        <div>{item.mealTitle}</div>
+                        <div>Qty: {item.quantity}</div>
+                        <div>For Client {item.userName}</div>
+                        <Button buttonName="Pickup_in_Person" _id={item._id}  formatResponse={this.formatResponse}/>
+                        <Button buttonName='Will_Send_a_Car' _id={item._id}  formatResponse={this.formatResponse}/>
+                    </div>
+                )
+            }
+            else  if (this.props.userType === 'client' && item.requestStatus === 4) {
+                return (
+                    <div className='req'>
+                        <div>{item.mealTitle}</div>
+                        <div>Qty: {item.quantity}</div>
+                        <div>For Client {item.userName}</div>
+                        <div> Pickup : In Person</div>
+                    </div>
+                )
+            }
+            else  if (this.props.userType === 'client' && item.requestStatus === 5) {
+                return (
+                    <div className='req'>
+                        <div>{item.mealTitle}</div>
+                        <div>Qty: {item.quantity}</div>
+                        <div>For Client {item.userName}</div>
+                        <div> Will Send a Car</div>
+                    </div>
+                )
+            }
+            
+            
         })
     }
 
 
     render() {
-        if (!this.state.requests) { return (<div>Loading...</div>) }
+        if (!this.props.allRequests) { return (<div>Loading...</div>) }
         if (this.state.foundResults) { return (<div>No Orders Made</div>) }
         if (this.props.userType === 'chef' && this.state.filteredRequests) {
             return (
@@ -148,22 +243,39 @@ class Requests extends Component {
                         {this.state.filteredRequests.unanswered && this.mapItem(this.state.filteredRequests.unanswered)}
 
                     </div>
+                    <br/>
                     <div className='accepted'>
                         <div>Accepted Requests</div>
 
                         {this.state.filteredRequests.accepted && this.mapItem(this.state.filteredRequests.accepted)}
 
                     </div>
+                    <br></br>
                     <div className='paid'>
                         <div>Paid</div>
 
                         {this.state.filteredRequests.paid && this.mapItem(this.state.filteredRequests.paid)}
 
                     </div>
+                    <br></br>
+                    <div className='inPerson'>
+                        <div>Personal Pick Up</div>
+
+                        {this.state.filteredRequests.inPerson && this.mapItem(this.state.filteredRequests.inPerson)}
+
+                    </div>
+                    <br></br>
+                    <div className='byCar'>
+                        <div>Will Send a Car</div>
+
+                        {this.state.filteredRequests.byCar && this.mapItem(this.state.filteredRequests.byCar)}
+
+                    </div>
+
                 </div>
             )
         }
-        if (this.props.userType === 'client' && this.state.requests) {
+        if (this.props.userType === 'client' && this.props.allRequests) {
             return (
                 <div className='req-container'>
                     <div>My Orders</div>
@@ -173,6 +285,7 @@ class Requests extends Component {
                         {this.state.filteredRequests.unanswered && this.mapItem(this.state.filteredRequests.unanswered)}
 
                     </div>
+                    <br/>
                     <div className='accepted'>
                         <div>Accepted Requests</div>
 
@@ -189,6 +302,18 @@ class Requests extends Component {
                         <div>Declined Requests</div>
 
                         {this.state.filteredRequests.declined && this.mapItem(this.state.filteredRequests.declined)}
+
+                    </div>
+                    <div className='inPerson'>
+                        <div>Personal Pick Up</div>
+
+                        {this.state.filteredRequests.inPerson && this.mapItem(this.state.filteredRequests.inPerson)}
+
+                    </div>
+                    <div className='byCar'>
+                        <div>Will Send a Car</div>
+
+                        {this.state.filteredRequests.byCar && this.mapItem(this.state.filteredRequests.byCar)}
 
                     </div>
 

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import './Header.css';
 import SearchBar from './SearchBar'
-import StripeCheckout from './Stripe.js';
+import Stripe from './Stripe.js';
 import {withRouter} from 'react-router';
 
 class Header extends Component
