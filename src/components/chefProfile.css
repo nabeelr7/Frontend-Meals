@@ -40,6 +40,11 @@
     font-size: 29px;
   }
 
+  .chef-card-name {
+    font-size: 20px;
+    margin-top: 16px;
+  }
+
   .chef-bio {
     font-size: 21px;
   }

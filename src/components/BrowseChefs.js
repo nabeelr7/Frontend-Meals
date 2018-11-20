@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Browse.css'
 
+
 class BrowseChefs extends Component {
     constructor() {
         super()
@@ -31,7 +32,7 @@ class BrowseChefs extends Component {
         if (this.props.loggedIn && this.props.userCoordinates) {
             fetch('/getallchefs', {
                 method: "POST",
-                body: JSON.stringify({userCoordinates: this.props.userCoordinates})
+                body: JSON.stringify({ userCoordinates: this.props.userCoordinates })
             }).then(function (x) {
                 return x.text()
             }).then(function (res) {
@@ -47,11 +48,13 @@ class BrowseChefs extends Component {
         if (this.state.chefs === []) { return (<div>Loading..</div>) }
         if (!this.props.loggedIn) {
             return (<>
-                <Link to='/browse'><button className='filter-btn'>Browse Meals</button></Link>
-                <Link to='/browsechefs'> <button className='filter-btn'>Browse Chefs</button> </Link>
+                <div className='btn-box'>
+                    <Link to='/browse'><button className='filter-btn'>Browse Meals</button></Link>
+                    <Link to='/browsechefs'> <button className='filter-btn'>Browse Chefs</button> </Link>
+                </div>
                 <div className='chefsLocationMap' style={{ textAlign: 'start' }}>
                     <Map
-                        chefs = {this.state.chefs}
+                        chefs={this.state.chefs}
                         width={600}
                         height={600}
                         mapboxApiAccessToken={'pk.eyJ1IjoiZGF2aWRkZWFuIiwiYSI6ImNqb2tzaG5kcTBqYngzam1veGV4NWJjbnEifQ.DjftYUu4GtL7KOAiBHVd8g'}
@@ -59,19 +62,22 @@ class BrowseChefs extends Component {
                         longitude={-73.5691}
                         zoom={13}
                     >
-                
+
                     </Map>
                 </div>
                 <div className='chefProfiles'>
                     {this.state.chefs.map(function (chef) {
                         return (
-                            <div  className='chefOption'>
-                               <Link to={`/chef/${chef.userName}`}>
-                                    <img src={chef.profilePicturePath} height="200px" alt='chefProfilePic' />
-                                </Link>
-                                <div>{chef.userName}  </div>
+                            <div className='chefCard'>
+                                <div className='card-top'>
+                                    <Link to={`/chef/${chef.userName}`}>
+                                        <img className='chef-img' src={chef.profilePicturePath} height="200px" alt='chefProfilePic' />
+                                    </Link>
+                                </div>
+                                <div className='card-bottom'>
+                                    <div className='chef-card-name'>{chef.userName}  </div>
+                                </div>
                             </div>
-                            
                         )
                     })}
 
@@ -81,20 +87,22 @@ class BrowseChefs extends Component {
         }
         if (this.props.loggedIn && this.props.userCoordinates) {
             return (<>
-                <Link to='/browse'><button className='filter-btn'>Browse Meals</button></Link>
-                <Link to='/browsechefs'> <button className='filter-btn'>Browse Chefs</button> </Link>
+                <div className='btn-box'>
+                    <Link to='/browse'><button className='filter-btn'>Browse Meals</button></Link>
+                    <Link to='/browsechefs'> <button className='filter-btn'>Browse Chefs</button> </Link>
+                </div>
                 <div className='chefsLocationMap' style={{ textAlign: 'start' }}>
                     <Map
-                        chefs = {this.state.chefs}
+                        chefs={this.state.chefs}
                         width={600}
                         height={600}
                         mapboxApiAccessToken={'pk.eyJ1IjoiZGF2aWRkZWFuIiwiYSI6ImNqb2tzaG5kcTBqYngzam1veGV4NWJjbnEifQ.DjftYUu4GtL7KOAiBHVd8g'}
                         latitude={this.props.userCoordinates.lat}
                         longitude={this.props.userCoordinates.lng}
                         zoom={13}
-                        // boxZoom={true}
-                        // doubleClickZoom={true}
-                        // dragPan={true}
+                    // boxZoom={true}
+                    // doubleClickZoom={true}
+                    // dragPan={true}
                     // hash={true}
                     >
                     </Map>
@@ -102,13 +110,17 @@ class BrowseChefs extends Component {
                 <div className='chefProfiles'>
                     {this.state.chefs.map(function (chef) {
                         return (
-                            <div  className='chefOption'>
-                               <Link to={`/chef/${chef.userName}`}>
-                                    <img src={chef.profilePicturePath} height="200px" alt='chefProfilePic' />
-                                </Link>
-                                <div>{chef.userName} is {chef.distance} meters away </div>
+                            <div className='chefCard'>
+                                <div className='card-top'>
+                                    <Link to={`/chef/${chef.userName}`}>
+                                        <img className='chef-img' src={chef.profilePicturePath} height="200px" alt='chefProfilePic' />
+                                    </Link>
+                                </div>
+                                <div className='card-bottom'>
+                                    <div className='chef-dist'>{chef.userName} is {chef.distance} meters away </div>
+                                </div>
                             </div>
-                            
+
                         )
                     })}
 

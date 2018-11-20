@@ -18,7 +18,7 @@ class ChefCard extends Component {
                 <img  src={this.props.profilePicturePath} alt='chef img' className='chef-img'/>
                 </div>
                 <div className='card-bottom'>
-                    <div>{this.props.userName}</div>
+                    <div className='chef-card-name'>{this.props.userName}</div>
                 </div>
             </Link> 
             </div>

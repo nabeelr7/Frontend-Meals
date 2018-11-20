@@ -110,7 +110,7 @@ class ChefProfile extends Component {
                         return ( 
                             <div key={shortId.generate()} className='card'>
                                 <div className='card-top'>
-                                     <img src={item.image} height="200px" alt='meal pic' />
+                                     <img src={item.image} className='card-img' height="200px" alt='meal pic' />
                                 </div>
                                 <div className='card-bottom'>
                                     <div>{item.title}</div>

@@ -33,3 +33,18 @@ label {
     margin-left: 30px;
 }
 
+.btn-box {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.chefProfiles {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.chef-dist {
+    margin-top: 19px;
+    font-size: 18px;
+}

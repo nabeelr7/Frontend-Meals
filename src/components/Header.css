@@ -105,11 +105,10 @@
     letter-spacing: 1px;
     text-decoration: none;
     z-index: 2;
-    transition: all 0.7s;
 }
 
 .browseBtn:hover {
-    background: #00a950;
+    background:linear-gradient(to left, #006175 0%, #00a950 100%);
     
 }
 
