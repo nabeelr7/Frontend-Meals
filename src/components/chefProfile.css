@@ -3,13 +3,20 @@
     display: flex;
     justify-content: space-between;
     flex-flow: row wrap;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
+    border-style: none;
+    padding: 15px;
+    margin-left: 26px;
+    width: 94%;
   }
   
   .chef-profile{
     display: flex;
-    max-width: 40vw;
-  margin-left: 100px;
+    max-width: 44vw;
+  margin-left: 60px;
   }
   
   .chef-info{
@@ -26,4 +33,8 @@
   }
   .meals-offered-announce{
     margin-bottom: 20px;
+  }
+
+  .chef-name {
+    font-size: 29px;
   }

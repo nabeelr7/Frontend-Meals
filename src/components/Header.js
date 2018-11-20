@@ -64,9 +64,9 @@ class Header extends Component
                         <div className='header-righthand-side'>
                             {!this.props.loggedIn &&  <Link to='/login'><button className='loginBtn'>LOGIN</button></Link>}
                             {!this.props.loggedIn &&  <Link to='/signup'><button className='signupBtn'>SIGNUP</button></Link>}
-                            {this.props.loggedIn && <Link to='/'><button onClick={this.logout}>Logout</button></Link>}
-                            {(this.props.loggedIn && this.props.userType==='chef') && <Link to='/chefdashboard'><button >My Dashboard</button></Link>}
-                            {(this.props.loggedIn && this.props.userType==='client') && <Link to='/clientdashboard'><button >My Dashboard</button></Link>}     
+                            {this.props.loggedIn && <Link to='/'><button onClick={this.logout} className='loginBtn'>LOGOUT</button></Link>}
+                            {(this.props.loggedIn && this.props.userType==='chef') && <Link to='/chefdashboard'><button className='signupBtn' id='dash'>MY DASHBOARD</button></Link>}
+                            {(this.props.loggedIn && this.props.userType==='client') && <Link to='/clientdashboard'><button className='signupBtn' id='dash'>MY DASHBOARD</button></Link>}     
                         </div>
 
                     </div>

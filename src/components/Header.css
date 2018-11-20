@@ -76,6 +76,10 @@
     letter-spacing: 1px;
 }
 
+#dash {
+    width: 150px;
+}
+
 .loginBtn {
     background-color: rgba(193, 66, 66, 0);
     border-color: black;
