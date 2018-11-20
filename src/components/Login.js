@@ -54,14 +54,14 @@ class Login extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className='auth-title'>Login</div>
                     <div className='username-box'>
-                        <div>Username</div>
-                        <input type='text' onChange={this.handleUsernameChange} />
+                        <div className='title'>Username</div>
+                        <input className='input' type='text' onChange={this.handleUsernameChange} />
                     </div>
                     <div className='username-box'>
-                        <div>Password</div>
-                        <input type='password' onChange={this.handlePasswordChange} />
+                        <div className='title'>Password</div>
+                        <input className='input' type='password' onChange={this.handlePasswordChange} />
                     </div>
-                    <input type='submit' className='submit'/>
+                    <input type='submit' value='SUBMIT' className='submit'/>
                 </form>
             </div>
         )

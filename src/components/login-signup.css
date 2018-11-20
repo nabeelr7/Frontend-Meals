@@ -1,11 +1,17 @@
 .login-container {
     margin-top: 30px;
     margin-bottom: 12vh;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    width: 40%;
+    padding: 19px;
+    display: inline-block;
 }
 
 .auth-title {
     margin-bottom: 50px;
     font-size: 40px;
+    letter-spacing: 1px;
 }
 
 .username-box {
@@ -14,5 +20,52 @@
 }
 
 .submit {
-    margin-top: 20px;
+    margin-top: 15px;
+    width: 220px;
+    height: 34px;
+    background-image: linear-gradient(to right, #006175 0%, #00a950 100%);
+    color: white;
+    letter-spacing: 1px;
+}
+
+.userType-container {
+    margin-bottom: 32%;
+    margin-top: 8%;
+}
+
+.userType-title {
+    font-size: 30px;
+    margin-bottom: 65px;
+}
+
+.userType-btn {
+    border-style: none;
+    background-color: rgb(110, 197, 193);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 9px;
+    width: 185px;
+    letter-spacing: 1px;
+    font-size: 19px;
+}
+
+.title {
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+
+#diff {
+    margin-bottom: 32%;
+    margin-top: 5%;
+}
+
+.input {
+    width: 220px;
+    height: 25px;
+    border-radius: 15px;
+    border-style: solid;
+    border-image: linear-gradient(to right, #006175 0%, #00a950 100%);
+    border-image-slice: 1;
+    border-width: 3px;
+    text-indent: 5px;
 }

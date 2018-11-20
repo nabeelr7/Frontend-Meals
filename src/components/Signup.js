@@ -99,10 +99,10 @@ class Signup extends Component {
     render() {
         if (this.state.userType === undefined)
             return (
-                <div>
-                    <div>Will you be a Chef or a client?</div>
-                    <button onClick={this.handleChefType}>Chef</button>
-                    <button onClick={this.handleClientType}>Client</button>
+                <div className='login-container' id='diff'>
+                    <div className='userType-title'>Will you be a Chef or a client?</div>
+                    <button className='userType-btn' onClick={this.handleChefType}>CHEF</button>
+                    <button className='userType-btn' onClick={this.handleClientType}>CLIENT</button>
                 </div>
             )
         if (this.state.userType) {
@@ -111,23 +111,25 @@ class Signup extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <div className='auth-title'>Signup</div>
                         <div className='username-box'>
-                            <div>Username</div>
-                            <input type='text' onChange={this.handleUsernameChange} />
+                            <div className='title'>Username</div>
+                            <input className='input' type='text' onChange={this.handleUsernameChange} />
                         </div>
                         <div className='username-box'>
-                            <div>Password</div>
-                            <input type='password' onChange={this.handlePasswordChange} />
+                            <div className='title'>Password</div>
+                            <input className='input' type='password' onChange={this.handlePasswordChange} />
                         </div>
                         <div className='username-box'>
-                            <div>Email</div>
-                            <input type='text' />
+                            <div className='title'>Email</div>
+                            <input className='input' type='text' />
                         </div>
                         <div className='username-box'>
-                            <div>Address</div>
-                            <input type='text' placeholder='Number and Street' onChange={this.handleAddressChange} />
-                            <input type='text' placeholder='City' onChange={this.handleCityChange} />
+                            <div className='title'>Address</div>
+                            <input className='input' type='text' placeholder='Number and Street' onChange={this.handleAddressChange} />
+                            <div>
+                            <input className='input' type='text' placeholder='City' onChange={this.handleCityChange} />
+                            </div>
                         </div>
-                        <input type='submit' />
+                        <input type='submit' value='SUBMIT'className='submit'/>
                     </form>
                 </div>
             )

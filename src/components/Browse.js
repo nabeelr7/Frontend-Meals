@@ -5,6 +5,7 @@ import MealCard from './MealCard.js';
 import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
 import Modal from 'react-awesome-modal';
 import {Link} from 'react-router-dom';
+import './Browse.css'
 
 class Browse extends Component {
     constructor(props){
@@ -353,9 +354,10 @@ class Browse extends Component {
     
     render(){
         return (<>
-                <Link to='/browse'><button onClick={this.browse}>Show all Meals</button></Link>
-                <Link to='/browsechefs'> <button >Browse Chefs</button> </Link>
-
+        <div className='filter-btn-container'>
+                <Link to='/browse'><button className='filter-btn' onClick={this.browse}>Show all Meals</button></Link>
+                <Link to='/browsechefs'> <button className='filter-btn' >Browse Chefs</button> </Link>
+                </div>
                 <div className='filterContainer'>
                     {this.props.loggedIn && <div>
                                                 <span>Distance</span>
@@ -369,7 +371,7 @@ class Browse extends Component {
                                             </div>
                     }
 
-                    <div>
+                    <div className='price-filter'>
                         <span>Price</span>
                         <input type='range'
                                 step='1'
@@ -380,7 +382,7 @@ class Browse extends Component {
                         <span>{this.state.priceFilter} $</span>
                     </div>
 
-                    <div>
+                    <div className='filter-checkbox-container'>
                         <label><input type='checkbox' ref={this.checkRef1} name='vegan' onChange={this.handleAllergensChange} /> Vegan</label>
                         <label><input type='checkbox' ref={this.checkRef2} name='vegetarian' onChange={this.handleAllergensChange} /> Vegetarian</label>
                         <label><input type='checkbox' ref={this.checkRef3} name='gluten-free' onChange={this.handleAllergensChange} /> Gluten-free</label>
