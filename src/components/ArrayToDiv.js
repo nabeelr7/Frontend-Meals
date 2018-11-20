@@ -10,7 +10,7 @@ import shortId from 'shortid';
  *  ...
  * </ul> 
  */
-class ArrayToUl extends Component
+class ArrayToDiv extends Component
 {
     renderList()
     {
@@ -18,7 +18,7 @@ class ArrayToUl extends Component
 
         for (let i = 0; i < this.props.array.length; i++)
         {
-            ret.push(<li key={shortId.generate()}>{this.props.array[i]}</li>);
+            ret.push(<div key={shortId.generate()}>{this.props.array[i]}</div>);
         }
 
         return ret;
@@ -26,10 +26,10 @@ class ArrayToUl extends Component
 
     render()
     {
-        return  (<ul>
+        return  (<div>
                     {this.renderList()}
-                </ul>);
+                </div>);
     }
 }
 
-export default ArrayToUl;
+export default ArrayToDiv;

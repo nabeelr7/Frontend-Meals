@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import ArrayToUl from './ArrayToUl';
+import ArrayToDiv from './ArrayToDiv';
 
 
 
-class MealDescription extends Component
+    class MealDescription extends Component
 {
     constructor(props)
     {
@@ -26,13 +26,14 @@ class MealDescription extends Component
             <div>
                     <img height='300px' src={this.props.image} alt='meal visuals' />
                     <div>{this.props.title}</div>
-                    <div>{this.props.description}</div>
                     <div>{this.props.price + '$'}</div>
-                    <div>ingredients: 
-                        <ArrayToUl array={this.props.ingredients} />
+                    <div>{this.props.description}</div>
+                    
+                    <div>Ingredients: 
+                        <ArrayToDiv array={this.props.ingredients} />
                     </div>
-                    <div>dietary considerations: 
-                        <ArrayToUl array={this.props.diet} />
+                    <div>Dietary considerations: 
+                        <ArrayToDiv array={this.props.diet} />
                     </div>
 
                     <div>

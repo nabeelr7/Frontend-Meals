@@ -1,0 +1,29 @@
+/*chefProfile css*/
+.chef-main-container{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    margin-bottom: 50px;
+  }
+  
+  .chef-profile{
+    display: flex;
+    max-width: 40vw;
+  margin-left: 100px;
+  }
+  
+  .chef-info{
+    text-align: left !important;
+    line-height: 20px;
+    margin-left: 25px;
+    margin-top: -15px
+  
+  }
+  .chef-meals-container{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  }
+  .meals-offered-announce{
+    margin-bottom: 20px;
+  }

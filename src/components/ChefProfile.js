@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import Modal from 'react-awesome-modal';
 import MealOrderFrom from './MealOrderForm';
 import shortId from 'shortid';
-
+import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
 import MapProfile from './Map-Chef-profile.js';
+import './chefProfile.css'
 
 class ChefProfile extends Component {
     constructor() {
@@ -66,11 +67,16 @@ class ChefProfile extends Component {
         if (!this.state.profile) { return <div>Loading..</div> }
         else {
             return (<>
-                <div className='chefInfo'>
-                    <img className='chefProfilePic' height="300px" alt="profilePic" src={this.state.profile.profilePicturePath}></img>
-                    <div>{this.state.profile.userName}</div>
-                    <br />
-                    <div>{this.state.profile.bio}</div>
+                <div className='chef-main-container'>
+                 <div className='chef-profile'>
+                    <div className='chef-profile-picture'>
+                        <img className='chefProfilePic' height="350px" alt="profilePic" src={this.state.profile.profilePicturePath}></img>
+                    </div>
+                    <div className='chef-info'>
+                        <p className='chef-name'>{this.state.profile.userName}</p>
+                        <p className='chef-bio'>Chef Bio:</p>
+                        <p>{this.state.profile.bio}</p>
+                    </div>
                 </div>
                 <div className='chefLocationMap' style={{textAlign:'start'}}>
                      <MapProfile 
@@ -81,35 +87,36 @@ class ChefProfile extends Component {
                      latitude={this.state.profile.coordinates.lat} 
                      longitude={this.state.profile.coordinates.lng} 
                      zoom={14}>
-                      
-                            
+                          
                      </MapProfile>
                 </div>
+                
                 <Modal
                     visible={this.state.visible}
                     effect="fadeInUp"
                     onClickAway={() => this.closeModal()}
                 >
-
-                    <MealOrderFrom
-                        closeModal={this.closeModal}
-                        chefName={this.state.currentItem.chefName}
-                        mealId={this.state.currentItem.mealId}
-                        mealTitle={this.state.currentItem.title}
-                    />
-
+                    <MealDescriptionAndOrderForm
+                            mealId={this.state.currentItem.mealId}
+                            closeModal={this.closeModal} />
+                    
                 </Modal>
-                <div className='chefMeals'>
-                    <div>Meals Offered:</div>
+                </div>
+                <div className='meals-offered-announce'>Meals Offered:</div>
+                <div className='chef-meals-container' >
+                  
+
                     {this.state.items.map((item) => {
-                        return (
-                            <div key={shortId.generate()} className='item-card'>
-                                <img src={item.image} height="200px" alt='meal pic' />
-                                <div>{item.price}</div>
-                                <div>{item.title}</div>
-                                <div>{item.description}</div>
-                                <ul>{item.diet.map((item) => <li key={shortId.generate()}>{item}</li>)}</ul>
-                                <input type="button" value="Order" onClick={() => this.openModal(item)} />
+                        return ( 
+                            <div key={shortId.generate()} className='card'>
+                                <div className='card-top'>
+                                     <img src={item.image} height="200px" alt='meal pic' />
+                                </div>
+                                <div className='card-bottom'>
+                                    <div>{item.title}</div>
+                                    <div>{item.price}$</div>
+                                    <input type="button" value="More info" onClick={() => this.openModal(item)} />
+                                </div>
                             </div>
                         )
                     })}

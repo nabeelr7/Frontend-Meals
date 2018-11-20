@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MapGL, { Marker } from "react-map-gl";
+import MapGL, { Marker , Popup} from "react-map-gl";
 import "../App.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -18,9 +18,31 @@ class Map extends Component {
         longitude: -73.5691,
         zoom: 12
       },
-      mapLoad: false
+      mapLoad: false,
+      popupInfo: null
+
     };
   }
+  renderPopup = () => {
+    return (
+      this.state.popupInfo && (
+        <div className="popupContainer">
+          <Popup
+            className="popupContent"
+            tipSize={5}
+            anchor="bottom-right"
+            longitude={this.state.popupInfo.loc[0]}
+            latitude={this.state.popupInfo.loc[1]}
+            onClose={() => this.setState({ popupInfo: null })}
+            closeOnClick={true}
+          >
+            <div className="popupText">{this.state.popupInfo.stop_name}</div>
+            <div className="popupId">{this.state.popupInfo.stop_id}</div>
+          </Popup>
+        </div>
+      )
+    );
+  };
 
   //renders all stop markers when the map component renders
 
