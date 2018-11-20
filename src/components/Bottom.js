@@ -4,6 +4,7 @@ import './Bottom.css'
 class Bottom extends Component {
     render() {
         return (
+            <div className='footer-container'>
             <div className='bottom-bar'>
 
                 <div className='bottom-lefthand-side'>
@@ -20,7 +21,7 @@ class Bottom extends Component {
                     <a href="http://www.pinterest.com"> <img className="media-links" alt="pinterest" src='/rawImages/pinterest.png'></img> </a>
 
                 </div>
-
+                </div>
             </div>
         )
     }
