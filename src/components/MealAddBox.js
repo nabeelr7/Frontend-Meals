@@ -7,7 +7,8 @@ class MealAddBox extends Component {
     constructor() {
         super()
         this.state = {
-            diet: []
+            diet: [],
+            mealProcessed: false
         }
         this.handleCheckChange = this.handleCheckChange.bind(this)
         this.handleFileChange = this.handleFileChange.bind(this)
@@ -16,6 +17,7 @@ class MealAddBox extends Component {
         this.handleIngredientsChange = this.handleIngredientsChange.bind(this)
         this.handleTitleChange = this.handleTitleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.weAreDone = this.weAreDone.bind(this);
     }
 
     handleTitleChange(event){
@@ -66,14 +68,21 @@ class MealAddBox extends Component {
         }).then(function(x){
             return x.text()
         }).then(function(res){
-            let parsed = JSON.parse(res)
-            if (parsed.success){
-                console.log("Meal Added")
-                alert('Meal Added!')
-            }
-        })
 
-        this.props.closeModal()
+            let parsed = JSON.parse(res)
+            
+            if (parsed.success){
+                this.setState({mealProcessed: true})
+            }
+        }.bind(this))
+    }
+
+    weAreDone(evt)
+    {
+        evt.stopPropagation();
+        evt.preventDefault();
+
+        this.props.closeModal();
     }
 
     render() {
@@ -113,7 +122,14 @@ class MealAddBox extends Component {
                     <input type='number' onChange={this.handlePriceChange} />
                     <div>Upload A Picture</div>
                     <input type='file' onChange={this.handleFileChange} />
-                    <input type='submit' />
+
+                    {!this.state.mealProcessed && <input type='submit' /> }
+
+                    {this.state.mealProcessed && <>
+                                                <p>Your meal has been added.</p>
+                                                <button onClick={this.weAreDone}>OK</button>
+                                                </>
+                    }
                 </form>
 
             </div>
