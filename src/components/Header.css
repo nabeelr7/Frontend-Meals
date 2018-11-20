@@ -54,7 +54,7 @@
 .halfPlate {
     background-image: url('/rawImages/header_picture/bg1.png');
     background-repeat: no-repeat;
-    background-position: 17% 94%;
+    background-position: 17% 87%;
     width: 100%;
     height: 289px;
     margin-top: 60px;
@@ -100,17 +100,17 @@
     border-style: none;
     border-width: 2px;
     border-radius: 40px;
-    background-image: linear-gradient(to right, #006175 0%, #00a950 100%);
+    background: linear-gradient(to right, #006175 0%, #00a950 100%);
     color: whitesmoke;
     letter-spacing: 1px;
     text-decoration: none;
     z-index: 2;
-    transition-duration: 0.7s;
+    transition: all 0.7s;
 }
 
 .browseBtn:hover {
-    background-image: linear-gradient(to left, #006175 0%, #00a950 100%);
-    transition: 0.7s;
+    background: #00a950;
+    
 }
 
 .searchBar {

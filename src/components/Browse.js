@@ -392,7 +392,7 @@ class Browse extends Component {
                     </div>
 
                     {this.props.loggedIn &&
-                                        <div>
+                                        <div className='filter-checkbox-container'>
                                             <label>Sort by: </label>
                                             <select ref={this.selectRef} onChange={this.handleSortChange}>
                                                 <option disabled selected value='' style={{display: 'none'}}> -- select an option -- </option>

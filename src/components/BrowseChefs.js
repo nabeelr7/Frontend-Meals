@@ -6,6 +6,7 @@ import { Marker } from 'react-map-gl';
 import Map from './Map-all-chef.js';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import './Browse.css'
 
 class BrowseChefs extends Component {
     constructor() {
@@ -46,8 +47,8 @@ class BrowseChefs extends Component {
         if (this.state.chefs === []) { return (<div>Loading..</div>) }
         if (!this.props.loggedIn) {
             return (<>
-                <Link to='/browse'><button >Browse Meals</button></Link>
-                <Link to='/browsechefs'> <button >Browse Chefs</button> </Link>
+                <Link to='/browse'><button className='filter-btn'>Browse Meals</button></Link>
+                <Link to='/browsechefs'> <button className='filter-btn'>Browse Chefs</button> </Link>
                 <div className='chefsLocationMap' style={{ textAlign: 'start' }}>
                     <Map
                         chefs = {this.state.chefs}
@@ -80,8 +81,8 @@ class BrowseChefs extends Component {
         }
         if (this.props.loggedIn && this.props.userCoordinates) {
             return (<>
-                <Link to='/browse'><button >Browse Meals</button></Link>
-                <Link to='/browsechefs'> <button >Browse Chefs</button> </Link>
+                <Link to='/browse'><button className='filter-btn'>Browse Meals</button></Link>
+                <Link to='/browsechefs'> <button className='filter-btn'>Browse Chefs</button> </Link>
                 <div className='chefsLocationMap' style={{ textAlign: 'start' }}>
                     <Map
                         chefs = {this.state.chefs}

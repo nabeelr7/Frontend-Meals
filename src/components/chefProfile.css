@@ -33,8 +33,13 @@
   }
   .meals-offered-announce{
     margin-bottom: 20px;
+    font-size: 26px;
   }
 
   .chef-name {
     font-size: 29px;
+  }
+
+  .chef-bio {
+    font-size: 21px;
   }
