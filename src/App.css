@@ -4,6 +4,10 @@
 * all input fields general look and behavior, etc.)
 */
 
+a {
+  text-decoration: none;
+}
+
 #root {
   width: 100%;
   height: 100%;
@@ -52,13 +56,16 @@ body {
 }
 
 .card-price {
-  position: relative;
+  position: absolute;
   z-index: 10;
   color: white;
   background-color: rgba(0, 0, 0, .6);
   width: 45px;
   float: right;
   padding: 4px;
+  right: 0px;
+  top: 60%;
+  font-weight: 400;
 }
 
 .card-img {
@@ -86,7 +93,7 @@ body {
   max-height: 80%;
   overflow: hidden;
   border-radius: 10px 10px 0px 0px;
-
+  position: relative;
 }
 
 .browse {
