@@ -30,8 +30,10 @@ body {
   min-height: 250px;
   width: 22%;
   height: 350px;
-  border-style: solid;
+  border-style: none;
   margin: 15px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
 }
 .chefCard {
   text-align: center;
@@ -39,8 +41,24 @@ body {
   min-height: 250px;
   width: 19%;
   height: 300px;
-  border-style: solid;
+  border-style: none;
   margin: 15px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
+}
+
+.card-info {
+  margin-top: 20px;
+}
+
+.card-price {
+  position: relative;
+  z-index: 10;
+  color: white;
+  background-color: rgba(0, 0, 0, .6);
+  width: 45px;
+  float: right;
+  padding: 4px;
 }
 
 .card-img {
@@ -67,6 +85,8 @@ body {
   width: 100%;
   max-height: 80%;
   overflow: hidden;
+  border-radius: 10px 10px 0px 0px;
+
 }
 
 .browse {

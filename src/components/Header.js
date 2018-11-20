@@ -54,16 +54,16 @@ class Header extends Component
 
                     <div className='header-bar'>
                         <div className='logo'>
-                            <Link to='/'><img height='60px' alt="logoLink" src='/rawimages/logo.png'></img></Link>
+                            <Link to='/'><div className='logo-name'>Meal-Prep</div></Link>
                             </div>
                         <div className='header-lefthand-side'>
                             <SearchBar/>
-                            <button className='browseBtn'onClick={this.sendToBrowse}>Browse</button>
+                            <button className='browseBtn'onClick={this.sendToBrowse}>BROWSE</button>
                         </div>
 
                         <div className='header-righthand-side'>
-                            {!this.props.loggedIn &&  <Link to='/login'><button className='loginBtn'>Login</button></Link>}
-                            {!this.props.loggedIn &&  <Link to='/signup'><button className='signupBtn'>Signup</button></Link>}
+                            {!this.props.loggedIn &&  <Link to='/login'><button className='loginBtn'>LOGIN</button></Link>}
+                            {!this.props.loggedIn &&  <Link to='/signup'><button className='signupBtn'>SIGNUP</button></Link>}
                             {this.props.loggedIn && <Link to='/'><button onClick={this.logout}>Logout</button></Link>}
                             {(this.props.loggedIn && this.props.userType==='chef') && <Link to='/chefdashboard'><button >My Dashboard</button></Link>}
                             {(this.props.loggedIn && this.props.userType==='client') && <Link to='/clientdashboard'><button >My Dashboard</button></Link>}     

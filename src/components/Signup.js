@@ -13,7 +13,7 @@ class Signup extends Component {
         this.handlePasswordChange = this.handlePasswordChange.bind(this)
         this.handleAddressChange = this.handleAddressChange.bind(this)
         this.handleCityChange = this.handleCityChange.bind(this)
-        
+
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     handleChefType() {
@@ -34,68 +34,67 @@ class Signup extends Component {
     handleCityChange(event) {
         this.setState({ city: event.target.value })
     }
-    
-    
+
+
     handleSubmit(event) {
         event.preventDefault()
         //call geocode to get coordinates
-        
-        let geocode = function (){
-            let fullAddress = this.state.address+' '+this.state.city
+
+        let geocode = function () {
+            let fullAddress = this.state.address + ' ' + this.state.city
             axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
                 params: {
                     address: fullAddress,
                     key: "AIzaSyAH3-pCisuIKJUVEskFGCkfgzqVGkeYEzc"
-                    }
-             })
-             .then(function(response){
-                 let coordinates=response.data.results[0].geometry.location
-                 fetch("/signup", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        userType: this.state.userType,
-                        userName: this.state.userName,
-                        password: this.state.password,
-                        address: {
-                            street: this.state.address,
-                            city: this.state.city,
-                            
-                        },
-                        coordinates: coordinates
-                    })
-                }).then(function (x) {
-                    return x.text()
-                }).then(function (res) {
-        
-                    res = JSON.parse(res);
-        
-                    if (!res.success) {
-                        alert("Username already taken")
-                    }
-                    else
-                    {
-                        this.props.dispatch({ 
-                            type: "loggedIn", 
-                            userName: this.state.userName, 
+                }
+            })
+                .then(function (response) {
+                    let coordinates = response.data.results[0].geometry.location
+                    fetch("/signup", {
+                        method: "POST",
+                        body: JSON.stringify({
                             userType: this.state.userType,
-                            userCoordinates: res.userCoordinates
-                        });
-                        
-                        this.props.history.push('/setProfile');
-                    }
-                }.bind(this))
-    }.bind(this)
-                 
-             ).catch(function(error){
-                console.log(error)
-                alert('something\'s wrong')
-             })
-            }
-            geocode=geocode.bind(this)
-            geocode()
+                            userName: this.state.userName,
+                            password: this.state.password,
+                            address: {
+                                street: this.state.address,
+                                city: this.state.city,
 
+                            },
+                            coordinates: coordinates
+                        })
+                    }).then(function (x) {
+                        return x.text()
+                    }).then(function (res) {
+
+                        res = JSON.parse(res);
+
+                        if (!res.success) {
+                            alert("Username already taken")
+                        }
+                        else {
+                            this.props.dispatch({
+                                type: "loggedIn",
+                                userName: this.state.userName,
+                                userType: this.state.userType,
+                                userCoordinates: res.userCoordinates
+                            });
+
+                            this.props.history.push('/setProfile');
+                        }
+                    }.bind(this))
+                }.bind(this)
+
+                ).catch(function (error) {
+                    console.log(error)
+                    alert('something\'s wrong')
+                })
         }
-        
+        geocode = geocode.bind(this)
+        geocode()
+
+    }
+
 
     render() {
         if (this.state.userType === undefined)
@@ -108,18 +107,26 @@ class Signup extends Component {
             )
         if (this.state.userType) {
             return (
-                <div>
+                <div className='login-container'>
                     <form onSubmit={this.handleSubmit}>
-                        <div>Signup</div>
-                        <div>Username</div>
-                        <input type='text' onChange={this.handleUsernameChange} />
-                        <div>Password</div>
-                        <input type='password' onChange={this.handlePasswordChange} />
-                        <div>Email</div>
-                        <input type='text' />
-                        <div>Address</div>
-                        <input type='text' placeholder='Number and Street' onChange={this.handleAddressChange} />
-                        <input type='text' placeholder='City' onChange={this.handleCityChange} />
+                        <div className='auth-title'>Signup</div>
+                        <div className='username-box'>
+                            <div>Username</div>
+                            <input type='text' onChange={this.handleUsernameChange} />
+                        </div>
+                        <div className='username-box'>
+                            <div>Password</div>
+                            <input type='password' onChange={this.handlePasswordChange} />
+                        </div>
+                        <div className='username-box'>
+                            <div>Email</div>
+                            <input type='text' />
+                        </div>
+                        <div className='username-box'>
+                            <div>Address</div>
+                            <input type='text' placeholder='Number and Street' onChange={this.handleAddressChange} />
+                            <input type='text' placeholder='City' onChange={this.handleCityChange} />
+                        </div>
                         <input type='submit' />
                     </form>
                 </div>

@@ -1,0 +1,18 @@
+.login-container {
+    margin-top: 30px;
+    margin-bottom: 12vh;
+}
+
+.auth-title {
+    margin-bottom: 50px;
+    font-size: 40px;
+}
+
+.username-box {
+    margin-bottom: 20px;
+    
+}
+
+.submit {
+    margin-top: 20px;
+}

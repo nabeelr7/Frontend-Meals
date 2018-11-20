@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './login-signup.css'
 
 class Login extends Component {
     constructor(props) {
@@ -34,10 +35,9 @@ class Login extends Component {
             if (!parsed.success) {
                 alert(parsed.msg)
             }
-            else
-            {
-                this.props.dispatch({ 
-                    type: "loggedIn", 
+            else {
+                this.props.dispatch({
+                    type: "loggedIn",
                     userName: this.state.userName,
                     userType: parsed.userType,
                     userCoordinates: parsed.userCoordinates
@@ -50,14 +50,18 @@ class Login extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='login-container'>
                 <form onSubmit={this.handleSubmit}>
-                    <div>Login</div>
-                    <div>Username</div>
-                    <input type='text' onChange={this.handleUsernameChange} />
-                    <div>Password</div>
-                    <input type='password' onChange={this.handlePasswordChange} />
-                    <input type='submit' />
+                    <div className='auth-title'>Login</div>
+                    <div className='username-box'>
+                        <div>Username</div>
+                        <input type='text' onChange={this.handleUsernameChange} />
+                    </div>
+                    <div className='username-box'>
+                        <div>Password</div>
+                        <input type='password' onChange={this.handlePasswordChange} />
+                    </div>
+                    <input type='submit' className='submit'/>
                 </form>
             </div>
         )
