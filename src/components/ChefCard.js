@@ -12,19 +12,16 @@ class ChefCard extends Component {
    
     
     render() {
-        return (<>
+        return (<div className='chefCard'>
           <Link to={`/chef/${this.props.userName}`}> 
-            <div className='card1'>
             <div className='card-top'>
-                <img height='300px' src={this.props.profilePicturePath} alt='chef img' className='card-img'/>
+                <img  src={this.props.profilePicturePath} alt='chef img' className='chef-img'/>
                 </div>
                 <div className='card-bottom'>
                     <div>{this.props.userName}</div>
-                    
                 </div>
-            </div>
             </Link> 
-            </>
+            </div>
         )
     }
 }
