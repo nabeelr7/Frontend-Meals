@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
 // import Modal from 'react-awesome-modal'
 import { Marker } from 'react-map-gl';
-import Map from './Map-chef.js';
+import Map from './Map-all-chef.js';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -58,25 +58,19 @@ class BrowseChefs extends Component {
                         longitude={-73.5691}
                         zoom={13}
                     >
-                        {this.state.chefs.map((item) => {
-                            return <Marker
-                                latitude={item.coordinates.lat}
-                                longitude={item.coordinates.lng}
-                                offsetLeft={-20} offsetTop={-10}
-                            >
-                                <img height='25px' alt='locationMarker' src='/rawImages/marker.png'></img>
-                            </Marker>
-                        })}
-
+                
                     </Map>
                 </div>
                 <div className='chefProfiles'>
                     {this.state.chefs.map(function (chef) {
                         return (
                             <div  className='chefOption'>
-                                <img src={chef.profilePicturePath} height="200px" alt='chefProfilePic' />
-                                <div>{chef.userName}</div>
+                               <Link to={`/chef/${chef.userName}`}>
+                                    <img src={chef.profilePicturePath} height="200px" alt='chefProfilePic' />
+                                </Link>
+                                <div>{chef.userName}  </div>
                             </div>
+                            
                         )
                     })}
 
@@ -102,16 +96,6 @@ class BrowseChefs extends Component {
                         // dragPan={true}
                     // hash={true}
                     >
-                        {this.state.chefs.map((item) => {
-                            return <Marker
-                                latitude={item.coordinates.lat}
-                                longitude={item.coordinates.lng}
-                                offsetLeft={-20} offsetTop={-10}
-                            >
-                                <img height='25px' alt='locationMarker' src='/rawImages/marker.png'></img>
-                            </Marker>
-                        })}
-
                     </Map>
                 </div>
                 <div className='chefProfiles'>

@@ -4,27 +4,24 @@ import "../App.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 
-
 let viewWid = Math.max(window.innerWidth || 0);
 let viewHei = Math.max(window.innerHeight || 0);
 
 class Map extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       viewport: {
-        width: '100px',
-        height: '100px',
+        width: '600px',
+        height: '350px',
         latitude: 45.5014,
         longitude: -73.5691,
-        zoom: 13
+        zoom: 12
       },
       mapLoad: false
     };
   }
 
-  
-  
   //renders all stop markers when the map component renders
 
   renderMarkers = (chef, i) => {
@@ -35,7 +32,7 @@ class Map extends Component {
         latitude={chef.coordinates.lat}
         offsetTop={0}
         offsetLeft={0}
-      >
+      ><img height='25px' alt='locationMarker' src='/rawImages/marker.png'></img>
       </Marker>
     );
   };
@@ -43,8 +40,8 @@ class Map extends Component {
   //scales map size to window size
 
   adjustView = () => {
-    let newViewWid = '100px';
-    let newViewHei = '100px';
+    let newViewWid = '600px';
+    let newViewHei = '350px';
     this.setState({
       viewport: {
         height: newViewHei,
@@ -72,7 +69,7 @@ class Map extends Component {
         onViewportChange={viewport => {
           this.setState({ viewport });
         }}
-        onLoad={()=>{setTimeout(()=>this.setState({ mapLoad: true }), 300);}}
+        onLoad={()=>{setTimeout(()=>this.setState({ mapLoad: true }), 250);}}
       >
        
         {this.state.mapLoad?this.props.chefs.map(this.renderMarkers):null}
