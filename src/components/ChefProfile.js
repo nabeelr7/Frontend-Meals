@@ -115,9 +115,9 @@ class ChefProfile extends Component {
                                      <img src={item.image} className='card-img' height="200px" alt='meal pic' />
                                 </div>
                                 <div className='card-bottom'>
-                                    <div>{item.title}</div>
-                                    <div>{item.price}$</div>
-                                    <input type="button" value="More info" onClick={() => this.openModal(item)} />
+                                    <div className='card-title'>{item.title}</div>
+                                    <div className='card-price'>{item.price}$</div>
+                                    <input className='card-btn' type="button" value="More info" onClick={() => this.openModal(item)} />
                                 </div>
                             </div>
                         )
