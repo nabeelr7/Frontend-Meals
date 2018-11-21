@@ -38,6 +38,7 @@ body {
   margin: 15px;
   border-radius: 10px;
   box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
+  transition: all 0.3s
 }
 .chefCard {
   text-align: center;
@@ -52,7 +53,7 @@ body {
 }
 
 .card-info {
-  margin-top: 20px;
+  margin-top: 13px;
 }
 
 .card-price {
@@ -86,7 +87,7 @@ body {
 
 .card-bottom {
   height: 40%;
-  
+
 }
 
 .card-top {
@@ -98,9 +99,9 @@ body {
 }
 
 .browse {
-display: flex;
-flex-flow: row wrap;
-justify-content: center;
+  flex-flow: row wrap;
+  justify-content: center;
+  display: flex;
 }
 
 .modal-img{
@@ -108,8 +109,31 @@ justify-content: center;
   max-height: 50%;
 }
 
-.ingredients {
-display: inline-flex;
+.card-title {
+  font-size: 22px;
+  margin-bottom: 13px;
+}
+
+.card-btn {
+  width: 105px;
+  height: 30px;
+  /* border-style: none; */
+  border-radius: 10px;
+  color: black;
+  background-color: gainsboro;
+  border-style: none;
+  transition: all 0.2s
+}
+
+.card-btn:hover {
+  
+  border-style: solid;
+  border-color: rgb(106, 255, 47);
+  border-width: 3px;
+}
+
+.card:hover {
+  transform: scale(1.09)
 }
 
 .ing {
