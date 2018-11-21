@@ -1,15 +1,24 @@
 /* Container for all the header bar's items */
 .bottom-bar {
+    color: whitesmoke;
     display:flex;
     flex-direction: row;
     width: 100%;
-    background-color: rgba(255, 9, 9, 0.76);
+    height: 50px;
+    background-color: #1E6C9E;
     justify-content: space-around;
+    align-items: center;
     bottom: 0;
     position: inherit;
     margin-top: 25px;
 }
 
+.bottom-lefthand-side {
+    display: flex;
+    flex-flow: row wrap;
+    width: 30vw;
+    justify-content: space-around;
+}
 
 /*  Logos / Links to social media sites*/
 .media-links {
