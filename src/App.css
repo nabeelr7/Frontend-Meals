@@ -50,6 +50,11 @@ body {
   margin: 15px;
   border-radius: 10px;
   box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
+  transition: all 0.2s;
+}
+
+.chefCard:hover {
+  transform: scale(1.09)
 }
 
 .card-info {
@@ -98,11 +103,24 @@ body {
   border-radius: 15px;
   font-size: 24px;
   font-weight: lighter;
+  transition: all 0.2s;
+}
+
+.addMealBtn:hover {
+  border-style: solid;
+  border-color: #65d431;
+  border-width: 4px;
 }
 
 #remove-meal-btn {
   width: 150px;
   margin-top: 15px;
+}
+
+#remove-meal-btn:hover {
+border-style: solid;
+border-color: #f80808e1;
+border-width: 3px;
 }
 
 .card-top {
@@ -132,7 +150,6 @@ body {
 .card-btn {
   width: 105px;
   height: 30px;
-  /* border-style: none; */
   border-radius: 10px;
   color: black;
   background-color: gainsboro;
@@ -141,9 +158,8 @@ body {
 }
 
 .card-btn:hover {
-  
   border-style: solid;
-  border-color: rgb(106, 255, 47);
+  border-color: #65d431;
   border-width: 3px;
 }
 
@@ -166,3 +182,25 @@ body {
 }
 
 /* ghostwhite */
+
+.add-meal-container{
+  padding: 23px;
+}
+
+.modal {
+  padding: 23px;
+}
+
+.modal-name {
+font-size: 25px;
+}
+
+.modal-cat {
+text-decoration: underline;
+}
+
+.modal-cat1 {
+font-size: 17px;
+margin-bottom: 7px;
+margin-top: 9px;  
+}

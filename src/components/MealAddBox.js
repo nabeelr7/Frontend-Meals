@@ -98,15 +98,15 @@ class MealAddBox extends Component {
 
         return (
             <div className='add-meal-container'>
-                <div>Add A Meal!</div>
+                <div className='modal-name'>Add A Meal!</div>
                 <form onSubmit={this.handleSubmit}>
-                    <div>Title</div>
+                    <div className='modal-cat1'>Title</div>
                     <input type='text' onChange={this.handleTitleChange} />
-                    <div>Description</div>
+                    <div className='modal-cat1'>Description</div>
                     <textarea cols='40' rows='3' onChange={this.handleDescriptionChange}></textarea>
-                    <div>Ingredients</div>
+                    <div className='modal-cat1'>Ingredients</div>
                     <input type='text' onChange={this.handleIngredientsChange}/>
-                    <div>Additional Information</div>
+                    <div className='modal-cat1'>Additional Information</div>
                     <div>
                         {data.map((item)=>{
                             return <label>
@@ -118,9 +118,9 @@ class MealAddBox extends Component {
                         </label>
                         })}
                     </div>
-                    <div>Price</div>
+                    <div className='modal-cat1'>Price</div>
                     <input type='number' onChange={this.handlePriceChange} />
-                    <div>Upload A Picture</div>
+                    <div className='modal-cat1'>Upload A Picture</div>
                     <input type='file' onChange={this.handleFileChange} />
 
                     {!this.state.mealProcessed && <input type='submit' /> }

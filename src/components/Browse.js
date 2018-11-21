@@ -408,8 +408,6 @@ class Browse extends Component {
                 <div className='browse'>
 
                 <Modal 
-                    width="50%"
-                    height="500"
                     visible={this.state.visible}
                     effect="fadeInUp"
                     onClickAway={this.closeModal}
@@ -434,8 +432,6 @@ class Browse extends Component {
                 <div className='browse'>
 
                     <Modal 
-                        width="50%"
-                        height="500"
                         visible={this.state.visible}
                         effect="fadeInUp"
                         onClickAway={this.closeModal}

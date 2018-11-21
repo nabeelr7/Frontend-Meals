@@ -82,7 +82,7 @@ class MealDescriptionAndOrderForm extends Component
 
     render()
     {
-        return (<div>
+        return (<div className='modal'>
                         { !this.state.ordering && <MealDescription  
                                                     key="randomKey"
                                                     title={this.state.title}
