@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from './Button'
 import StripeCheckout from './Stripe.js';
+import moment from 'moment';
 import './requests.css'
 
 
@@ -100,13 +101,18 @@ class Requests extends Component {
             return (<div>None</div>)
         }
         return array.map((item) => {
+
+            // format the datestring
+            let dueDate = moment(new Date(item.dueDate));
+            dueDate = dueDate.format("ddd, MMM Do, h:mm a");
+
             if (this.props.userType === 'chef' && item.requestStatus === 0) {
                 return (
                     <div className='req'>
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div>{item.dueDate}</div>
+                        <div>{dueDate}</div>
                         <Button buttonName='Accept' _id={item._id}  formatResponse={this.formatResponse}/>
                         <Button buttonName='Decline' _id={item._id}  formatResponse={this.formatResponse}/>
                     </div>
@@ -118,7 +124,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div>{item.dueDate}</div>
+                        <div>{dueDate}</div>
                         <div>Awaiting Reply</div>
                     </div>
                 )
@@ -129,7 +135,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div>{item.dueDate}</div>
+                        <div>{dueDate}</div>
                         <div> Declined </div>
                     </div>
                 )
@@ -140,7 +146,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div>{item.dueDate}</div>
+                        <div>{dueDate}</div>
                         <div>Client has Paid! Now we wait to hear if they will pickup in person or send a car</div>
                     </div>
                 )
@@ -151,7 +157,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div>Client will pick up in person on {item.dueDate}</div>
+                        <div>Client will pick up in person on {dueDate}</div>
                     </div>
                 )
             }
@@ -161,7 +167,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div>Client will send a car on {item.dueDate}</div>
+                        <div>Client will send a car on {dueDate}</div>
                     </div>
                 )
             }
@@ -171,7 +177,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>Chef: {item.chefName}</div>
-                        <div>{item.dueDate}</div>
+                        <div>{dueDate}</div>
                         <div>Awaiting the Chef's Reply</div> 
                     </div>
                 )
@@ -183,7 +189,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>Chef: {item.chefName}</div>
-                        <div>{item.dueDate}</div>
+                        <div>{dueDate}</div>
                         <div>The order has been accepted!</div>
                         <StripeCheckout
                             _id={item._id}
@@ -197,7 +203,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div>{item.dueDate}</div>
+                        <div>{dueDate}</div>
                         <div> Request Was Declined, Sorry ! </div>
                     </div>
                 )
@@ -208,7 +214,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div>On {item.dueDate}, I will</div>
+                        <div>On {dueDate}, I will</div>
                         <Button buttonName="Pickup in Person" _id={item._id}  formatResponse={this.formatResponse}/>
                         <Button buttonName='Will Send a Car' _id={item._id}  formatResponse={this.formatResponse}/>
                     </div>
@@ -221,7 +227,7 @@ class Requests extends Component {
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
                         
-                        <div> Will Pick up in Person on {item.dueDate}</div>
+                        <div> Will Pick up in Person on {dueDate}</div>
                     </div>
                 )
             }
@@ -231,7 +237,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div> Will Send a Car on {item.dueDate}</div>
+                        <div> Will Send a Car on {dueDate}</div>
                     </div>
                 )
             }

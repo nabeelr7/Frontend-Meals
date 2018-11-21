@@ -110,6 +110,7 @@ class MealOrderForm extends Component
                         <div>
                             <DatePicker
                                 inline
+                                showTimeSelect
                                 selected={this.state.chosenDate}
                                 onChange={this.handleDateChange}
                             />
