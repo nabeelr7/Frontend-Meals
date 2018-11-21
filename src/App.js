@@ -15,6 +15,7 @@ import ChefProfile from './components/ChefProfile'
 import Homepage from './components/Homepage'
 import ClientDashboard from './components/ClientDashboard';
 import BrowseChefs from './components/BrowseChefs'
+import Map from './components/Map-Browse-all-chefs.js'
 
 
 class App extends Component {
@@ -77,6 +78,7 @@ class App extends Component {
             <Route exact={true} path='/chef/:chefName' component={ChefProfile}/>
             <Route exact={true} path='/clientdashboard' component={ClientDashboard}/>
             <Route exact={true} path='/browsechefs' component={BrowseChefs}/>
+            {/* <Route exact={true} path='/chef/:chefName' component={Map}/> */}
             <Bottom/>
 
           </div>
