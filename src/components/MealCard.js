@@ -24,8 +24,10 @@ class MealCard extends Component {
                 </div>
                 <div className='card-bottom'>
                     <div className='card-info'>
-                        <div className='card-title' >{this.props.title}</div>
-                        <button className='card-btn' onClick={this.onBtnClick}>More Info</button>
+                        <div className='card-title'>{this.props.title}</div>
+                        
+                        {this.props.loggedIn && <div className='card-distance'>{this.props.distance} meters away</div>}
+                        <button className='card-btn' onClick={this.onBtnClick}>more info</button>
                     </div>
                 </div>
             </div>

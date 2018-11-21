@@ -1,4 +1,16 @@
 .req-container{
     display : flex;
-    border : black
+    justify-content: space-evenly;
+    font-size: 27px;
+    margin-top: 50px;
+}
+
+.req{
+    border : 2px solid black;
+    border-radius: 5px;
+    margin-bottom: 5px
+}
+
+.myOrders{
+    font-size: 30px
 }

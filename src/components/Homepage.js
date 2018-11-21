@@ -79,7 +79,7 @@ class Homepage extends Component {
             <iframe width="560" height="315" title='video'src="https://www.youtube.com/embed/Qg4eP937_ro?controls=0&amp;start=1195&autoplay=1&fs=0&showinfo=0&autohide=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div className='featured-container'>
-                <div>Featured Meals<Link to='/browse'><div>see more..</div></Link></div>
+                <p className='featuring'>Featured Meals<Link to='/browse'><div>see more..</div></Link></p>
                 <div className='browse'>
                     <Modal
                         visible={this.state.visible}
@@ -105,7 +105,7 @@ class Homepage extends Component {
                 </div>
             </div>
             <div className='featured-chefs-container'>
-                <div>Featured Chefs<Link to='/browsechefs'><div>see more..</div></Link></div>
+                <p className='featuring'>Featured Chefs<Link to='/browsechefs'><div>see more..</div></Link></p>
                 <div className='browse'>
                 {this.state.chefs.map((chef) => {
                     return (<>

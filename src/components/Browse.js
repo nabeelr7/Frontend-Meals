@@ -403,7 +403,34 @@ class Browse extends Component {
                     }
 
                 </div>
+                
+                {!this.props.loggedIn &&
+                <div className='browse'>
 
+                <Modal 
+                    width="50%"
+                    height="500"
+                    visible={this.state.visible}
+                    effect="fadeInUp"
+                    onClickAway={this.closeModal}
+                >
+                    <MealDescriptionAndOrderForm
+                        mealId={this.state.displayedMealId} 
+                        closeModal={this.closeModal}/>
+                </Modal>
+
+                {this.state.renderedItems.map((item)=>{
+                    return <MealCard 
+                        //key={shortId.generate()}
+                        _id={item._id}
+                        title={item.title}
+                        price={item.price}
+                        image={item.image}
+                        displayMeal={this.displayMealDescription}/>
+                })}
+
+            </div>}
+                {this.props.loggedIn &&
                 <div className='browse'>
 
                     <Modal 
@@ -421,14 +448,17 @@ class Browse extends Component {
                     {this.state.renderedItems.map((item)=>{
                         return <MealCard 
                             //key={shortId.generate()}
+                            loggedIn={this.props.loggedIn}
                             _id={item._id}
                             title={item.title}
                             price={item.price}
                             image={item.image}
+                            distance={item.distance}
                             displayMeal={this.displayMealDescription}/>
                     })}
 
-                </div>
+                </div>}
+
             </>
         )
     }

@@ -96,17 +96,20 @@ class ChefDashboard extends Component {
         if (this.state.items!==[]){return(
         this.state.items.map(function(item) {
             return (
-                // key={shortId.generate()}
-                <div  className='my-item'>
-                    <img src={item.image} height="100px" alt='meal pic' />
-                    <div>{item.price}</div>
-                    <div>{item.title}</div>
-                    <div>{item.description}</div>
-                    {console.log(item)}
-                    <RemoveButton
-                        _id={item._id}
-                        updateState={this.updateState}
-                        />
+                <div className='card'>
+                    <div  className='card-top'>
+                        <img src={item.image} className='card-img' height='200px' alt='meal pic' />
+                    </div>
+                    <div className='card-bottom'> 
+                        <div>{item.title}</div>
+                        <div>{item.price}$</div>
+                        
+                        
+                        <RemoveButton
+                            _id={item._id}
+                            updateState={this.updateState}
+                            />
+                    </div>
                 </div>
             )
         }.bind(this))
@@ -170,10 +173,11 @@ class ChefDashboard extends Component {
 
          
             
-            <div> Meals I am offering:</div>
+            <p className='offering'> Meals I am offering:</p>
             <br/>
-            {this.displayItems()}
-            <Requests/>      
+            <div className='chef-meals-container'>{this.displayItems()}</div>
+                
+            <Requests/> 
         </>
         )
     }

@@ -106,6 +106,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
+                        <div>{item.dueDate}</div>
                         <Button buttonName='Accept' _id={item._id}  formatResponse={this.formatResponse}/>
                         <Button buttonName='Decline' _id={item._id}  formatResponse={this.formatResponse}/>
                     </div>
@@ -117,6 +118,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
+                        <div>{item.dueDate}</div>
                         <div>Awaiting Reply</div>
                     </div>
                 )
@@ -127,6 +129,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
+                        <div>{item.dueDate}</div>
                         <div> Declined </div>
                     </div>
                 )
@@ -137,6 +140,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
+                        <div>{item.dueDate}</div>
                         <div>Client has Paid! Now we wait to hear if they will pickup in person or send a car</div>
                     </div>
                 )
@@ -147,7 +151,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div>Client will pick up in person </div>
+                        <div>Client will pick up in person on {item.dueDate}</div>
                     </div>
                 )
             }
@@ -157,7 +161,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div>Client will send a car</div>
+                        <div>Client will send a car on {item.dueDate}</div>
                     </div>
                 )
             }
@@ -167,6 +171,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>Chef: {item.chefName}</div>
+                        <div>{item.dueDate}</div>
                         <div>Awaiting the Chef's Reply</div> 
                     </div>
                 )
@@ -178,6 +183,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>Chef: {item.chefName}</div>
+                        <div>{item.dueDate}</div>
                         <div>The order has been accepted!</div>
                         <StripeCheckout
                             _id={item._id}
@@ -191,6 +197,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
+                        <div>{item.dueDate}</div>
                         <div> Request Was Declined, Sorry ! </div>
                     </div>
                 )
@@ -201,8 +208,9 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <Button buttonName="Pickup_in_Person" _id={item._id}  formatResponse={this.formatResponse}/>
-                        <Button buttonName='Will_Send_a_Car' _id={item._id}  formatResponse={this.formatResponse}/>
+                        <div>On {item.dueDate}, I will</div>
+                        <Button buttonName="Pickup in Person" _id={item._id}  formatResponse={this.formatResponse}/>
+                        <Button buttonName='Will Send a Car' _id={item._id}  formatResponse={this.formatResponse}/>
                     </div>
                 )
             }
@@ -212,7 +220,8 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div> Pickup : In Person</div>
+                        
+                        <div> Will Pick up in Person on {item.dueDate}</div>
                     </div>
                 )
             }
@@ -222,7 +231,7 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div> Will Send a Car</div>
+                        <div> Will Send a Car on {item.dueDate}</div>
                     </div>
                 )
             }
@@ -278,9 +287,10 @@ class Requests extends Component {
             )
         }
         if (this.props.userType === 'client' && this.props.allRequests) {
-            return (
+            return (<>
+                <div className='myOrders'>My Orders</div>
                 <div className='req-container'>
-                    <div>My Orders</div>
+                    
                     <div className='request'>
                         <div>Unanswered Requests</div>
 
@@ -320,6 +330,7 @@ class Requests extends Component {
                     </div>
 
                 </div>
+                </>
             )
         }
     }

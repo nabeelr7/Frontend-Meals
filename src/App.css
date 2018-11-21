@@ -144,3 +144,8 @@ body {
   max-width: 500px;
   margin-left: 73px
 }
+
+.featuring {
+  font-size: 25px;
+  margin-bottom: 0; 
+}
