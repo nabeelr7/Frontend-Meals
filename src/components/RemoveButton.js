@@ -39,7 +39,7 @@ removeMeal(){
 
 render(){
 return(<>
-    <input type="button" value="Remove this Meal" onClick={this.removeMeal}/>
+    <input className='card-btn' id='remove-meal-btn'type="button" value="Remove this Meal" onClick={this.removeMeal}/>
     </>)
 }
 }

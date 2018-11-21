@@ -141,7 +141,7 @@ class Requests extends Component {
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
                         <div>{item.dueDate}</div>
-                        <div>Client has Paid! Now we wait to hear if they will pickup in person or send a car</div>
+                        <div>Awaiting pick-up info</div>
                     </div>
                 )
             }
@@ -249,35 +249,35 @@ class Requests extends Component {
                 
                 <div className='req-container'>
                     <div className='request'>
-                        <div>Unanswered Requests</div>
+                        <div className='req-title' id='req-title-small'>Unanswered Requests</div>
 
                         {this.state.filteredRequests.unanswered && this.mapItem(this.state.filteredRequests.unanswered)}
 
                     </div>
                     <br/>
                     <div className='request'>
-                        <div>Accepted Requests</div>
+                        <div className='req-title' id='req-title-small'>Accepted Requests</div>
 
                         {this.state.filteredRequests.accepted && this.mapItem(this.state.filteredRequests.accepted)}
 
                     </div>
                     <br></br>
                     <div className='request'>
-                        <div>Paid</div>
+                        <div className='req-title' id='req-title-small'>Paid</div>
 
                         {this.state.filteredRequests.paid && this.mapItem(this.state.filteredRequests.paid)}
 
                     </div>
                     <br></br>
                     <div className='request'>
-                        <div>Pick up in person</div>
+                        <div className='req-title' id='req-title-small'>Pick up in person</div>
 
                         {this.state.filteredRequests.inPerson && this.mapItem(this.state.filteredRequests.inPerson)}
 
                     </div>
                     <br></br>
                     <div className='request'>
-                        <div>Will Send a Car</div>
+                        <div className='req-title' id='req-title-small'>Will Send a Car</div>
 
                         {this.state.filteredRequests.byCar && this.mapItem(this.state.filteredRequests.byCar)}
 
@@ -292,38 +292,38 @@ class Requests extends Component {
                 <div className='req-container'>
                     
                     <div className='request'>
-                        <div>Unanswered Requests</div>
+                        <div className='req-title'>Unanswered Requests</div>
 
                         {this.state.filteredRequests.unanswered && this.mapItem(this.state.filteredRequests.unanswered)}
 
                     </div>
                     <br/>
                     <div className='request'>
-                        <div>Accepted Requests</div>
+                        <div className='req-title' id='req-title-small'>Accepted Requests</div>
 
                         {this.state.filteredRequests.accepted && this.mapItem(this.state.filteredRequests.accepted)}
 
                     </div>
                     <div className='request'>
-                        <div>Paid</div>
+                        <div className='req-title' id='req-title-small'>Paid</div>
 
                         {this.state.filteredRequests.paid && this.mapItem(this.state.filteredRequests.paid)}
 
                     </div>
                     <div className='request'>
-                        <div>Declined Requests</div>
+                        <div className='req-title' id='req-title-small'>Declined Requests</div>
 
                         {this.state.filteredRequests.declined && this.mapItem(this.state.filteredRequests.declined)}
 
                     </div>
                     <div className='request'>
-                        <div>Personal Pick Up</div>
+                        <div className='req-title' >Personal Pick Up</div>
 
                         {this.state.filteredRequests.inPerson && this.mapItem(this.state.filteredRequests.inPerson)}
 
                     </div>
                     <div className='request'>
-                        <div>Will Send a Car</div>
+                        <div className='req-title' id='req-title-small'>Will Send a Car</div>
 
                         {this.state.filteredRequests.byCar && this.mapItem(this.state.filteredRequests.byCar)}
 

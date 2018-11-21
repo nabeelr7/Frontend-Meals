@@ -6,11 +6,28 @@
 }
 
 .req{
-    border : 2px solid black;
+    border-style: none;
     border-radius: 5px;
-    margin-bottom: 5px
+    margin-bottom: 20px;
+    font-size: 22px;
+    padding: 12px;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
 }
 
 .myOrders{
     font-size: 30px
+}
+
+.request {
+    display: inline-block;
+    max-width: 19%;
+}
+
+.req-title {
+    margin-bottom: 23px;
+    font-weight: 400;
+}
+
+#req-title-small {
+    margin-bottom: 53px;
 }
