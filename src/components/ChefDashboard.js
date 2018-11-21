@@ -4,6 +4,7 @@ import Modal from 'react-awesome-modal';
 import MealAddBox from './MealAddBox';
 import Requests from './Requests'
 import RemoveButton from './RemoveButton'
+import './chefProfile.css'
 
 class ChefDashboard extends Component {
     constructor(props) {
@@ -126,10 +127,19 @@ class ChefDashboard extends Component {
                     closeModal = {this.closeModal}/>
             </Modal>  
 
-            <div className="chefInfoTitle"> My Info </div>
-            <img height='200px' alt='profilePic' src={this.state.profile.profilePicturePath}></img>
-            <div>{this.state.profile.userName}</div>
-            <div>{this.state.profile.bio}</div>
+            <div className='chef-main-container'>
+                 <div className='chef-profile'>
+                    <div className='chef-profile-picture'>
+                        <img className='chefProfilePic' height="350px" alt="profilePic" src={this.state.profile.profilePicturePath}></img>
+                    </div>
+                    <div className='chef-info'>
+                        <p className='chef-name'>{this.state.profile.userName}</p>
+                        <p className='chef-bio'>Chef Bio:</p>
+                        <p>{this.state.profile.bio}</p>
+                    </div>
+                </div>
+
+            </div>
             </>
             )}
          return (<>
@@ -144,10 +154,19 @@ class ChefDashboard extends Component {
                     closeModal = {this.closeModal}/>
             </Modal>  
 
-            <div className="chefInfoTitle"> My Info </div>
-            <img height='200px' alt='profilePic' src={this.state.profile.profilePicturePath}></img>
-            <div>{this.state.profile.userName}</div>
-            <div>{this.state.profile.bio}</div>
+            <div className='chef-main-container'>
+                 <div className='chef-profile'>
+                    <div className='chef-profile-picture'>
+                        <img className='chefProfilePic' height="350px" alt="profilePic" src={this.state.profile.profilePicturePath}></img>
+                    </div>
+                    <div className='chef-info'>
+                        <p className='chef-name'>{this.state.profile.userName}</p>
+                        <p className='chef-bio'>Chef Bio:</p>
+                        <p>{this.state.profile.bio}</p>
+                    </div>
+                </div>
+
+            </div>
 
          
             

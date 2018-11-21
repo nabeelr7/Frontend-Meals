@@ -18,7 +18,7 @@ class ArrayToDiv extends Component
 
         for (let i = 0; i < this.props.array.length; i++)
         {
-            ret.push(<div key={shortId.generate()}>{this.props.array[i]}</div>);
+            ret.push(<div className='ing'key={shortId.generate()}>{this.props.array[i]}</div>);
         }
 
         return ret;
@@ -26,7 +26,7 @@ class ArrayToDiv extends Component
 
     render()
     {
-        return  (<div>
+        return  (<div className='ingredients'>
                     {this.renderList()}
                 </div>);
     }

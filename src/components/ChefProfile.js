@@ -95,6 +95,7 @@ class ChefProfile extends Component {
                     visible={this.state.visible}
                     effect="fadeInUp"
                     onClickAway={() => this.closeModal()}
+                    
                 >
                     <MealDescriptionAndOrderForm
                             mealId={this.state.currentItem.mealId}

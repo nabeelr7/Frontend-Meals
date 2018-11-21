@@ -108,5 +108,15 @@ justify-content: center;
   max-height: 50%;
 }
 
+.ingredients {
+display: inline-flex;
+}
 
+.ing {
+  margin-left: 7px;
+}
 
+.mealDescription {
+  max-width: 500px;
+  margin-left: 73px
+}

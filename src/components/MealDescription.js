@@ -26,13 +26,21 @@ import ArrayToDiv from './ArrayToDiv';
             <div>
                     <img height='300px' src={this.props.image} alt='meal visuals' />
                     <div>{this.props.title}</div>
-                    <div>{this.props.price + '$'}</div>
-                    <div>{this.props.description}</div>
-                    
-                    <div>Ingredients: 
-                        <ArrayToDiv array={this.props.ingredients} />
+                    <br/>
+                    <div> Price of this meal is {this.props.price + '$'}</div>
+                    <br/>
+                    <div>Meal Description</div>
+                    <div className='mealDescription'>{this.props.description}</div>
+                    <br/>
+                    <div >Ingredients: 
+                        <br/>
+                        <ArrayToDiv  array={this.props.ingredients} />
+                        
                     </div>
+                    <br/>
                     <div>Dietary considerations: 
+                        <br/>
+                        
                         <ArrayToDiv array={this.props.diet} />
                     </div>
 

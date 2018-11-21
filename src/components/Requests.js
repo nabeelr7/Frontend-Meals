@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from './Button'
 import StripeCheckout from './Stripe.js';
+import './requests.css'
 
 
 class Requests extends Component {
@@ -236,36 +237,37 @@ class Requests extends Component {
         if (this.state.foundResults) { return (<div>No Orders Made</div>) }
         if (this.props.userType === 'chef' && this.state.filteredRequests) {
             return (
+                
                 <div className='req-container'>
-                    <div className='unanswered'>
+                    <div className='request'>
                         <div>Unanswered Requests</div>
 
                         {this.state.filteredRequests.unanswered && this.mapItem(this.state.filteredRequests.unanswered)}
 
                     </div>
                     <br/>
-                    <div className='accepted'>
+                    <div className='request'>
                         <div>Accepted Requests</div>
 
                         {this.state.filteredRequests.accepted && this.mapItem(this.state.filteredRequests.accepted)}
 
                     </div>
                     <br></br>
-                    <div className='paid'>
+                    <div className='request'>
                         <div>Paid</div>
 
                         {this.state.filteredRequests.paid && this.mapItem(this.state.filteredRequests.paid)}
 
                     </div>
                     <br></br>
-                    <div className='inPerson'>
+                    <div className='request'>
                         <div>Pick up in person</div>
 
                         {this.state.filteredRequests.inPerson && this.mapItem(this.state.filteredRequests.inPerson)}
 
                     </div>
                     <br></br>
-                    <div className='byCar'>
+                    <div className='request'>
                         <div>Will Send a Car</div>
 
                         {this.state.filteredRequests.byCar && this.mapItem(this.state.filteredRequests.byCar)}
@@ -279,38 +281,38 @@ class Requests extends Component {
             return (
                 <div className='req-container'>
                     <div>My Orders</div>
-                    <div className='unanswered'>
+                    <div className='request'>
                         <div>Unanswered Requests</div>
 
                         {this.state.filteredRequests.unanswered && this.mapItem(this.state.filteredRequests.unanswered)}
 
                     </div>
                     <br/>
-                    <div className='accepted'>
+                    <div className='request'>
                         <div>Accepted Requests</div>
 
                         {this.state.filteredRequests.accepted && this.mapItem(this.state.filteredRequests.accepted)}
 
                     </div>
-                    <div className='paid'>
+                    <div className='request'>
                         <div>Paid</div>
 
                         {this.state.filteredRequests.paid && this.mapItem(this.state.filteredRequests.paid)}
 
                     </div>
-                    <div className='declined'>
+                    <div className='request'>
                         <div>Declined Requests</div>
 
                         {this.state.filteredRequests.declined && this.mapItem(this.state.filteredRequests.declined)}
 
                     </div>
-                    <div className='inPerson'>
+                    <div className='request'>
                         <div>Personal Pick Up</div>
 
                         {this.state.filteredRequests.inPerson && this.mapItem(this.state.filteredRequests.inPerson)}
 
                     </div>
-                    <div className='byCar'>
+                    <div className='request'>
                         <div>Will Send a Car</div>
 
                         {this.state.filteredRequests.byCar && this.mapItem(this.state.filteredRequests.byCar)}
