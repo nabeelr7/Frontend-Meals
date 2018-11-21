@@ -78,8 +78,9 @@
 }
 
 .loginBtn:hover, .signupBtn:hover {
-    border-color: #1422a1;
-    color: #1422a1;
+    border-color: #00a917;
+    color: #00a917;
+    border-style: solid !important;
 }
 
 #dash {
@@ -96,6 +97,7 @@
     border-style: none;
     background-color: black;
     color: white;
+    border-width: 1px;
 }
 
 .browseBtn {

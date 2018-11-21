@@ -99,10 +99,10 @@ class ChefDashboard extends Component {
                 <div className='card'>
                     <div  className='card-top'>
                         <img src={item.image} className='card-img' height='200px' alt='meal pic' />
+                        <div className='card-price'>{item.price}$</div>
                     </div>
                     <div className='card-bottom'> 
-                        <div>{item.title}</div>
-                        <div>{item.price}$</div>
+                        <div className='card-title'>{item.title}</div>
                         
                         
                         <RemoveButton
@@ -146,7 +146,6 @@ class ChefDashboard extends Component {
             </>
             )}
          return (<>
-            <input type="button" value="Add A Meal" onClick={() => this.openModal()} />
              <Modal
                 visible={this.state.visible}
                 effect='fadeInUp'
@@ -168,6 +167,7 @@ class ChefDashboard extends Component {
                         <p>{this.state.profile.bio}</p>
                     </div>
                 </div>
+            <input type="button" className='addMealBtn' value="Add A Meal" onClick={() => this.openModal()} />
 
             </div>
 

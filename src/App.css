@@ -90,6 +90,21 @@ body {
 
 }
 
+.addMealBtn {
+  height: 90px;
+  align-self: center;
+  width: 250px;
+  margin-right: 12%;
+  border-radius: 15px;
+  font-size: 24px;
+  font-weight: lighter;
+}
+
+#remove-meal-btn {
+  width: 150px;
+  margin-top: 15px;
+}
+
 .card-top {
   width: 100%;
   max-height: 80%;
@@ -149,3 +164,5 @@ body {
   font-size: 25px;
   margin-bottom: 0; 
 }
+
+/* ghostwhite */
