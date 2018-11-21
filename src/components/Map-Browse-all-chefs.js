@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import MapGL, { Marker , Popup} from "react-map-gl";
+import {Link} from 'react-router-dom';
 import "../App.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -18,35 +19,63 @@ class Map extends Component {
         longitude: -73.5691,
         zoom: 12
       },
+
+      popupInfo: null,
       mapLoad: false,
-      popupInfo: null
 
     };
+    this.renderMarkers=this.renderMarkers.bind(this)
+    this.updatePopupInfo=this.updatePopupInfo.bind(this)
+    this.closePopup=this.closePopup.bind(this)
   }
+  
   renderPopup = () => {
     return (
-      this.state.popupInfo && (
-        <div className="popupContainer">
-          <Popup
-            className="popupContent"
-            tipSize={5}
-            anchor="bottom-right"
-            longitude={this.state.popupInfo.loc[0]}
-            latitude={this.state.popupInfo.loc[1]}
-            onClose={() => this.setState({ popupInfo: null })}
-            closeOnClick={true}
-          >
-            <div className="popupText">{this.state.popupInfo.stop_name}</div>
-            <div className="popupId">{this.state.popupInfo.stop_id}</div>
-          </Popup>
-        </div>
-      )
-    );
+        this.state.popupInfo && (
+          <div className="popupContainer">
+            <Popup
+              className="popupContent"
+              tipSize={5}
+              anchor="bottom-right"
+              longitude={this.state.popupInfo.coordinates.lng}
+              latitude={this.state.popupInfo.coordinates.lat}
+              // onClose={()=> this.setState({ popupInfo: null})}
+              // closeOnClick={true}
+             >
+              <Link to={`/chef/${this.state.popupInfo.userName}`}> 
+                  <img src = {this.state.popupInfo.profilePicturePath} height='25px' className="popUpText"></img>
+                  <div>{this.state.popupInfo.userName}</div>
+               </Link>
+              
+            </Popup>
+          </div>
+        )
+    )
+  }
+
+  // get popups info by userName and update popyInfo in the state when it it clicked
+  ///HERE AM CAUGHT==========================
+  updatePopupInfo = function(x) {
+
+    fetch('/getchef/' + x.target.parentNode.id, {
+      method: "GET"
+    })
+    .then(res => res.json())
+    .then(res => {
+      this.setState({popupInfo: res});
+    }) 
+    .catch(err => {
+      console.log(err);
+    });
   };
 
+  closePopup(){
+    setTimeout(()=>this.setState({popupInfo : null}), 500)
+
+  }
   //renders all stop markers when the map component renders
 
-  renderMarkers = (chef, i) => {
+  renderMarkers = function (chef, i) {
     return (
       <Marker
         key={i}
@@ -54,7 +83,11 @@ class Map extends Component {
         latitude={chef.coordinates.lat}
         offsetTop={0}
         offsetLeft={0}
-      ><img height='25px' alt='locationMarker' src='/rawImages/marker.png'></img>
+        cursor= 'pointer'
+      >
+        <span id={chef.userName} onMouseEnter={this.updatePopupInfo} onMouseLeave={this.closePopup}> 
+          <img id={chef.userName} height='25px' alt='locationMarker' src='/rawImages/marker.png'></img>
+       </span>
       </Marker>
     );
   };
@@ -93,12 +126,12 @@ class Map extends Component {
         }}
         onLoad={()=>{setTimeout(()=>this.setState({ mapLoad: true }), 250);}}
       >
-       
+        {this.renderPopup()}
         {this.state.mapLoad?this.props.chefs.map(this.renderMarkers):null}
         {this.props.children}
       </MapGL>
     );
   }
 }
-let mapStateToProps
+
 export default Map;

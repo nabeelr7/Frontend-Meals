@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
 // import Modal from 'react-awesome-modal'
 import { Marker } from 'react-map-gl';
-import Map from './Map-all-chef.js';
+import Map from './Map-Browse-all-chefs.js';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Browse.css'

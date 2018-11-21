@@ -64,9 +64,10 @@ class ChefProfile extends Component {
         })
     }
     render() {
+        console.log("mapprofile", MapProfile)
         if (!this.state.profile) { return <div>Loading..</div> }
         else {
-            return (<>
+            return (<div>
                 <div className='chef-main-container'>
                  <div className='chef-profile'>
                     <div className='chef-profile-picture'>
@@ -122,7 +123,7 @@ class ChefProfile extends Component {
                         )
                     })}
                 </div>
-            </>)
+            </div>)
         }
     }
 }

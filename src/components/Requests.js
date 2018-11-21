@@ -146,13 +146,8 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-<<<<<<< HEAD
                         <div>{dueDate}</div>
-                        <div>Client has Paid! Now we wait to hear if they will pickup in person or send a car</div>
-=======
-                        <div>{item.dueDate}</div>
                         <div>Awaiting pick-up info</div>
->>>>>>> e5f24071e7929a102bdde8ebdd4095822c39f440
                     </div>
                 )
             }
@@ -225,27 +220,27 @@ class Requests extends Component {
                     </div>
                 )
             }
-            else  if (this.props.userType === 'client' && item.requestStatus === 4) {
+            else  if (this.props.userType === 'client' && (item.requestStatus === 4 ||  item.requestStatus === 5)) {
                 return (
                     <div className='req'>
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        
-                        <div> Will Pick up in Person on {dueDate}</div>
+                        {item.requestStatus===4 && <div> Will Pick up in Person on {dueDate}</div>}
+                        {item.requestStatus===5 && <div> Will Send a Car {dueDate}</div>}
                     </div>
                 )
             }
-            else  if (this.props.userType === 'client' && item.requestStatus === 5) {
-                return (
-                    <div className='req'>
-                        <div>{item.mealTitle}</div>
-                        <div>Qty: {item.quantity}</div>
-                        <div>For Client {item.userName}</div>
-                        <div> Will Send a Car on {dueDate}</div>
-                    </div>
-                )
-            }
+            // else  if (this.props.userType === 'client' && item.requestStatus === 5) {
+            //     return (
+            //         <div className='req'>
+            //             <div>{item.mealTitle}</div>
+            //             <div>Qty: {item.quantity}</div>
+            //             <div>For Client {item.userName}</div>
+            //             <div> Will Send a Car on {item.dueDate}</div>
+            //         </div>
+            //     )
+            // }
             
             
         })
@@ -283,7 +278,7 @@ class Requests extends Component {
                     <div className='request'>
                         <div className='req-title' id='req-title-small'>Pick up in person</div>
 
-                        {this.state.filteredRequests.inPerson && this.mapItem(this.state.filteredRequests.inPerson)}
+                        {this.state.filteredRequests.inPerson && this.mapItem(this.state.filteredRequests.inPerson) }
 
                     </div>
                     <br></br>
@@ -328,17 +323,17 @@ class Requests extends Component {
 
                     </div>
                     <div className='request'>
-                        <div className='req-title' >Personal Pick Up</div>
+                        <div className='req-title' >Pick Up Method</div>
 
-                        {this.state.filteredRequests.inPerson && this.mapItem(this.state.filteredRequests.inPerson)}
+                        {this.state.filteredRequests.inPerson && this.mapItem(this.state.filteredRequests.inPerson).concat(this.mapItem(this.state.filteredRequests.byCar))}
 
                     </div>
-                    <div className='request'>
+                    {/* <div className='request'>
                         <div className='req-title' id='req-title-small'>Will Send a Car</div>
 
                         {this.state.filteredRequests.byCar && this.mapItem(this.state.filteredRequests.byCar)}
 
-                    </div>
+                    </div>   */}
 
                 </div>
                 </>

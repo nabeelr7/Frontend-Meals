@@ -62,8 +62,10 @@ class MapProfile extends Component {
   };
 
   render() {
+    
     return (
       <MapGL
+    
         {...this.state.viewport}
         style={{margin:'0 auto'}}
         mapStyle="mapbox://styles/daviddean/cjooubaoo49mu2ss2oh41pq8r"
