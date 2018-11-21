@@ -31,3 +31,32 @@
 #req-title-small {
     margin-bottom: 53px;
 }
+
+.req-btn {
+    margin: 8px;
+    width: 103px;
+    border-radius: 8px;
+    font-size: 19px;
+    padding: 4px;
+    font-weight: 300;
+}
+
+#btn-acc {
+    background-color: #63ce5ae7;
+}
+
+#btn-dec {
+    background-color: #e44848c5;
+}
+
+#req-acc {
+    background-color: #63ce5ae7;
+}
+
+#req-dec {
+    background-color: #e44848c5;
+}
+
+#req-paid {
+    background-color: #1b67d8e0
+}

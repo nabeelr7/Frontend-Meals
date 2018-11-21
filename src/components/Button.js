@@ -74,7 +74,7 @@ class Button extends Component {
     }
     render() {
         return (
-            <button onClick={this.handleClick}>{this.props.buttonName}</button>
+            <button className='req-btn' id={this.props.id} onClick={this.handleClick}>{this.props.buttonName}</button>
         )
     }
 }

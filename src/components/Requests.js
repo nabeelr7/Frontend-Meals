@@ -112,15 +112,15 @@ class Requests extends Component {
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
-                        <div>{dueDate}</div>
-                        <Button buttonName='Accept' _id={item._id}  formatResponse={this.formatResponse}/>
-                        <Button buttonName='Decline' _id={item._id}  formatResponse={this.formatResponse}/>
+                        <div>{item.dueDate}</div>
+                        <Button id='btn-acc' buttonName='Accept' _id={item._id}  formatResponse={this.formatResponse}/>
+                        <Button id='btn-dec' buttonName='Decline' _id={item._id}  formatResponse={this.formatResponse}/>
                     </div>
                 )
             } 
             else if (this.props.userType === 'chef' && item.requestStatus === 1) {
                 return (
-                    <div className='req'>
+                    <div className='req' id='req-acc'>
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
@@ -131,7 +131,7 @@ class Requests extends Component {
             }
             else if (this.props.userType === 'chef' && item.requestStatus === 2) {
                 return (
-                    <div className='req'>
+                    <div className='req' id='req-dec'>
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
@@ -142,7 +142,7 @@ class Requests extends Component {
             }
             else if (this.props.userType === 'chef' && item.requestStatus === 3) {
                 return (
-                    <div className='req'>
+                    <div className='req' id='req-paid'>
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
@@ -185,7 +185,7 @@ class Requests extends Component {
             
             else if (this.props.userType === 'client' && item.requestStatus === 1) {
                 return (
-                    <div className='req'>
+                    <div className='req' id='req-acc'>
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>Chef: {item.chefName}</div>
@@ -199,7 +199,7 @@ class Requests extends Component {
                 )
             }else  if (this.props.userType === 'client' && item.requestStatus === 2) {
                 return (
-                    <div className='req'>
+                    <div className='req' id='req-dec'>
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
@@ -210,7 +210,7 @@ class Requests extends Component {
             }
             else  if (this.props.userType === 'client' && item.requestStatus === 3) {
                 return (
-                    <div className='req'>
+                    <div className='req' id='req-paid'>
                         <div>{item.mealTitle}</div>
                         <div>Qty: {item.quantity}</div>
                         <div>For Client {item.userName}</div>
@@ -261,14 +261,14 @@ class Requests extends Component {
 
                     </div>
                     <br/>
-                    <div className='request'>
+                    <div className='request' >
                         <div className='req-title' id='req-title-small'>Accepted Requests</div>
 
                         {this.state.filteredRequests.accepted && this.mapItem(this.state.filteredRequests.accepted)}
 
                     </div>
                     <br></br>
-                    <div className='request'>
+                    <div className='request' >
                         <div className='req-title' id='req-title-small'>Paid</div>
 
                         {this.state.filteredRequests.paid && this.mapItem(this.state.filteredRequests.paid)}
@@ -304,19 +304,19 @@ class Requests extends Component {
 
                     </div>
                     <br/>
-                    <div className='request'>
-                        <div className='req-title' id='req-title-small'>Accepted Requests</div>
+                    <div className='request' >
+                        <div className='req-title' id='req-title-small' >Accepted Requests</div>
 
                         {this.state.filteredRequests.accepted && this.mapItem(this.state.filteredRequests.accepted)}
 
                     </div>
-                    <div className='request'>
+                    <div className='request' >
                         <div className='req-title' id='req-title-small'>Paid</div>
 
                         {this.state.filteredRequests.paid && this.mapItem(this.state.filteredRequests.paid)}
 
                     </div>
-                    <div className='request'>
+                    <div className='request' >
                         <div className='req-title' id='req-title-small'>Declined Requests</div>
 
                         {this.state.filteredRequests.declined && this.mapItem(this.state.filteredRequests.declined)}
