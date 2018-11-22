@@ -25,7 +25,7 @@ class Browse extends Component {
             renderedItems: [],
             itemsToWorkFrom: [],
             itemsAreDirty: true,
-            distanceFilter: 40000,
+            distanceFilter: 10000,
             priceFilter: 15,
             allergenFilter: []
         }
@@ -75,7 +75,7 @@ class Browse extends Component {
                 itemsToWorkFrom: this.props.searchResults,
                 renderedItems: this.props.searchResults,
                 itemsAreDirty: true, // we have search items, so dirty items (not a complete unaltered set)
-                distanceFilter: 40000,
+                distanceFilter: 10000,
                 priceFilter: 15,
                 allergenFilter: []
             });
@@ -209,7 +209,7 @@ class Browse extends Component {
         // reset the state
         this.setState({
             itemsAreDirty: true,
-            distanceFilter: 40000,
+            distanceFilter: 10000,
             priceFilter: 15,
             allergenFilter: []
         });
@@ -363,7 +363,7 @@ class Browse extends Component {
                                                 <span>Distance</span>
                                                 <input type='range'
                                                         step='500'
-                                                        min='100' max='40000'
+                                                        min='1' max='10000'
                                                         value={this.state.distanceFilter}
                                                         onChange={this.handleDistanceChange}
                                                         onMouseUp={this.applyFilters}/>

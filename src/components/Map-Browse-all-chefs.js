@@ -35,7 +35,7 @@ class Map extends Component {
           <div className="popupContainer">
             <Popup
               className="popupContent"
-              tipSize={5}
+              tipSize={10}
               anchor="bottom-right"
               longitude={this.state.popupInfo.coordinates.lng}
               latitude={this.state.popupInfo.coordinates.lat}
@@ -81,8 +81,8 @@ class Map extends Component {
         key={i}
         longitude={chef.coordinates.lng}
         latitude={chef.coordinates.lat}
-        offsetTop={0}
-        offsetLeft={0}
+        offsetTop={-25}
+        offsetLeft={-25}
         cursor= 'pointer'
       >
         <span id={chef.userName} onMouseEnter={this.updatePopupInfo} onMouseLeave={this.closePopup}> 
