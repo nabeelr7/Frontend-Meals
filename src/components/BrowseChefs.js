@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-// import MealCard from './MealCard.js'
-// import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
-// import Modal from 'react-awesome-modal'
-import { Marker } from 'react-map-gl';
 import Map from './Map-Browse-all-chefs.js';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './Browse.css'
+import './styling-files/Browse.css'
 
 
 class BrowseChefs extends Component {
@@ -18,7 +14,7 @@ class BrowseChefs extends Component {
     }
 
     componentDidMount() {
-
+        // if the user isnt logged in, display all chefs
         if (!this.props.loggedIn) {
             fetch('/getallchefs')
                 .then(function (x) {
@@ -28,7 +24,7 @@ class BrowseChefs extends Component {
                     this.setState({ chefs: parsed })
                 }.bind(this))
         }
-
+        // if they are logged and they have given their address, send a POST Req to get chefs along with their coordinates
         if (this.props.loggedIn && this.props.userCoordinates) {
             fetch('/getallchefs', {
                 method: "POST",
@@ -38,6 +34,7 @@ class BrowseChefs extends Component {
             }).then(function (res) {
                 let parsed = JSON.parse(res)
                 console.log(parsed)
+                //sort chefs by their distance to the user logged in
                 parsed = parsed.sort(function (a, b) { return a.distance - b.distance })
                 this.setState({ chefs: parsed })
             }.bind(this))
@@ -86,6 +83,7 @@ class BrowseChefs extends Component {
             )
         }
         if (this.props.loggedIn && this.props.userCoordinates) {
+            //if the user is logged in, the map will be centered on them
             return (<>
                 <div className='btn-box'>
                     <Link to='/browse'><button className='filter-btn'>Browse Meals</button></Link>
@@ -100,10 +98,6 @@ class BrowseChefs extends Component {
                         latitude={this.props.userCoordinates.lat}
                         longitude={this.props.userCoordinates.lng}
                         zoom={13}
-                    // boxZoom={true}
-                    // doubleClickZoom={true}
-                    // dragPan={true}
-                    // hash={true}
                     >
                     </Map>
                 </div>

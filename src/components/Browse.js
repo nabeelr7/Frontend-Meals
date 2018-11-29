@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-//import shortId from 'shortid';
 import MealCard from './MealCard.js';
 import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
 import Modal from 'react-awesome-modal';
 import {Link} from 'react-router-dom';
-import './Browse.css'
+import './styling-files/Browse.css'
 
 class Browse extends Component {
     constructor(props){

@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import MapGL, { Marker , Popup} from "react-map-gl";
 import {Link} from 'react-router-dom';
-import "../App.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-
-let viewWid = Math.max(window.innerWidth || 0);
-let viewHei = Math.max(window.innerHeight || 0);
 
 class Map extends Component {
   constructor(props) {
@@ -39,11 +35,9 @@ class Map extends Component {
               anchor="bottom-right"
               longitude={this.state.popupInfo.coordinates.lng}
               latitude={this.state.popupInfo.coordinates.lat}
-              // onClose={()=> this.setState({ popupInfo: null})}
-              // closeOnClick={true}
              >
               <Link to={`/chef/${this.state.popupInfo.userName}`}> 
-                  <img src = {this.state.popupInfo.profilePicturePath} height='25px' className="popUpText"></img>
+                  <img src = {this.state.popupInfo.profilePicturePath} alt='chef pic' height='25px' className="popUpText"></img>
                   <div>{this.state.popupInfo.userName}</div>
                </Link>
               

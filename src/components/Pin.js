@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Animate from 'react-smooth';
-import "../App.css";
+
 
 class Pin extends Component {
   render() {

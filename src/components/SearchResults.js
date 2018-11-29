@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
 import MealCard from './MealCard.js'
 import MealDescriptionAndOrderForm from './MealDescriptionAndOrderForm';
 import Modal from 'react-awesome-modal'

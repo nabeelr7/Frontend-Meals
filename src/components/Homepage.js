@@ -6,7 +6,7 @@ import Modal from 'react-awesome-modal'
 import MealCard from './MealCard.js'
 import ChefCard from './ChefCard.js'
 import {Link} from 'react-router-dom';
-import './homepage.css'
+import './styling-files/homepage.css'
 
 
 

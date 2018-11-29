@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import MapGL, { Marker } from "react-map-gl";
-import "../App.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-
-
-let viewWid = Math.max(window.innerWidth || 0);
-let viewHei = Math.max(window.innerHeight || 0);
 
 class MapProfile extends Component {
   constructor(props) {

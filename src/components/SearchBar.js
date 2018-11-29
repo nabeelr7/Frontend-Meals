@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
-import './Header.css'
+import './styling-files/Header.css'
 
 class SearchBar extends Component{
     constructor(props){

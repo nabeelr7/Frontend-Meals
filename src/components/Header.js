@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import './Header.css';
+import './styling-files/Header.css';
 import SearchBar from './SearchBar'
-import Stripe from './Stripe.js';
 import {withRouter} from 'react-router';
 
 class Header extends Component

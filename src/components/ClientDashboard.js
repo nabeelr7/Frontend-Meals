@@ -34,7 +34,6 @@ class ClientDashboard extends Component{
             let parsed = JSON.parse(response)
             if (parsed.success) {
                 this.setState({requests: parsed.result})
-            // DO OTHER STUFF M,AP THROUGH POUT IN DIVS SORT BY STATUS ETC
         }
         })
     }

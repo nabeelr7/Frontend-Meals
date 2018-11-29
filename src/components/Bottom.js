@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Bottom.css'
+import './styling-files/Bottom.css'
 class Bottom extends Component {
+
+    //renders the footer
     render() {
         return (
             <div className='footer-container'>

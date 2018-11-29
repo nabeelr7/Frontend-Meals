@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './login-signup.css'
+import './styling-files/login-signup.css'
 
 class Login extends Component {
     constructor(props) {

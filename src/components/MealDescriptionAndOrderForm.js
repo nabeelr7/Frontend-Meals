@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import MealDescription from './MealDescription';
 import MealOrderForm from './MealOrderForm';
-//import CSSTransitionReplace from 'react-css-transition-replace';
+
 
 
 class MealDescriptionAndOrderForm extends Component

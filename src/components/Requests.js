@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Button from "./Button";
 import StripeCheckout from "./Stripe.js";
 import moment from "moment";
-import "./requests.css";
+import "./styling-files/requests.css";
 
 class Requests extends Component {
   constructor(props) {
@@ -18,7 +18,6 @@ class Requests extends Component {
   }
   //function to sort request statuses
   formatResponse(response) {
-    console.log("the response", response);
     let parsed = JSON.parse(response);
     if (!parsed.success) {
       this.setState({ foundResults: true });
@@ -51,11 +50,15 @@ class Requests extends Component {
       declined = this.props.allRequests.filter(
         item => item.requestStatus === 2
       );
-      paid = this.props.allRequests.filter(item => item.requestStatus === 3);
+      paid = this.props.allRequests.filter(
+        item => item.requestStatus === 3
+      );
       inPerson = this.props.allRequests.filter(
         item => item.requestStatus === 4
       );
-      byCar = this.props.allRequests.filter(item => item.requestStatus === 5);
+      byCar = this.props.allRequests.filter(
+        item => item.requestStatus === 5
+      );
 
       this.setState({
         //makes a new state with filtered reqs
@@ -85,8 +88,9 @@ class Requests extends Component {
         this.formatResponse(response);
       });
 
+    //look for new requests 
     setInterval(
-      function() {
+      function () {
         fetch("/getrequests", {
           method: "POST",
           body: JSON.stringify({
@@ -115,11 +119,11 @@ class Requests extends Component {
         userName: this.props.userName
       })
     })
-      .then(function(x) {
+      .then(function (x) {
         return x.text();
       })
       .then(
-        function(response) {
+        function (response) {
           let parsed = JSON.parse(response);
           this.props.dispatch({
             type: "updateRequests",
@@ -262,8 +266,7 @@ class Requests extends Component {
           </div>
         );
       } else if (
-        this.props.userType === "client" &&
-        (item.requestStatus === 4 || item.requestStatus === 5)
+        this.props.userType === "client" && (item.requestStatus === 4 || item.requestStatus === 5)
       ) {
         return (
           <div className="req">
@@ -277,126 +280,101 @@ class Requests extends Component {
           </div>
         );
       }
-      // else  if (this.props.userType === 'client' && item.requestStatus === 5) {
-      //     return (
-      //         <div className='req'>
-      //             <div>{item.mealTitle}</div>
-      //             <div>Qty: {item.quantity}</div>
-      //             <div>For Client {item.userName}</div>
-      //             <div> Will Send a Car on {item.dueDate}</div>
-      //         </div>
-      //     )
-      // }
     });
   }
 
   render() {
+
     if (!this.props.allRequests) {
       return <div>Loading...</div>;
     }
+
     if (this.state.foundResults) {
       return <div>No Orders Made</div>;
     }
+    //render chefs requests
     if (this.props.userType === "chef" && this.state.filteredRequests) {
+      //render all requests
+
       return (
         <div className="req-container">
+
           <div className="request">
             <div className="req-title" id="req-title-small">
               Unanswered Requests
             </div>
-
-            {this.state.filteredRequests.unanswered &&
-              this.mapItem(this.state.filteredRequests.unanswered)}
+            {/* checks if there are unanswered requests and displays them here */}
+            {this.state.filteredRequests.unanswered && this.mapItem(this.state.filteredRequests.unanswered)}
           </div>
-          <br />
+
           <div className="request">
             <div className="req-title" id="req-title-small">
               Accepted Requests
             </div>
-
-            {this.state.filteredRequests.accepted &&
-              this.mapItem(this.state.filteredRequests.accepted)}
+            {this.state.filteredRequests.accepted && this.mapItem(this.state.filteredRequests.accepted)}
           </div>
-          <br />
+
           <div className="request">
             <div className="req-title" id="req-title-small">
               Paid
             </div>
-
-            {this.state.filteredRequests.paid &&
-              this.mapItem(this.state.filteredRequests.paid)}
+            {this.state.filteredRequests.paid && this.mapItem(this.state.filteredRequests.paid)}
           </div>
-          <br />
+
           <div className="request">
             <div className="req-title" id="req-title-small">
               Pick up in person
             </div>
-
-            {this.state.filteredRequests.inPerson &&
-              this.mapItem(this.state.filteredRequests.inPerson)}
+            {this.state.filteredRequests.inPerson && this.mapItem(this.state.filteredRequests.inPerson)}
           </div>
-          <br />
+
           <div className="request">
             <div className="req-title" id="req-title-small">
               Will Send a Car
             </div>
-
-            {this.state.filteredRequests.byCar &&
-              this.mapItem(this.state.filteredRequests.byCar)}
+            {this.state.filteredRequests.byCar && this.mapItem(this.state.filteredRequests.byCar)}
           </div>
+
         </div>
       );
     }
+
+    //render client's requests
     if (this.props.userType === "client" && this.props.allRequests) {
       return (
         <>
           <div className="myOrders">My Orders</div>
+
           <div className="req-container">
+
             <div className="request">
               <div className="req-title">Unanswered Requests</div>
-
-              {this.state.filteredRequests.unanswered &&
-                this.mapItem(this.state.filteredRequests.unanswered)}
+              {this.state.filteredRequests.unanswered && this.mapItem(this.state.filteredRequests.unanswered)}
             </div>
-            <br />
+
             <div className="request">
-              <div className="req-title" id="req-title-small">
-                Accepted Requests
-              </div>
-
-              {this.state.filteredRequests.accepted &&
-                this.mapItem(this.state.filteredRequests.accepted)}
+              <div className="req-title" id="req-title-small">Accepted Requests</div>
+              {this.state.filteredRequests.accepted && this.mapItem(this.state.filteredRequests.accepted)}
             </div>
+
             <div className="request">
-              <div className="req-title" id="req-title-small">
-                Paid
-              </div>
-
-              {this.state.filteredRequests.paid &&
-                this.mapItem(this.state.filteredRequests.paid)}
+              <div className="req-title" id="req-title-small">Paid</div>
+              {this.state.filteredRequests.paid && this.mapItem(this.state.filteredRequests.paid)}
             </div>
+
             <div className="request">
-              <div className="req-title" id="req-title-small">
-                Declined Requests
-              </div>
-
-              {this.state.filteredRequests.declined &&
-                this.mapItem(this.state.filteredRequests.declined)}
+              <div className="req-title" id="req-title-small">Declined Requests</div>
+              {this.state.filteredRequests.declined && this.mapItem(this.state.filteredRequests.declined)}
             </div>
+
             <div className="request">
               <div className="req-title">Pick Up Method</div>
-
               {this.state.filteredRequests.inPerson &&
                 this.mapItem(this.state.filteredRequests.inPerson).concat(
                   this.mapItem(this.state.filteredRequests.byCar)
                 )}
             </div>
-            {/* <div className='request'>
-                        <div className='req-title' id='req-title-small'>Will Send a Car</div>
 
-                        {this.state.filteredRequests.byCar && this.mapItem(this.state.filteredRequests.byCar)}
-
-                    </div>   */}
           </div>
         </>
       );
@@ -404,7 +382,8 @@ class Requests extends Component {
   }
 }
 
-let mapStateToProps = function(state) {
+let mapStateToProps = function (state) {
+  //import props
   return {
     userName: state.userName,
     userType: state.userType,
